@@ -1,0 +1,40 @@
+name: Bug report
+description: Report a problem with TILECHECK.
+title: "Bug: "
+body:
+  - type: markdown
+    attributes:
+      value: Please do not upload confidential game textures to public issues.
+  - type: textarea
+    id: summary
+    attributes:
+      label: What happened?
+      description: Describe expected and actual behavior.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: "1. Open TILECHECK, 2. Load an image, 3. ..."
+    validations:
+      required: true
+  - type: dropdown
+    id: mode
+    attributes:
+      label: Inspection mode
+      options:
+        - Tile
+        - Offset
+        - Mirror
+        - Seam Map
+        - Original
+        - Upload or export
+        - General interface
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Browser and operating system
+      placeholder: Firefox on Windows

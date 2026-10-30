@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="TILECHECK user help, FAQ and support.">
+<meta name="theme-color" content="#10151c">
+<link rel="icon" type="image/svg+xml" href="./assets/favicon.svg">
+<link rel="stylesheet" href="./assets/styles.css">
+<title>Help & FAQ — TILECHECK</title>
+</head>
+<body><div class="app">
+<header class="topbar"><a class="brand" href="./index.html" aria-label="TILECHECK home"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span>TILE<span class="brand-accent">CHECK</span></span><span class="brand-tag">BETA 0.1</span></a><nav class="header-nav"><a class="header-nav-link" href="./index.html">OPEN INSPECTOR ↗</a></nav></header>
+<main class="help-main">
+<section class="help-heading"><div class="eyebrow">DOCUMENTATION / 01</div><h1>Help & FAQ<span class="period">.</span></h1><p>Everything you need to get started with texture inspection. No image uploads or account required.</p><a class="button button-primary" href="./index.html">OPEN INSPECTOR ↗</a></section>
+<section class="help-section"><div class="section-head"><span class="eyebrow">01 / GETTING STARTED</span><span class="line"></span></div><h2>Inspect a texture in three steps</h2><ol class="help-steps"><li><strong>Import.</strong> Drag an image into the inspector or choose a file.</li><li><strong>Inspect.</strong> Use Tile, Offset, Mirror, Seam Map and Original to compare the result.</li><li><strong>Export.</strong> Download a PNG preview or a wrapped-offset image.</li></ol></section>
+<section class="help-section"><div class="section-head"><span class="eyebrow">02 / MODES</span><span class="line"></span></div><h2>Inspection modes</h2><div class="help-mode-grid"><div class="help-tile"><strong>TILE</strong><span>Preview repetition using a 2×2 to 6×6 grid.</span></div><div class="help-tile"><strong>OFFSET</strong><span>Wrap the image so opposite joins meet away from the border.</span></div><div class="help-tile"><strong>MIRROR</strong><span>Compare alternately mirrored repetition with normal tiling.</span></div><div class="help-tile"><strong>SEAM MAP</strong><span>Highlight RGB differences along opposite borders.</span></div><div class="help-tile"><strong>ORIGINAL</strong><span>See the unchanged source texture.</span></div></div></section>
+<section class="help-section"><div class="section-head"><span class="eyebrow">03 / FAQ</span><span class="line"></span></div><h2>Common questions</h2>
+<div class="help-qa"><h3>Are my images uploaded?</h3><p>No. Images are decoded and processed inside your browser. TILECHECK does not upload your textures.</p></div>
+<div class="help-qa"><h3>Does a low seam score guarantee seamlessness?</h3><p>No. The number is a simple pixel difference indicator. Check the actual preview, especially with alpha, normal maps and repeating motifs.</p></div>
+<div class="help-qa"><h3>Can TILECHECK repair seams?</h3><p>Not in v0.1. Wrapped offset exports shift image pixels, but do not remove discontinuities.</p></div>
+<div class="help-qa"><h3>Which images are supported?</h3><p>PNG, JPEG, WebP and AVIF, depending on your browser. Maximum file size: 25 MB; maximum image size: 24 megapixels.</p></div>
+<div class="help-qa"><h3>Can it run offline?</h3><p>Yes. Download the repository and open index.html. No installation or build tooling is required.</p></div></section>
+<section class="help-section help-support"><div class="section-head"><span class="eyebrow">04 / FEEDBACK</span><span class="line"></span></div><h2>Need help or found a bug?</h2><p>Report issues through GitHub. Include your browser, texture format and reproduction steps. Please avoid sharing private textures in public issues.</p><div class="help-actions"><a class="button button-outline" href="https://github.com/Treenixie/Tilecheck/issues/new/choose" target="_blank" rel="noopener noreferrer">REPORT AN ISSUE ↗</a><a class="button button-outline" href="https://github.com/Treenixie/Tilecheck/blob/dev/docs/USAGE.md" target="_blank" rel="noopener noreferrer">USER GUIDE ↗</a><a class="button button-outline" href="https://github.com/Treenixie/Tilecheck" target="_blank" rel="noopener noreferrer">SOURCE CODE ↗</a></div></section>
+</main>
+<footer class="footer" aria-label="TILECHECK project links">
+        <nav class="footer-nav" aria-label="Project resources">
+          <a class="footer-row" href="https://github.com/Treenixie/Tilecheck" target="_blank" rel="noopener noreferrer">
+            <span class="footer-icon" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 .9C5.87.9.9 5.87.9 12c0 4.9 3.18 9.06 7.59 10.53.56.1.77-.24.77-.54 0-.27-.01-.97-.02-1.9-3.09.67-3.74-1.31-3.74-1.31-.5-1.28-1.23-1.62-1.23-1.62-1.01-.69.08-.68.08-.68 1.11.08 1.7 1.14 1.7 1.14.99 1.7 2.59 1.21 3.22.93.1-.72.39-1.21.71-1.49-2.47-.28-5.07-1.23-5.07-5.5 0-1.22.43-2.21 1.14-2.99-.12-.28-.5-1.41.11-2.94 0 0 .93-.3 3.04 1.14a10.6 10.6 0 0 1 5.53 0c2.12-1.44 3.04-1.14 3.04-1.14.61 1.53.23 2.66.11 2.94.71.78 1.13 1.77 1.13 2.99 0 4.28-2.61 5.21-5.09 5.49.4.35.76 1.03.76 2.08 0 1.5-.01 2.71-.01 3.08 0 .3.21.65.78.54A11.1 11.1 0 0 0 23.1 12C23.1 5.87 18.13.9 12 .9Z"/></svg></span>
+            <strong>GitHub</strong>
+            <span class="footer-description">Explore the source code and project files.</span>
+          </a>
+          <a class="footer-row" href="./help.html">
+            <span class="footer-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M9.8 9.3a2.4 2.4 0 0 1 4.6 1c0 1.6-2.4 2.1-2.4 3.8"></path><path d="M12 17.7h.01"></path></svg></span>
+            <strong>Support</strong>
+            <span class="footer-description">Read the FAQ, get help and report issues.</span>
+          </a>
+        </nav>
+        <a class="footer-wordmark" href="./index.html" aria-label="Back to TILECHECK">TILE<span>CHECK</span></a>
+        <div class="footer-meta">© 2026 TILECHECK <span class="footer-meta-divider" aria-hidden="true">/</span> MADE BY <a href="https://github.com/Treenixie" target="_blank" rel="noopener noreferrer" class="author-link">TREENIXIE</a></div>
+      </footer>
+</div></body></html>
