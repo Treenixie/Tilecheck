@@ -61,11 +61,11 @@ function makeDemo() {
     image.data[i + 3] = 255;
   }
   c.putImageData(image, 0, 0);
-  c.strokeStyle = '#444d4c'; c.lineWidth = 10; c.lineCap = 'round';
+  c.strokeStyle = '#4a5667'; c.lineWidth = 10; c.lineCap = 'round';
   c.beginPath(); c.moveTo(45, 370); c.bezierCurveTo(185, 307, 301, 460, 475, 389); c.stroke();
-  c.strokeStyle = '#dae0d0'; c.lineWidth = 3;
+  c.strokeStyle = '#dbe4f1'; c.lineWidth = 3;
   c.beginPath(); c.moveTo(37, 360); c.bezierCurveTo(185, 296, 303, 449, 472, 382); c.stroke();
-  c.fillStyle = '#536762';
+  c.fillStyle = '#637c9d';
   for (const [x, y, r] of [[111, 92, 23], [347, 174, 32], [198, 239, 10], [404, 465, 17]]) {
     c.globalAlpha = .45; c.beginPath(); c.arc(x, y, r, 0, Math.PI * 2); c.fill();
   }
@@ -142,9 +142,9 @@ function makeWrapped(source, xOffset, yOffset) {
   return cv;
 }
 function checker(c, w, h) {
-  c.fillStyle = '#17202a'; c.fillRect(0, 0, w, h);
+  c.fillStyle = '#161e2c'; c.fillRect(0, 0, w, h);
   const size = 21;
-  c.fillStyle = '#202b35';
+  c.fillStyle = '#202d40';
   for (let y = 0; y < h; y += size) for (let x = 0; x < w; x += size) if (((x / size + y / size) & 1) === 0) c.fillRect(x, y, size, size);
 }
 function drawMirrored(c, source, x, y, w, h, flipX, flipY) {
@@ -172,7 +172,7 @@ function addHeat(c, startX, startY, tileW, tileH, n) {
   }
 }
 function drawGuides(c, x, y, w, h, n) {
-  c.save(); c.strokeStyle = '#d1e57a'; c.globalAlpha = .65; c.setLineDash([5, 5]); c.lineWidth = 1;
+  c.save(); c.strokeStyle = '#94bdf5'; c.globalAlpha = .65; c.setLineDash([5, 5]); c.lineWidth = 1;
   c.beginPath();
   for (let i = 1; i < n; i++) { c.moveTo(x + i * w, y); c.lineTo(x + i * w, y + n * h); c.moveTo(x, y + i * h); c.lineTo(x + n * w, y + i * h); }
   c.stroke(); c.restore();
@@ -199,7 +199,7 @@ function draw() {
   if (state.mode === 'seams') addHeat(ctx, startX, startY, tileW, tileH, n);
   if (state.guides && !isSingle) drawGuides(ctx, startX, startY, tileW, tileH, n);
   if (state.mode === 'offset') {
-    ctx.save(); ctx.strokeStyle = '#d1e57a'; ctx.lineWidth = 1; ctx.globalAlpha = .65; ctx.setLineDash([6, 6]);
+    ctx.save(); ctx.strokeStyle = '#94bdf5'; ctx.lineWidth = 1; ctx.globalAlpha = .65; ctx.setLineDash([6, 6]);
     ctx.strokeRect(startX + .5, startY + .5, tileW - 1, tileH - 1); ctx.restore();
   }
 }
