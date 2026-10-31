@@ -478,9 +478,9 @@ body { background: #15132d; }
 }
 .file-graphic { color: #c2b8ff; background: #2c2655; }
 #fileDetails, .file-copy span, .range-ticks { color: #bcb4d6; }
-.text-button { color: #a5b6ff; }
+.text-button { color: #fff; }
 .text-button:hover { color: #f78ad1; }
-.control-title output { color: #a6b9ff; }
+.control-title output { color: #fff; }
 input[type="range"] { background: var(--tile-violet); }
 /* Solid slider knobs without inner borders or hairline outlines. */
 input[type="range"]::-webkit-slider-thumb {
@@ -501,7 +501,7 @@ input[type="range"]::-moz-range-thumb {
 }
 .toggle { background: #51476d; }
 .toggle::after { background: #e1dbf5; }
-.toggle-row input:checked + .toggle { background: linear-gradient(90deg, #4168f1, #8755e5); }
+.toggle-row input:checked + .toggle { background: var(--action-blue); }
 .toggle-row input:checked + .toggle::after { background: #ffffff; }
 .source-preview-title { color: #c9c0e7; }
 .preview-header .button-primary, .help-heading .button-primary {
@@ -574,42 +574,23 @@ input[type="range"]::-moz-range-thumb {
 .preview-controls .mode-tab { padding: 9px 14px 8px; flex: 0 0 auto; }
 .preview-controls .export-buttons { display: flex; align-items: center; flex: 0 0 auto; margin-left: auto; }
 .preview-controls .export-buttons .button { min-height: 34px; padding: 8px 14px; }
-/* Animate an independent overlay, never the export button or its text. */
+/* Solid action color with pink hover, no gradient layers. */
 .sidebar-export .button-primary {
-  position: relative;
-  isolation: isolate;
-  background: linear-gradient(110deg, #668aff, #a273f4);
-  color: #0d0b1d;
-  transform: none;
+  background: var(--action-blue);
+  color: #fff;
+  border: 0;
   box-shadow: none;
-  transition: none;
+  transform: none;
+  transition: background-color .18s ease;
 }
-.sidebar-export .button-primary::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  background: linear-gradient(110deg, #7e9eff, #b78cf9);
-  box-shadow: 0 0 18px rgba(135, 85, 243, .35);
-  opacity: 0;
-  transition: opacity .18s ease;
-}
-.sidebar-export .button-primary .export-label {
-  position: relative;
-  z-index: 1;
-}
-/* Override the generic .button:active shift as well as .button-primary:hover. */
-.sidebar-export .button-primary:hover,
-.sidebar-export .button-primary:active {
-  background: linear-gradient(110deg, #668aff, #a273f4);
+.sidebar-export .button-primary:hover:not(:disabled),
+.sidebar-export .button-primary:focus-visible:not(:disabled) {
+  background: var(--ui-hover);
+  color: #fff;
   box-shadow: none;
   transform: none;
 }
-.sidebar-export .button-primary:hover::before,
-.sidebar-export .button-primary:focus-visible::before {
-  opacity: 1;
-}
+.sidebar-export .button-primary:active { transform: none; }
 @media (min-width: 751px) {
   /* Center export between the topbar and the preview canvas, not on the tab row. */
   .main { position: relative; }
@@ -637,9 +618,6 @@ input[type="range"]::-moz-range-thumb {
   .preview-controls .export-buttons { right: 22px; }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .sidebar-export .button-primary::before { transition: none; }
-}
 
 /* Match the export hover: animate only an overlay, not the upload icon. */
 .upload-content .upload-trigger {
@@ -720,15 +698,16 @@ input[type="range"]::-moz-range-thumb {
 /* Midnight-violet checkerboard: quiet contrast with a soft ambient tint.
    The cell layer remains a full number of squares after every resize. */
 :root {
-  --checker-dark: #1a1a32;
-  --checker-light: #25243f;
+  --checker-dark: #15233e;
+  --checker-light: #1c2e50;
+  --action-blue: #216bfb;
 }
 .preview-controls { min-height: 38px; }
 .viewer {
   cursor: pointer;
   background-color: var(--checker-dark);
   background-image:
-    radial-gradient(ellipse at 52% 42%, rgba(125, 93, 189, .055), transparent 70%),
+    radial-gradient(ellipse at 52% 42%, rgba(33, 107, 251, .045), transparent 70%),
     repeating-conic-gradient(var(--checker-light) 0 25%, var(--checker-dark) 0 50%);
   background-size:
     100% 100%,
@@ -739,7 +718,7 @@ input[type="range"]::-moz-range-thumb {
   position: absolute; z-index: 1; inset: 0; display: none;
   flex-direction: column; align-items: center; justify-content: center;
   gap: 15px; padding: 24px; text-align: center;
-  background: linear-gradient(145deg, rgba(21,19,45,.16), rgba(21,19,45,.06));
+  background: linear-gradient(145deg, rgba(14,25,48,.13), rgba(14,25,48,.04));
 }
 .viewer.is-empty .viewer-empty-state { display: flex; }
 .viewer-empty-state strong { font-size: 22px; font-weight: 600; line-height: 1.35; color: #f8f5ff; }
@@ -755,7 +734,7 @@ input[type="range"]::-moz-range-thumb {
 .source-preview-frame {
   background-color: var(--checker-dark);
   background-image:
-    radial-gradient(ellipse at 50% 42%, rgba(125, 93, 189, .055), transparent 70%),
+    radial-gradient(ellipse at 50% 42%, rgba(33, 107, 251, .045), transparent 70%),
     repeating-conic-gradient(var(--checker-light) 0 25%, var(--checker-dark) 0 50%);
   background-size:
     100% 100%,
@@ -964,49 +943,6 @@ body, button, input, output, select, textarea {
   .workspace > .main {
     padding: 0 var(--workspace-gutter) var(--workspace-gutter);
   }
-}
-
-/* Shared upload and export button interaction.
-   The hover is an opacity fade on a gradient overlay: icons/text do not move. */
-:is(.viewer-empty-trigger, .sidebar-export .button-primary) {
-  position: relative;
-  isolation: isolate;
-  border: 0;
-  color: #0d0b1d;
-  background: linear-gradient(110deg, #668aff, #a273f4);
-  box-shadow: none;
-  transform: none;
-  transition: none;
-}
-:is(.viewer-empty-trigger, .sidebar-export .button-primary)::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  background: linear-gradient(110deg, #7e9eff, #b78cf9);
-  box-shadow: 0 0 18px rgba(135, 85, 243, .35);
-  opacity: 0;
-  transition: opacity .18s ease;
-}
-.viewer-empty-trigger > svg,
-.sidebar-export .button-primary > .export-label {
-  position: relative;
-  z-index: 1;
-}
-:is(.viewer-empty-trigger, .sidebar-export .button-primary):is(:hover, :active, :focus-visible) {
-  color: #0d0b1d;
-  border: 0;
-  background: linear-gradient(110deg, #668aff, #a273f4);
-  box-shadow: none;
-  transform: none;
-}
-:is(.viewer-empty-trigger, .sidebar-export .button-primary):is(:hover, :focus-visible):not(:disabled)::before {
-  opacity: 1;
-}
-.sidebar-export .button-primary:disabled::before { opacity: 0; }
-@media (prefers-reduced-motion: reduce) {
-  :is(.viewer-empty-trigger, .sidebar-export .button-primary)::before { transition: none; }
 }
 
 /* Match the upload control to the file-summary icon tile. */
