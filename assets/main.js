@@ -110,11 +110,36 @@ async function loadFile(file) {
   }
 }
 
-function checker(c, w, h) {
-  c.fillStyle = '#161e2c'; c.fillRect(0, 0, w, h);
-  const size = 21;
+// Use an even number of full cells in each direction, avoiding clipped edge tiles.
+function checker(c, w, h, targetCell = 21) {
+  c.fillStyle = '#161e2c';
+  c.fillRect(0, 0, w, h);
+  const columns = Math.max(2, Math.round(w / (targetCell * 2)) * 2);
+  const rows = Math.max(2, Math.round(h / (targetCell * 2)) * 2);
+  const tileW = w / columns, tileH = h / rows;
   c.fillStyle = '#202d40';
-  for (let y = 0; y < h; y += size) for (let x = 0; x < w; x += size) if (((x / size + y / size) & 1) === 0) c.fillRect(x, y, size, size);
+  for (let row = 0; row < rows; row++) {
+    for (let col = 0; col < columns; col++) {
+      if ((row + col) % 2 === 0) {
+        c.fillRect(col * tileW, row * tileH, tileW + 0.5, tileH + 0.5);
+      }
+    }
+  }
+}
+
+// The CSS checkerboards also need whole cells at every viewport size.
+// A conic-gradient period contains two columns and two rows.
+function fitCheckerboard(element, targetCell) {
+  const width = element.clientWidth, height = element.clientHeight;
+  if (width <= 0 || height <= 0) return;
+  const pairsX = Math.max(1, Math.round(width / (2 * targetCell)));
+  const pairsY = Math.max(1, Math.round(height / (2 * targetCell)));
+  element.style.setProperty('--checker-period-x', `${100 / pairsX}%`);
+  element.style.setProperty('--checker-period-y', `${100 / pairsY}%`);
+}
+function syncCheckerboards() {
+  fitCheckerboard(ui.viewer, 21);
+  fitCheckerboard(ui.sourceFrame, 14);
 }
 function drawSource() {
   const source = state.source; if (!source) return;
@@ -128,7 +153,7 @@ function drawSource() {
   // Work in device pixels to avoid a thin checkerboard seam from fractional CSS sizing.
   sourceCtx.setTransform(1, 0, 0, 1, 0, 0);
   sourceCtx.imageSmoothingEnabled = true;
-  checker(sourceCtx, width, height);
+  checker(sourceCtx, width, height, 14 * dpr);
   if (source.width === source.height) {
     sourceCtx.drawImage(source, 0, 0, width, height);
   } else {
@@ -263,9 +288,15 @@ document.addEventListener('drop', async (event) => {
   event.preventDefault(); dragDepth = 0; ui.dropOverlay.hidden = true; ui.viewer.classList.remove('is-dragging');
   await loadFile(event.dataTransfer?.files?.[0]);
 });
-window.addEventListener('resize', schedule);
-new ResizeObserver(schedule).observe(ui.viewer);
+window.addEventListener('resize', () => { syncCheckerboards(); schedule(); });
+const checkerResizeObserver = new ResizeObserver(() => {
+  syncCheckerboards();
+  schedule();
+});
+checkerResizeObserver.observe(ui.viewer);
+checkerResizeObserver.observe(ui.sourceFrame);
 new ResizeObserver(schedule).observe(ui.sourceCanvas);
 $('year').textContent = String(new Date().getFullYear());
+syncCheckerboards();
 clearSource();
 setMode('tile');

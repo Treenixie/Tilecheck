@@ -723,7 +723,7 @@ input[type="range"]::-moz-range-thumb {
   cursor: pointer;
   background-color: #161e2c;
   background-image: repeating-conic-gradient(#202d40 0 25%, #161e2c 0 50%);
-  background-size: 42px 42px;
+  background-size: var(--checker-period-x, 42px) var(--checker-period-y, 42px);
 }
 .viewer.is-empty > canvas, .source-preview-frame.is-empty > canvas { opacity: 0; pointer-events: none; }
 .viewer-empty-state {
@@ -746,7 +746,7 @@ input[type="range"]::-moz-range-thumb {
 .source-preview-frame {
   background-color: #161e2c;
   background-image: repeating-conic-gradient(#202d40 0 25%, #161e2c 0 50%);
-  background-size: 28px 28px;
+  background-size: var(--checker-period-x, 28px) var(--checker-period-y, 28px);
 }
 @media (max-width: 750px) {
   .sidebar-mode-tabs { max-width: 450px; }
