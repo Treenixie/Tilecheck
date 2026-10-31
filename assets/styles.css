@@ -213,10 +213,11 @@ strong, b { font-weight: 600; }
   .footer-meta { column-gap: 14px; }
 }
 
-/* Keep the left outer inset and the space between panels equal at 18px. */
+/* Single desktop spacing system: 36px outer margins, panel gap, and bottom.
+   The inner gutter is split equally: 18px on each side of the column boundary. */
 @media (min-width: 751px) {
-  .sidebar { padding-left: 18px; padding-right: 18px; }
-  .main { padding-left: 0; }
+  .sidebar { padding: 36px 18px 36px 36px; }
+  .main { padding: 36px 36px 36px 18px; }
 }
 
 /* Keep texture name and dimensions on one baseline. */
