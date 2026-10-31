@@ -8,7 +8,7 @@ const ui = {
   zoom: $('zoomRange'), zoomValue: $('zoomValue'),
   repeatControl: $('repeatControl'), sourceCanvas: $('sourceCanvas'),
   guide: $('guideToggle'), previewTitle: $('previewTitle'),
-  viewerLabel: $('viewerLabel'), dimensionLabel: $('dimensionLabel'),
+  viewerLabel: $('viewerLabel'),
   exportPreview: $('exportPreview'),
   toast: $('toast'),
 };
@@ -99,7 +99,6 @@ function installSource(canvas, name, sizeText) {
   state.source = canvas; state.name = name; state.analysis = analyze(canvas);
   ui.fileName.textContent = name;
   ui.fileDetails.textContent = `${canvas.width} × ${canvas.height} · ${sizeText}`;
-  ui.dimensionLabel.textContent = `${canvas.width} × ${canvas.height} px`;
   schedule();
 }
 
