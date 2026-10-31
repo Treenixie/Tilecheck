@@ -259,18 +259,23 @@ strong, b { font-weight: 600; }
 }
 .upload-content .button { margin: 9px auto 0; }
 
-/* Center dimensions in the space between the filename and Reset. */
+/* Keep the complete sample label visible and align dimensions beside it. */
 .file-copy {
   display: grid;
-  grid-template-columns: minmax(0, max-content) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1fr) max-content;
   align-items: center;
   gap: 8px;
+  min-width: 0;
 }
 .file-copy strong {
-  flex: initial;
-  max-width: min(88px, 45%);
+  min-width: 0;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .file-copy span {
   justify-self: center;
   text-align: center;
+  white-space: nowrap;
 }
