@@ -193,6 +193,31 @@ function draw() {
   if (state.mode === 'seams') addHeat(ctx, startX, startY, tileW, tileH, n);
   if (state.guides) drawGuides(ctx, startX, startY, tileW, tileH, n);
 }
+// Export a real image rather than the checkerboard-backed viewport canvas.
+function createExportCanvas() {
+  const source = state.source;
+  if (!source) return null;
+  const n = state.repeat;
+  const nativeW = source.width * n, nativeH = source.height * n;
+  // Keep the original pixel resolution unless the repeat grid is too large.
+  const maxPixels = 24_000_000, maxSide = 8192;
+  const scale = Math.min(1, maxSide / nativeW, maxSide / nativeH,
+    Math.sqrt(maxPixels / (nativeW * nativeH)));
+  const canvas = document.createElement('canvas');
+  canvas.width = Math.max(n, Math.round(nativeW * scale));
+  canvas.height = Math.max(n, Math.round(nativeH * scale));
+  const c = canvas.getContext('2d', { alpha: true });
+  if (!c) return null;
+  c.imageSmoothingEnabled = true;
+  const tileW = canvas.width / n, tileH = canvas.height / n;
+  for (let row = 0; row < n; row++) for (let col = 0; col < n; col++) {
+    drawMirrored(c, source, col * tileW, row * tileH, tileW, tileH,
+      state.mode === 'mirror' && col % 2 === 1, state.mode === 'mirror' && row % 2 === 1);
+  }
+  if (state.mode === 'seams') addHeat(c, 0, 0, tileW, tileH, n);
+  return canvas;
+}
+
 function setMode(mode) {
   if (!modes[mode]) return;
   state.mode = mode;
@@ -233,7 +258,7 @@ ui.repeat.addEventListener('input', () => { state.repeat = Number(ui.repeat.valu
 ui.zoom.addEventListener('input', () => { state.zoom = Number(ui.zoom.value) / 100; ui.zoomValue.textContent = `${ui.zoom.value}%`; schedule(); });
 ui.guide.addEventListener('change', () => { state.guides = ui.guide.checked; schedule(); });
 for (const tab of document.querySelectorAll('[data-mode]')) tab.addEventListener('click', () => setMode(tab.dataset.mode));
-ui.exportPreview.addEventListener('click', () => savePng(ui.canvas, `${sanitized(state.name)}-${state.mode}-preview.png`));
+ui.exportPreview.addEventListener('click', () => savePng(createExportCanvas(), `${sanitized(state.name)}-${state.mode}-preview.png`));
 let dragDepth = 0;
 document.addEventListener('dragenter', (event) => { if (!event.dataTransfer?.types.includes('Files')) return; event.preventDefault(); dragDepth++; ui.dropOverlay.hidden = false; ui.uploadZone.classList.add('is-dragging'); });
 document.addEventListener('dragover', (event) => { if (event.dataTransfer?.types.includes('Files')) event.preventDefault(); });

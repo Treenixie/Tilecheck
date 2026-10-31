@@ -534,3 +534,25 @@ input[type="range"]::-moz-range-thumb {
   .preview-header .button-primary:hover,
   .help-heading .button-primary:hover { transform: none; }
 }
+/* Compact, horizontally aligned toolbar without unnecessary space above the canvas. */
+.topbar { height: 44px; min-height: 44px; }
+.preview-header { margin-bottom: 0; }
+.preview-controls { display: flex; align-items: center; gap: 16px; min-width: 0; }
+.preview-controls .mode-tabs { min-width: 0; flex: 1 1 auto; overflow-x: auto; }
+.preview-controls .mode-tab { padding: 9px 14px 8px; flex: 0 0 auto; }
+.preview-controls .export-buttons { display: flex; align-items: center; flex: 0 0 auto; margin-left: auto; }
+.preview-controls .export-buttons .button { min-height: 34px; padding: 8px 14px; }
+.preview-controls .button-primary { background: linear-gradient(110deg, #668aff, #a273f4); color: #0d0b1d; }
+.preview-controls .button-primary:hover { background: linear-gradient(110deg, #7e9eff, #b78cf9); }
+@media (min-width: 751px) {
+  .sidebar, .main { padding-top: 16px; }
+  .sidebar h1, .preview-header { height: 40px; flex: 0 0 40px; }
+}
+@media (max-width: 750px) {
+  .topbar { height: 40px; min-height: 40px; }
+}
+@media (max-width: 470px) {
+  .preview-controls { flex-wrap: wrap; gap: 8px; }
+  .preview-controls .export-buttons { order: -1; width: 100%; justify-content: flex-end; }
+  .preview-controls .mode-tabs { flex: 1 0 100%; }
+}
