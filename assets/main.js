@@ -134,13 +134,13 @@ async function loadFile(file) {
 // Keep checker cells square and identical in CSS and canvas, regardless of panel aspect ratio.
 function checker(c, w, h, targetCell = 21) {
   const cell = Math.max(1, Math.round(targetCell));
-  c.fillStyle = '#171328';
+  c.fillStyle = '#120F20';
   c.fillRect(0, 0, w, h);
-  c.fillStyle = '#241D3D';
+  c.fillStyle = '#1D1733';
   for (let row = 0; row * cell < h; row++) {
     for (let col = 0; col * cell < w; col++) {
       if ((row + col) % 2 === 1) {
-        c.fillRect(col * cell, row * cell, cell + 0.5, cell + 0.5);
+        c.fillRect(col * cell, row * cell, cell, cell);
       }
     }
   }

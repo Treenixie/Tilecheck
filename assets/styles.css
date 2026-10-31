@@ -695,7 +695,7 @@ input[type="range"]::-moz-range-thumb {
 .file-summary { margin: 0 0 20px; padding: 0; }
 #fileDetails:empty { display: none; }
 
-/* Neutral grayscale checkerboard, without color tint.
+/* Stable square checkerboard; SVG tiles avoid the seams of conic gradients.
    The cell layer remains a full number of squares after every resize. */
 :root {
   --checker-dark: #292638;
@@ -706,8 +706,9 @@ input[type="range"]::-moz-range-thumb {
 .viewer {
   cursor: pointer;
   background-color: var(--checker-dark);
-  background-image:
-    repeating-conic-gradient(var(--checker-light) 0 25%, var(--checker-dark) 0 50%);
+  background-image: url("./checker.svg");
+  background-position: 0 0;
+  background-repeat: repeat;
   background-size: var(--checker-period-x, 42px) var(--checker-period-y, 42px);
 }
 .viewer.is-empty > canvas, .source-preview-frame.is-empty > canvas { opacity: 0; pointer-events: none; }
@@ -730,8 +731,9 @@ input[type="range"]::-moz-range-thumb {
 .viewer.is-dragging { outline: 2px dashed #aa91ff; outline-offset: -3px; }
 .source-preview-frame {
   background-color: var(--checker-dark);
-  background-image:
-    repeating-conic-gradient(var(--checker-light) 0 25%, var(--checker-dark) 0 50%);
+  background-image: url("./checker.svg");
+  background-position: 0 0;
+  background-repeat: repeat;
   background-size: var(--checker-period-x, 28px) var(--checker-period-y, 28px);
 }
 @media (max-width: 750px) {
@@ -1106,8 +1108,8 @@ input[type="range"] { background: var(--tile-violet); }
   --tile-violet: #81DFF3;
   --action-accent: #81DFF3;
   --ui-hover: #F59BCC;
-  --checker-dark: #171328;
-  --checker-light: #241D3D;
+  --checker-dark: #120F20;
+  --checker-light: #1D1733;
   --edge-gradient: linear-gradient(90deg, #81DFF3 0%, #F4EB8A 50%, #F59BCC 100%);
 }
 html, body, .app, .workspace { background: var(--bg); color: var(--text); }
@@ -1155,3 +1157,13 @@ input[type="range"]::-moz-range-thumb { background: #F59BCC; }
 .mode-tab:hover:not(:disabled), .text-button:hover:not(:disabled),
 .topbar .header-nav-link:hover, .footer .author-link:hover { color: #F59BCC; }
 #viewer > #toast { background: #241B46; color: #F5F0FF; }
+
+/* Pastel wordmark coordinates with the original four-quadrant Tilecheck symbol. */
+.topbar .brand-accent {
+  background: linear-gradient(95deg, #81DFF3 0%, #F4EB8A 52%, #F59BCC 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: #F59BCC;
+  -webkit-text-fill-color: transparent;
+}
+.topbar .brand:hover .brand-accent { filter: brightness(1.08); }
