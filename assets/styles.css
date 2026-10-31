@@ -661,3 +661,13 @@ input[type="range"]::-moz-range-thumb {
 @media (prefers-reduced-motion: reduce) {
   .upload-content .upload-trigger::before { transition: none; }
 }
+
+/* Original texture preview: a square viewport at every breakpoint.
+   Square sources cover the entire frame; rectangular images are letterboxed. */
+.source-preview-frame {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  flex: 0 0 auto;
+  min-height: 0;
+}

@@ -130,17 +130,23 @@ function checker(c, w, h) {
 function drawSource() {
   const source = state.source; if (!source) return;
   const bounds = ui.sourceCanvas.getBoundingClientRect();
-  const w = bounds.width, h = bounds.height;
-  if (w <= 0 || h <= 0) return;
+  if (bounds.width <= 0 || bounds.height <= 0) return;
   const dpr = Math.min(2, window.devicePixelRatio || 1);
-  ui.sourceCanvas.width = Math.max(1, Math.round(w * dpr));
-  ui.sourceCanvas.height = Math.max(1, Math.round(h * dpr));
-  sourceCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  const width = Math.max(1, Math.round(bounds.width * dpr));
+  const height = Math.max(1, Math.round(bounds.height * dpr));
+  ui.sourceCanvas.width = width;
+  ui.sourceCanvas.height = height;
+  // Work in device pixels to avoid a thin checkerboard seam from fractional CSS sizing.
+  sourceCtx.setTransform(1, 0, 0, 1, 0, 0);
   sourceCtx.imageSmoothingEnabled = true;
-  checker(sourceCtx, w, h);
-  const scale = Math.min(w / source.width, h / source.height);
-  const width = source.width * scale, height = source.height * scale;
-  sourceCtx.drawImage(source, (w - width) / 2, (h - height) / 2, width, height);
+  checker(sourceCtx, width, height);
+  if (source.width === source.height) {
+    sourceCtx.drawImage(source, 0, 0, width, height);
+  } else {
+    const scale = Math.min(width / source.width, height / source.height);
+    const imageWidth = source.width * scale, imageHeight = source.height * scale;
+    sourceCtx.drawImage(source, (width - imageWidth) / 2, (height - imageHeight) / 2, imageWidth, imageHeight);
+  }
 }
 function drawMirrored(c, source, x, y, w, h, flipX, flipY) {
   c.save(); c.translate(x + (flipX ? w : 0), y + (flipY ? h : 0));
