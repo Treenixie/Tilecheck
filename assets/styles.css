@@ -215,7 +215,7 @@ strong, b { font-weight: 600; }
 
 /* Equal 36px horizontal and bottom gaps around both preview areas. */
 @media (min-width: 751px) {
-  .sidebar { padding-right: 18px; }
+  .sidebar { padding-left: 18px; padding-right: 18px; }
   .main { padding-left: 18px; }
 }
 
