@@ -501,7 +501,7 @@ input[type="range"]::-moz-range-thumb {
 }
 .toggle { background: #51476d; }
 .toggle::after { background: #e1dbf5; }
-.toggle-row input:checked + .toggle { background: var(--action-blue); }
+.toggle-row input:checked + .toggle { background: var(--action-accent); }
 .toggle-row input:checked + .toggle::after { background: #ffffff; }
 .source-preview-title { color: #c9c0e7; }
 .preview-header .button-primary, .help-heading .button-primary {
@@ -576,7 +576,7 @@ input[type="range"]::-moz-range-thumb {
 .preview-controls .export-buttons .button { min-height: 34px; padding: 8px 14px; }
 /* Solid action color with pink hover, no gradient layers. */
 .sidebar-export .button-primary {
-  background: var(--action-blue);
+  background: var(--action-accent);
   color: #fff;
   border: 0;
   box-shadow: none;
@@ -698,16 +698,16 @@ input[type="range"]::-moz-range-thumb {
 /* Midnight-violet checkerboard: quiet contrast with a soft ambient tint.
    The cell layer remains a full number of squares after every resize. */
 :root {
-  --checker-dark: #15233e;
-  --checker-light: #1c2e50;
-  --action-blue: #216bfb;
+  --checker-dark: #1b1931;
+  --checker-light: #27223e;
+  --action-accent: #af91fb;
 }
 .preview-controls { min-height: 38px; }
 .viewer {
   cursor: pointer;
   background-color: var(--checker-dark);
   background-image:
-    radial-gradient(ellipse at 52% 42%, rgba(33, 107, 251, .045), transparent 70%),
+    radial-gradient(ellipse at 52% 42%, rgba(175, 145, 251, .055), transparent 70%),
     repeating-conic-gradient(var(--checker-light) 0 25%, var(--checker-dark) 0 50%);
   background-size:
     100% 100%,
@@ -718,7 +718,7 @@ input[type="range"]::-moz-range-thumb {
   position: absolute; z-index: 1; inset: 0; display: none;
   flex-direction: column; align-items: center; justify-content: center;
   gap: 15px; padding: 24px; text-align: center;
-  background: linear-gradient(145deg, rgba(14,25,48,.13), rgba(14,25,48,.04));
+  background: linear-gradient(145deg, rgba(28,22,49,.12), rgba(28,22,49,.04));
 }
 .viewer.is-empty .viewer-empty-state { display: flex; }
 .viewer-empty-state strong { font-size: 22px; font-weight: 600; line-height: 1.35; color: #f8f5ff; }
@@ -734,7 +734,7 @@ input[type="range"]::-moz-range-thumb {
 .source-preview-frame {
   background-color: var(--checker-dark);
   background-image:
-    radial-gradient(ellipse at 50% 42%, rgba(33, 107, 251, .045), transparent 70%),
+    radial-gradient(ellipse at 50% 42%, rgba(175, 145, 251, .055), transparent 70%),
     repeating-conic-gradient(var(--checker-light) 0 25%, var(--checker-dark) 0 50%);
   background-size:
     100% 100%,

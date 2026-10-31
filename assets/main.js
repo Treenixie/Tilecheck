@@ -132,12 +132,12 @@ async function loadFile(file) {
 
 // Use an even number of full cells in each direction, avoiding clipped edge tiles.
 function checker(c, w, h, targetCell = 21) {
-  c.fillStyle = '#15233e';
+  c.fillStyle = '#1b1931';
   c.fillRect(0, 0, w, h);
   const columns = Math.max(2, Math.round(w / (targetCell * 2)) * 2);
   const rows = Math.max(2, Math.round(h / (targetCell * 2)) * 2);
   const tileW = w / columns, tileH = h / rows;
-  c.fillStyle = '#1c2e50';
+  c.fillStyle = '#27223e';
   for (let row = 0; row < rows; row++) {
     for (let col = 0; col < columns; col++) {
       if ((row + col) % 2 === 0) {
