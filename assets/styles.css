@@ -1078,3 +1078,25 @@ input[type="range"] { background: var(--tile-violet); }
 .sidebar.is-empty :is(.mode-tab, input[type="range"], .toggle-row) {
   cursor: default;
 }
+
+/* Notification belongs to the preview, not the viewport or footer. */
+#viewer > #toast {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  right: auto;
+  bottom: auto;
+  z-index: 3;
+  box-sizing: border-box;
+  width: max-content;
+  max-width: calc(100% - 28px);
+  padding: 10px 14px;
+  border: 1px solid rgba(175, 145, 251, .35);
+  border-radius: 8px;
+  font-size: var(--text-body);
+  line-height: 1.35;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  pointer-events: none;
+}

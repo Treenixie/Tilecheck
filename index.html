@@ -7,7 +7,7 @@
     <meta name="description" content="Inspect texture tiling, mirrored repetition, and potential seams directly in your browser." />
     <link rel="icon" type="image/png" href="./assets/favicon.png?v=4" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;600&display=swap" />
-<link rel="stylesheet" href="./assets/styles.css?v=65" />
+<link rel="stylesheet" href="./assets/styles.css?v=66" />
     <title>Tilecheck — Texture Inspection Studio</title>
     <script defer src="./assets/main.js?v=18"></script>
   </head>
@@ -78,6 +78,7 @@
               <span>PNG, JPG, WebP or AVIF, up to 25 MB</span>
             </div>
             <div class="drop-overlay" id="dropOverlay" hidden><div>↥<br/><span>Drop to inspect</span></div></div>
+            <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
           </div>
 
         </main>
@@ -88,7 +89,6 @@
           <span class="footer-credit">Made by <a href="https://github.com/Treenixie" target="_blank" rel="noopener noreferrer" class="author-link">Treenixie</a></span>
         </div>
       </footer>
-      <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
     </div>
   </body>
 </html>
