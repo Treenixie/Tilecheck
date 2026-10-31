@@ -113,8 +113,9 @@ async function loadFile(file) {
     }
     const cv = document.createElement('canvas'); cv.width = bitmap.width; cv.height = bitmap.height;
     cv.getContext('2d').drawImage(bitmap, 0, 0); bitmap.close();
-    installSource(cv, file.name, byteSize(file.size));
-    notify(`Loaded ${file.name}`);
+    const name = file.name?.trim() || 'Pasted image';
+    installSource(cv, name, byteSize(file.size));
+    notify(`Loaded ${name}`);
   } catch (error) {
     console.error(error); notify('Unable to decode that image.', true);
   }
@@ -216,6 +217,17 @@ async function savePng(canvas, filename) {
 }
 ui.chooseBtn.addEventListener('click', () => ui.input.click());
 ui.input.addEventListener('change', async () => { await loadFile(ui.input.files?.[0]); ui.input.value = ''; });
+document.addEventListener('paste', (event) => {
+  if (event.defaultPrevented) return;
+  const target = event.target;
+  if (target instanceof Element && target.closest('textarea, input[type="text"], input[type="search"], [contenteditable="true"]')) return;
+  const items = Array.from(event.clipboardData?.items ?? []);
+  const imageItem = items.find((item) => item.kind === 'file' && item.type.startsWith('image/'));
+  const file = imageItem?.getAsFile() ?? Array.from(event.clipboardData?.files ?? []).find((candidate) => candidate.type.startsWith('image/'));
+  if (!file) return;
+  event.preventDefault();
+  void loadFile(file);
+});
 ui.sampleBtn.addEventListener('click', () => { installSource(makeDemo(), 'Sample'); notify('Sample restored.'); });
 ui.repeat.addEventListener('input', () => { state.repeat = Number(ui.repeat.value); ui.repeatValue.textContent = `${state.repeat} × ${state.repeat}`; setMode(state.mode); });
 ui.zoom.addEventListener('input', () => { state.zoom = Number(ui.zoom.value) / 100; ui.zoomValue.textContent = `${ui.zoom.value}%`; schedule(); });

@@ -16,7 +16,7 @@
 | **Mirror** | Compare normal and alternately reflected tiling. |
 | **Seam Map** | Highlight pixel differences across opposing borders. |
 
-The sidebar keeps an unchanged source preview visible. Additional controls include preview zoom, tile boundaries, and PNG preview export.
+Import a texture by dropping it into the page, choosing a file, or pasting an image from the clipboard with Ctrl+V (Cmd+V on macOS). The sidebar keeps an unchanged source preview visible. Additional controls include preview zoom, tile boundaries, and PNG preview export.
 
 **Limitations:** The seam score is an average RGB difference indicator, not proof of seamlessness. TILECHECK does not repair textures or validate PBR maps.
 

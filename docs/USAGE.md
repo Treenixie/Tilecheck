@@ -3,7 +3,7 @@
 [Launch app](https://tilecheck.pages.dev/) · [Help & FAQ](https://tilecheck.pages.dev/help.html) · [Report an issue](https://github.com/Treenixie/Tilecheck/issues)
 
 ## Import
-Drop an image into the inspector or use Choose Image. PNG, JPEG, WebP and AVIF are supported where the browser can decode them. Maximum file size: 25 MB; maximum dimensions: 24 megapixels. Reset restores the generated example.
+Drop an image into the inspector, click the upload icon to choose a file, or paste an image from your clipboard using Ctrl+V (Cmd+V on macOS). PNG, JPEG, WebP and AVIF are supported where the browser can decode them. Maximum file size: 25 MB; maximum dimensions: 24 megapixels. Reset restores the generated example.
 
 ## Modes
 
