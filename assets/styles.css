@@ -919,43 +919,71 @@ body, button, input, output, select, textarea {
   .header-nav-link { font-size: var(--text-small); }
 }
 
-/* Unified 16px spacing for every inspector section and preview gutter.
-   No auto-spacer: Original follows Export with the same gap as other blocks. */
-:root { --inspector-gap: 16px; }
-.sidebar {
+/* One 20px rhythm for workspace gutters and inspector section spacing.
+   All rows share the same left/right edges, no auto push before Original. */
+:root {
+  --workspace-gutter: 20px;
+  --inspector-gap: 20px;
+}
+.workspace > .sidebar,
+.workspace > .main {
+  padding: var(--workspace-gutter);
+}
+.workspace > .sidebar {
   display: flex;
   flex-direction: column;
+  align-items: stretch;
   gap: var(--inspector-gap);
 }
-.sidebar > .sidebar-mode-tabs,
-.sidebar > .file-summary,
-.sidebar > .control-group,
-.sidebar > .toggle-row,
-.sidebar > .sidebar-export,
-.sidebar > .source-preview {
+.workspace > .sidebar > .sidebar-mode-tabs,
+.workspace > .sidebar > .file-summary,
+.workspace > .sidebar > .control-group,
+.workspace > .sidebar > .toggle-row,
+.workspace > .sidebar > .sidebar-export,
+.workspace > .sidebar > .source-preview {
+  flex: 0 0 auto;
+  width: 100%;
+  min-width: 0;
   margin: 0;
 }
-.sidebar > .file-summary { padding: 0; min-height: 40px; }
-.sidebar > .toggle-row { padding: 0; min-height: 28px; }
-.sidebar > .sidebar-export { padding: 0; }
-.sidebar > .source-preview {
+.workspace > .sidebar > .file-summary {
   padding: 0;
-  flex: 0 0 auto;
-  margin-top: 0;
+  min-height: 40px;
 }
-/* Keep the texture source square; don't stretch its pixels to fill the sidebar. */
-.source-preview-frame { flex: 0 0 auto; aspect-ratio: 1 / 1; }
-@media (min-width: 751px) {
-  .workspace > .sidebar { padding: 16px; }
-  .workspace > .main { padding: 16px; }
-  .main > .viewer { flex: 1 1 auto; min-height: 360px; }
+.workspace > .sidebar > .control-group { margin: 0; }
+.workspace > .sidebar > .toggle-row {
+  padding: 0;
+  min-height: 40px;
+}
+.workspace > .sidebar > .sidebar-export { padding: 0; }
+.workspace > .sidebar > .source-preview {
+  display: flex;
+  flex-direction: column;
+  margin-top: 0;
+  padding: 0;
+}
+.source-preview-title { margin: 0 0 12px; }
+.source-preview-frame {
+  width: 100%;
+  min-height: 0;
+  flex: 0 0 auto;
+  aspect-ratio: 1 / 1;
+}
+.workspace > .main { min-width: 0; }
+.workspace > .main > .viewer {
+  width: 100%;
+  min-height: 360px;
+  flex: 1 1 auto;
 }
 @media (max-width: 750px) {
   .workspace > .sidebar,
-  .workspace > .main { padding: 16px; }
-  .sidebar > .sidebar-mode-tabs { margin: 0; }
-  .sidebar > .sidebar-export { margin: 0; }
-  .sidebar > .source-preview { margin: 0; padding: 0; }
+  .workspace > .main { padding: var(--workspace-gutter); }
+  .workspace > .sidebar > .sidebar-mode-tabs,
+  .workspace > .sidebar > .sidebar-export,
+  .workspace > .sidebar > .source-preview {
+    margin: 0;
+    padding: 0;
+  }
 }
 
 /* Shared upload and export button interaction.
