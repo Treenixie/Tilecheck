@@ -12,7 +12,7 @@ const ui = {
   guide: $('guideToggle'), previewTitle: $('previewTitle'),
   viewerLabel: $('viewerLabel'), dimensionLabel: $('dimensionLabel'),
   exportPreview: $('exportPreview'), exportOffset: $('exportOffset'),
-  fitBtn: $('fitBtn'), toast: $('toast'),
+  toast: $('toast'),
 };
 const modes = {
   tile: { title: 'Repeat pattern' },
@@ -230,7 +230,6 @@ for (const axis of ['X', 'Y']) ui[`offset${axis}`].addEventListener('input', () 
   setMode(state.mode);
 });
 ui.guide.addEventListener('change', () => { state.guides = ui.guide.checked; schedule(); });
-ui.fitBtn.addEventListener('click', () => { state.zoom = 1; ui.zoom.value = '100'; ui.zoomValue.textContent = '100%'; schedule(); });
 for (const tab of document.querySelectorAll('[data-mode]')) tab.addEventListener('click', () => setMode(tab.dataset.mode));
 ui.exportPreview.addEventListener('click', () => savePng(ui.canvas, `${sanitized(state.name)}-${state.mode}-preview.png`));
 ui.exportOffset.addEventListener('click', () => savePng(makeWrapped(state.source, state.offsetX, state.offsetY), `${sanitized(state.name)}-offset.png`));

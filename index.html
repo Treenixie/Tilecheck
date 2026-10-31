@@ -19,7 +19,7 @@
           
         </a>
 
-        <nav class="header-nav" aria-label="Site navigation"><a class="header-nav-link" href="https://github.com/Treenixie/Tilecheck" target="_blank" rel="noopener noreferrer">GitHub</a><a class="header-nav-link" href="./help.html">Support</a></nav>
+        <nav class="header-nav" aria-label="Site navigation"><a class="header-nav-link" href="https://github.com/Treenixie/Tilecheck" target="_blank" rel="noopener noreferrer"><svg class="nav-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .9C5.87.9.9 5.87.9 12c0 4.9 3.18 9.06 7.59 10.53.56.1.77-.24.77-.54 0-.27-.01-.97-.02-1.9-3.09.67-3.74-1.31-3.74-1.31-.5-1.28-1.23-1.62-1.23-1.62-1.01-.69.08-.68.08-.68 1.11.08 1.7 1.14 1.7 1.14.99 1.7 2.59 1.21 3.22.93.1-.72.39-1.21.71-1.49-2.47-.28-5.07-1.23-5.07-5.5 0-1.22.43-2.21 1.14-2.99-.12-.28-.5-1.41.11-2.94 0 0 .93-.3 3.04 1.14a10.6 10.6 0 0 1 5.53 0c2.12-1.44 3.04-1.14 3.04-1.14.61 1.53.23 2.66.11 2.94.71.78 1.13 1.77 1.13 2.99 0 4.28-2.61 5.21-5.09 5.49.4.35.76 1.03.76 2.08 0 1.5-.01 2.71-.01 3.08 0 .3.21.65.78.54A11.1 11.1 0 0 0 23.1 12C23.1 5.87 18.13.9 12 .9Z"/></svg><span>GitHub</span></a><a class="header-nav-link" href="./help.html"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.8 9.3a2.4 2.4 0 0 1 4.6 1c0 1.6-2.4 2.1-2.4 3.8"/><path d="M12 17.7h.01"/></svg><span>Support</span></a></nav>
       </header>
 
       <div class="workspace">
@@ -61,14 +61,13 @@
         <main class="main" aria-label="Texture preview">
           <div class="preview-header">
             <h2 id="previewTitle">Repeat pattern</h2>
-            <div class="preview-tools"><button class="icon-button" id="fitBtn" type="button" title="Reset zoom" aria-label="Reset zoom"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3m13-5h3a2 2 0 0 1 2 2v3M3 16v3a2 2 0 0 0 2 2h3m13-5v3a2 2 0 0 1-2 2h-3"/></svg></button></div>
           </div>
           <div class="mode-tabs" role="tablist" aria-label="Preview mode">
-            <button type="button" role="tab" class="mode-tab active" id="tab-tile" aria-selected="true" data-mode="tile">TILE</button>
-            <button type="button" role="tab" class="mode-tab" id="tab-offset" aria-selected="false" data-mode="offset">OFFSET</button>
-            <button type="button" role="tab" class="mode-tab" id="tab-mirror" aria-selected="false" data-mode="mirror">MIRROR</button>
-            <button type="button" role="tab" class="mode-tab" id="tab-seams" aria-selected="false" data-mode="seams">SEAM MAP</button>
-            <button type="button" role="tab" class="mode-tab" id="tab-original" aria-selected="false" data-mode="original">ORIGINAL</button>
+            <button type="button" role="tab" class="mode-tab active" id="tab-tile" aria-selected="true" data-mode="tile"><span class="tab-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></span><span>TILE</span></button>
+            <button type="button" role="tab" class="mode-tab" id="tab-offset" aria-selected="false" data-mode="offset"><span class="tab-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h16M4 16h16m-12-12L4 8l4 4m8 0 4 4-4 4"/></svg></span><span>OFFSET</span></button>
+            <button type="button" role="tab" class="mode-tab" id="tab-mirror" aria-selected="false" data-mode="mirror"><span class="tab-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M9 5H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h4m6-14h4a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-4"/></svg></span><span>MIRROR</span></button>
+            <button type="button" role="tab" class="mode-tab" id="tab-seams" aria-selected="false" data-mode="seams"><span class="tab-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h3l3-6 5 12 3-6h4"/></svg></span><span>SEAM MAP</span></button>
+            <button type="button" role="tab" class="mode-tab" id="tab-original" aria-selected="false" data-mode="original"><span class="tab-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/></svg></span><span>ORIGINAL</span></button>
           </div>
           <div class="viewer" id="viewer" aria-label="Texture canvas, drag and drop an image to upload">
             <canvas id="previewCanvas" aria-label="Current texture preview" role="img"></canvas>
