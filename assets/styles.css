@@ -709,19 +709,24 @@ input[type="range"]::-moz-range-thumb {
   box-shadow: none;
 }
 
-/* Use the same 20px gap inside and outside the upload area's lower edge.
-   A forced minimum height previously added unpredictable empty space. */
-.sidebar { --section-gap: 20px; }
+/* Consistent spacing for the three main inspector transitions:
+   heading -> upload, upload -> file details, and toggle -> original. */
+.sidebar {
+  --section-gap: 20px;
+  --major-section-gap: 24px;
+}
+.sidebar h1 { margin-bottom: var(--major-section-gap); }
 .upload-card {
   min-height: 0;
-  padding: var(--section-gap) 8px;
+  padding: 0 8px;
+  margin: 0 0 var(--major-section-gap);
 }
 .file-summary {
   min-height: 38px;
-  margin: var(--section-gap) 0;
+  margin: 0 0 var(--section-gap);
   padding: 0;
 }
-.control-group {
-  margin: 0 0 var(--section-gap);
-}
+.control-group { margin: 0 0 var(--section-gap); }
 .control-title { margin-bottom: 10px; }
+/* Do not let the flexible sidebar stretch this gap on tall screens. */
+.source-preview { margin-top: var(--major-section-gap); }
