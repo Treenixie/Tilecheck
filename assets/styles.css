@@ -82,3 +82,45 @@
   .preview-header .export-buttons { width: 100%; margin-left: 0; }
   .preview-header .export-buttons .button { width: 100%; }
 }
+
+/* Aligned inspector columns */
+@media (min-width: 751px) {
+  .sidebar {
+    display: flex;
+    flex-direction: column;
+    padding-top: 28px;
+    padding-bottom: 73px;
+  }
+  .main { padding-top: 28px; padding-bottom: 25px; }
+
+  .sidebar h1,
+  .preview-header {
+    height: 54px;
+    flex: 0 0 54px;
+    margin: 0;
+  }
+  .sidebar h1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .preview-header h2 { margin: 0; }
+
+  .source-preview {
+    display: flex;
+    flex: 1;
+    min-height: 0;
+    flex-direction: column;
+  }
+  .source-preview-frame {
+    flex: 1;
+    min-height: 200px;
+    height: auto;
+  }
+  .viewer { flex: 1 0 auto; }
+  .viewer-footer {
+    flex: 0 0 48px;
+    padding: 13px 1px 0;
+    align-items: flex-start;
+  }
+}
