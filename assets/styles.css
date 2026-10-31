@@ -213,10 +213,10 @@ strong, b { font-weight: 600; }
   .footer-meta { column-gap: 14px; }
 }
 
-/* Equal 36px horizontal and bottom gaps around both preview areas. */
+/* Keep the left outer inset and the space between panels equal at 18px. */
 @media (min-width: 751px) {
   .sidebar { padding-left: 18px; padding-right: 18px; }
-  .main { padding-left: 18px; }
+  .main { padding-left: 0; }
 }
 
 /* Keep texture name and dimensions on one baseline. */
