@@ -10,20 +10,8 @@
   flex: 1;
   padding: 36px;
 }
-.help-heading { padding-bottom: 36px; }
-.help-heading h1 { margin: 0 0 16px; line-height: 1.15; }
-.help-heading p {
-  max-width: 620px;
-  margin: 0 0 24px;
-  line-height: 1.7;
-  color: #a6b4bf;
-}
-.help-heading .button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-}
+.help-heading { margin: 0; padding: 0; }
+.help-heading h1 { margin: 0; line-height: 1.15; }
 .help-section { padding-top: 36px; }
 .help-section h2 { margin: 0 0 20px; }
 .help-steps {
@@ -68,7 +56,6 @@
 .help-actions a { text-decoration: none; }
 @media (max-width: 750px) {
   .help-main { padding: 24px 18px 32px; }
-  .help-heading { padding-bottom: 28px; }
   .help-section { padding-top: 28px; }
   .help-mode-grid { grid-template-columns: 1fr; gap: 12px; }
   .help-tile { padding: 18px; }
