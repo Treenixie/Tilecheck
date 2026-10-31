@@ -709,12 +709,12 @@ input[type="range"]::-moz-range-thumb {
   box-shadow: none;
 }
 
-/* Consistent 20px section rhythm for the three inspector controls.
-   Keep the filename row compact while allowing long names to wrap. */
+/* Use the same 20px gap inside and outside the upload area's lower edge.
+   A forced minimum height previously added unpredictable empty space. */
 .sidebar { --section-gap: 20px; }
 .upload-card {
-  min-height: 160px;
-  padding: 12px 8px;
+  min-height: 0;
+  padding: var(--section-gap) 8px;
 }
 .file-summary {
   min-height: 38px;
