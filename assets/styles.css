@@ -1085,14 +1085,15 @@ body, button, input, output, select, textarea {
   .topbar .nav-icon { width: 15px; height: 15px; flex-basis: 15px; }
 }
 
-/* Violet slider tracks, single header gradient and matching footer gradient. */
+/* Violet slider tracks and shared UI hover color. */
 :root {
   --tile-violet: #ad78ff;
-  --edge-gradient: linear-gradient(90deg, #1747e9 0%, #8153ef 60%, #f33cab 100%);
+  --ui-hover: #fb4d95;
 }
 .topbar::after {
   bottom: 0;
-  background: var(--edge-gradient);
+  background: #d1cbee;
+  opacity: 1;
 }
 input[type="range"] {
   background: var(--tile-violet);
@@ -1105,7 +1106,23 @@ input[type="range"] {
   position: absolute;
   inset: 0 0 auto;
   height: 2px;
-  background: var(--edge-gradient);
-  opacity: .7;
+  background: #b5aecd;
+  opacity: 1;
   pointer-events: none;
 }
+
+/* Text-matched header/footer dividers and unified pink hover. */
+.topbar::after { background: #d1cbee; }
+.footer::before { background: #b5aecd; }
+:is(.topbar .header-nav-link, .footer .author-link):hover,
+.topbar .brand:hover .brand-accent,
+.sidebar-mode-tabs .mode-tab:hover,
+.sidebar-mode-tabs .mode-tab.active:hover,
+.text-button:hover:not(:disabled),
+#viewerChooseBtn:is(:hover, :focus-visible),
+.help-actions .button-outline:hover,
+.help-page .header-nav-link:hover {
+  color: var(--ui-hover);
+}
+/* Keep the button outline and gradient behavior, changing only its hover text color. */
+.help-actions .button-outline:hover { color: var(--ui-hover); }
