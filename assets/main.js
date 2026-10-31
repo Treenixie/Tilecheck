@@ -19,7 +19,7 @@ const modes = {
 };
 const state = {
   mode: 'tile', repeat: 3, zoom: 1, guides: false,
-  source: null, name: 'Concrete / sample',
+  source: null, name: 'Sample',
   analysis: { vertical: 0, horizontal: 0, vHeat: [], hHeat: [] },
 };
 let raf = 0;
@@ -219,7 +219,7 @@ async function savePng(canvas, filename) {
 }
 ui.chooseBtn.addEventListener('click', () => ui.input.click());
 ui.input.addEventListener('change', async () => { await loadFile(ui.input.files?.[0]); ui.input.value = ''; });
-ui.sampleBtn.addEventListener('click', () => { installSource(makeDemo(), 'Concrete / sample', 'demo texture'); notify('Demo texture restored.'); });
+ui.sampleBtn.addEventListener('click', () => { installSource(makeDemo(), 'Sample', 'demo texture'); notify('Demo texture restored.'); });
 ui.repeat.addEventListener('input', () => { state.repeat = Number(ui.repeat.value); ui.repeatValue.textContent = `${state.repeat} × ${state.repeat}`; setMode(state.mode); });
 ui.zoom.addEventListener('input', () => { state.zoom = Number(ui.zoom.value) / 100; ui.zoomValue.textContent = `${ui.zoom.value}%`; schedule(); });
 ui.guide.addEventListener('change', () => { state.guides = ui.guide.checked; schedule(); });
@@ -237,5 +237,5 @@ window.addEventListener('resize', schedule);
 new ResizeObserver(schedule).observe(ui.viewer);
 new ResizeObserver(schedule).observe(ui.sourceCanvas);
 $('year').textContent = String(new Date().getFullYear());
-installSource(makeDemo(), 'Concrete / sample', 'demo texture');
+installSource(makeDemo(), 'Sample', 'demo texture');
 setMode('tile');

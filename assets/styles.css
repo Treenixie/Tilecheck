@@ -183,10 +183,12 @@ strong, b { font-weight: 600; }
   .help-heading h1 { font-size: var(--text-display); }
 }
 
-/* Compact footer */
+/* Header and footer use the same height at each breakpoint. */
 .footer {
-  min-height: 54px;
-  padding: 16px 20px;
+  height: 68px;
+  min-height: 68px;
+  flex-shrink: 0;
+  padding: 0 20px;
   justify-content: center;
 }
 .footer-meta {
@@ -194,11 +196,25 @@ strong, b { font-weight: 600; }
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  column-gap: 16px;
+  column-gap: 18px;
   row-gap: 4px;
   font-size: var(--text-small);
   line-height: 1.5;
   letter-spacing: 0;
   transform: none;
 }
+.footer-separator {
+  width: 1px;
+  height: 14px;
+  flex: none;
+  background: #52627a;
+}
 .footer-credit { white-space: nowrap; }
+@media (max-width: 750px) {
+  .footer {
+    height: 60px;
+    min-height: 60px;
+    padding: 0 16px;
+  }
+  .footer-meta { column-gap: 14px; }
+}
