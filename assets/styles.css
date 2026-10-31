@@ -1085,18 +1085,13 @@ body, button, input, output, select, textarea {
   .topbar .nav-icon { width: 15px; height: 15px; flex-basis: 15px; }
 }
 
-/* Accent tracks and mirrored page-edge gradients.
-   The existing multicolored header stripe stays; the solid hairline and
-   the slider tracks share the selected Tile underline violet. */
+/* Violet slider tracks, single header gradient and matching footer gradient. */
 :root {
   --tile-violet: #ad78ff;
   --edge-gradient: linear-gradient(90deg, #1747e9 0%, #8153ef 60%, #f33cab 100%);
 }
-.topbar {
-  border-bottom: 1px solid var(--tile-violet);
-}
 .topbar::after {
-  bottom: 1px;
+  bottom: 0;
   background: var(--edge-gradient);
 }
 input[type="range"] {
