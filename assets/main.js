@@ -132,30 +132,41 @@ async function loadFile(file) {
 
 // Use an even number of full cells in each direction, avoiding clipped edge tiles.
 // Keep checker cells square and identical in CSS and canvas, regardless of panel aspect ratio.
+// Fit a whole, even number of checker cells to each preview edge.
+// Pixel-aligned boundaries avoid seams when the source canvas is rendered.
 function checker(c, w, h, targetCell = 21) {
-  const cell = Math.max(1, Math.round(targetCell));
+  const columns = Math.max(2, Math.round(w / (targetCell * 2)) * 2);
+  const rows = Math.max(2, Math.round(h / (targetCell * 2)) * 2);
   c.fillStyle = '#120F20';
   c.fillRect(0, 0, w, h);
   c.fillStyle = '#1D1733';
-  for (let row = 0; row * cell < h; row++) {
-    for (let col = 0; col * cell < w; col++) {
-      if ((row + col) % 2 === 1) {
-        c.fillRect(col * cell, row * cell, cell, cell);
-      }
+  for (let row = 0; row < rows; row++) {
+    const top = Math.round(row * h / rows);
+    const bottom = Math.round((row + 1) * h / rows);
+    for (let col = 0; col < columns; col++) {
+      if ((row + col) % 2 !== 1) continue;
+      const left = Math.round(col * w / columns);
+      const right = Math.round((col + 1) * w / columns);
+      c.fillRect(left, top, right - left, bottom - top);
     }
   }
 }
 
-// One CSS pixel size for both axes prevents stretched, antialiased checker cells.
+// The SVG consists of 2 x 2 cells; distribute an integer number of
+// complete SVG periods along each side, including after a window resize.
 function fitCheckerboard(element, targetCell) {
-  const period = `${Math.round(targetCell * 2)}px`;
-  element.style.setProperty('--checker-period-x', period);
-  element.style.setProperty('--checker-period-y', period);
+  const { width, height } = element.getBoundingClientRect();
+  if (width <= 0 || height <= 0) return;
+  const pairsX = Math.max(1, Math.round(width / (targetCell * 2)));
+  const pairsY = Math.max(1, Math.round(height / (targetCell * 2)));
+  element.style.setProperty('--checker-period-x', `${100 / pairsX}%`);
+  element.style.setProperty('--checker-period-y', `${100 / pairsY}%`);
 }
 function syncCheckerboards() {
   fitCheckerboard(ui.viewer, 21);
   fitCheckerboard(ui.sourceFrame, 14);
 }
+
 function drawSource() {
   const source = state.source; if (!source) return;
   const bounds = ui.sourceCanvas.getBoundingClientRect();

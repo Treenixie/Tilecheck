@@ -706,7 +706,7 @@ input[type="range"]::-moz-range-thumb {
 .viewer {
   cursor: pointer;
   background-color: var(--checker-dark);
-  background-image: url("./checker.svg");
+  background-image: url("./checker.svg?v=2");
   background-position: 0 0;
   background-repeat: repeat;
   background-size: var(--checker-period-x, 42px) var(--checker-period-y, 42px);
@@ -731,7 +731,7 @@ input[type="range"]::-moz-range-thumb {
 .viewer.is-dragging { outline: 2px dashed #aa91ff; outline-offset: -3px; }
 .source-preview-frame {
   background-color: var(--checker-dark);
-  background-image: url("./checker.svg");
+  background-image: url("./checker.svg?v=2");
   background-position: 0 0;
   background-repeat: repeat;
   background-size: var(--checker-period-x, 28px) var(--checker-period-y, 28px);
