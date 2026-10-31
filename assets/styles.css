@@ -318,6 +318,8 @@ strong, b { font-weight: 600; }
   color: #101d30;
   border: 1px solid var(--accent);
   font-weight: 600;
+  min-width: 132px;
+  padding-inline: 12px;
 }
 .upload-content #chooseBtn:hover {
   background: #b9d6ff;

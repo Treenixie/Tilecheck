@@ -203,7 +203,7 @@ function setMode(mode) {
     tab.tabIndex = active ? 0 : -1;
   }
   ui.previewTitle.textContent = modes[mode].title;
-  ui.viewerLabel.textContent = `${state.repeat} × ${state.repeat} · ${mode === 'mirror' ? 'Mirrored' : mode === 'seams' ? 'Seam map' : 'Normal repeat'}`;
+  ui.viewerLabel.textContent = `${state.repeat} × ${state.repeat}`;
   schedule();
 }
 async function savePng(canvas, filename) {
