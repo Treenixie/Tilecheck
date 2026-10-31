@@ -709,24 +709,38 @@ input[type="range"]::-moz-range-thumb {
   box-shadow: none;
 }
 
-/* Consistent spacing for the three main inspector transitions:
-   heading -> upload, upload -> file details, and toggle -> original. */
+/* Separate inspector sections while keeping the original texture
+   aligned to the bottom edge of the neighboring workspace. */
 .sidebar {
   --section-gap: 20px;
   --major-section-gap: 24px;
+  --section-divider: #40375e;
 }
 .sidebar h1 { margin-bottom: var(--major-section-gap); }
 .upload-card {
   min-height: 0;
   padding: 0 8px;
-  margin: 0 0 var(--major-section-gap);
+  margin: 0 0 16px;
 }
+/* Upload -> Sample */
 .file-summary {
   min-height: 38px;
   margin: 0 0 var(--section-gap);
-  padding: 0;
+  padding: 16px 0 0;
+  border-top: 1px solid var(--section-divider);
 }
 .control-group { margin: 0 0 var(--section-gap); }
 .control-title { margin-bottom: 10px; }
-/* Do not let the flexible sidebar stretch this gap on tall screens. */
-.source-preview { margin-top: var(--major-section-gap); }
+/* Preview zoom -> Show tile boundaries */
+.toggle-row {
+  padding-top: 16px;
+  border-top: 1px solid var(--section-divider);
+}
+/* Show tile boundaries -> Original. Auto margin pushes Original down
+   on desktop without stretching the previous controls. */
+.source-preview {
+  margin-top: auto;
+  padding-top: 16px;
+  border-top: 1px solid var(--section-divider);
+}
+.source-preview-title { margin-bottom: 12px; }
