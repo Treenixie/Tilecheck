@@ -460,11 +460,22 @@ body { background: #15132d; }
 .text-button:hover { color: #f78ad1; }
 .control-title output { color: #a6b9ff; }
 input[type="range"] { background: #51466f; }
+/* Solid slider knobs without inner borders or hairline outlines. */
 input[type="range"]::-webkit-slider-thumb {
-  border-color: #17132b; background: #a98aff; box-shadow: 0 0 0 1px #b1a0ff;
+  width: 14px;
+  height: 14px;
+  border: 0;
+  border-radius: 50%;
+  background: #a98aff;
+  box-shadow: none;
 }
 input[type="range"]::-moz-range-thumb {
-  border-color: #17132b; background: #a98aff; box-shadow: 0 0 0 1px #b1a0ff;
+  width: 14px;
+  height: 14px;
+  border: 0;
+  border-radius: 50%;
+  background: #a98aff;
+  box-shadow: none;
 }
 .toggle { background: #51476d; }
 .toggle::after { background: #e1dbf5; }
@@ -545,6 +556,7 @@ input[type="range"]::-moz-range-thumb {
 .preview-controls .button-primary { background: linear-gradient(110deg, #668aff, #a273f4); color: #0d0b1d; }
 .preview-controls .button-primary:hover { background: linear-gradient(110deg, #7e9eff, #b78cf9); }
 @media (min-width: 751px) {
+  .preview-controls .export-buttons { transform: translateY(-12px); }
   .sidebar, .main { padding-top: 16px; }
   .sidebar h1, .preview-header { height: 40px; flex: 0 0 40px; }
 }
