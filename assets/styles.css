@@ -698,6 +698,30 @@ input[type="range"]::-moz-range-thumb {
 
 
 
-/* Seamless upload area, with more breathing room before file details. */
-.upload-card { background: transparent; }
-.file-summary { margin-top: 18px; }
+/* One flat workspace surface. The old sidebar gradient caused a visible panel.
+   The upload zone itself has no card fill outside drag-and-drop feedback. */
+.workspace > .sidebar,
+.workspace > .main {
+  background: #15132d;
+}
+.upload-card:not(.is-dragging) {
+  background: none;
+  box-shadow: none;
+}
+
+/* Consistent 20px section rhythm for the three inspector controls.
+   Keep the filename row compact while allowing long names to wrap. */
+.sidebar { --section-gap: 20px; }
+.upload-card {
+  min-height: 160px;
+  padding: 12px 8px;
+}
+.file-summary {
+  min-height: 38px;
+  margin: var(--section-gap) 0;
+  padding: 0;
+}
+.control-group {
+  margin: 0 0 var(--section-gap);
+}
+.control-title { margin-bottom: 10px; }
