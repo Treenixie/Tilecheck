@@ -556,7 +556,16 @@ input[type="range"]::-moz-range-thumb {
 .preview-controls .button-primary { background: linear-gradient(110deg, #668aff, #a273f4); color: #0d0b1d; }
 .preview-controls .button-primary:hover { background: linear-gradient(110deg, #7e9eff, #b78cf9); }
 @media (min-width: 751px) {
-  .preview-controls .export-buttons { transform: translateY(-12px); }
+  /* Center export between the topbar and the preview canvas, not on the tab row. */
+  .main { position: relative; }
+  .preview-controls .export-buttons {
+    position: absolute;
+    top: 29px;
+    right: 36px;
+    margin: 0;
+    transform: none;
+    z-index: 1;
+  }
   .sidebar, .main { padding-top: 16px; }
   .sidebar h1, .preview-header { height: 40px; flex: 0 0 40px; }
 }
@@ -567,4 +576,8 @@ input[type="range"]::-moz-range-thumb {
   .preview-controls { flex-wrap: wrap; gap: 8px; }
   .preview-controls .export-buttons { order: -1; width: 100%; justify-content: flex-end; }
   .preview-controls .mode-tabs { flex: 1 0 100%; }
+}
+
+@media (min-width: 751px) and (max-width: 1050px) {
+  .preview-controls .export-buttons { right: 22px; }
 }
