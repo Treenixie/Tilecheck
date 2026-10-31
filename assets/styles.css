@@ -361,28 +361,47 @@ strong, b { font-weight: 600; }
   text-align: center;
   white-space: nowrap;
 }
-/* Four-column metadata row: icon | name | centered dimensions | Reset. */
+/* File summary: full filename above metadata, without a narrow 80px name slot. */
 .file-summary {
   display: grid;
-  grid-template-columns: 35px fit-content(80px) minmax(0, 1fr) max-content;
+  grid-template-columns: 35px minmax(0, 1fr) max-content;
+  grid-template-rows: auto auto;
   align-items: center;
   column-gap: 8px;
+  row-gap: 2px;
+}
+.file-summary .file-graphic {
+  grid-column: 1;
+  grid-row: 1 / 3;
+  align-self: center;
 }
 #fileName {
+  grid-column: 2 / -1;
+  grid-row: 1;
   min-width: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  max-width: 100%;
+  overflow: visible;
+  text-overflow: clip;
+  white-space: normal;
+  overflow-wrap: anywhere;
   font-size: var(--text-body);
   font-weight: 600;
+  line-height: 1.35;
 }
 #fileDetails {
-  justify-self: center;
+  grid-column: 2;
+  grid-row: 2;
+  min-width: 0;
+  justify-self: start;
   color: #94a2b5;
   font-size: var(--text-small);
   white-space: nowrap;
 }
-.file-summary .text-button { justify-self: end; }
+.file-summary .text-button {
+  grid-column: 3;
+  grid-row: 2;
+  justify-self: end;
+}
 
 /* Give the Help page the same lighter workspace background as the inspector. */
 .help-page { background: #131a24; }

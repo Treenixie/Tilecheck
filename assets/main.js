@@ -97,7 +97,8 @@ function analyze(source) {
 function installSource(canvas, name, sizeText = '') {
   state.source = canvas; state.name = name; state.analysis = analyze(canvas);
   ui.fileName.textContent = name;
-  ui.fileDetails.textContent = `${canvas.width} × ${canvas.height}${sizeText ? ` · ${sizeText}` : ''}`;
+  ui.fileName.title = name;
+  ui.fileDetails.textContent = `${canvas.width} × ${canvas.height}${sizeText ? `, ${sizeText}` : ''}`;
   schedule();
 }
 
