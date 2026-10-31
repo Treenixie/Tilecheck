@@ -131,31 +131,26 @@ async function loadFile(file) {
 }
 
 // Use an even number of full cells in each direction, avoiding clipped edge tiles.
+// Keep checker cells square and identical in CSS and canvas, regardless of panel aspect ratio.
 function checker(c, w, h, targetCell = 21) {
+  const cell = Math.max(1, Math.round(targetCell));
   c.fillStyle = '#171328';
   c.fillRect(0, 0, w, h);
-  const columns = Math.max(2, Math.round(w / (targetCell * 2)) * 2);
-  const rows = Math.max(2, Math.round(h / (targetCell * 2)) * 2);
-  const tileW = w / columns, tileH = h / rows;
   c.fillStyle = '#241D3D';
-  for (let row = 0; row < rows; row++) {
-    for (let col = 0; col < columns; col++) {
-      if ((row + col) % 2 === 0) {
-        c.fillRect(col * tileW, row * tileH, tileW + 0.5, tileH + 0.5);
+  for (let row = 0; row * cell < h; row++) {
+    for (let col = 0; col * cell < w; col++) {
+      if ((row + col) % 2 === 1) {
+        c.fillRect(col * cell, row * cell, cell + 0.5, cell + 0.5);
       }
     }
   }
 }
 
-// The CSS checkerboards also need whole cells at every viewport size.
-// A conic-gradient period contains two columns and two rows.
+// One CSS pixel size for both axes prevents stretched, antialiased checker cells.
 function fitCheckerboard(element, targetCell) {
-  const width = element.clientWidth, height = element.clientHeight;
-  if (width <= 0 || height <= 0) return;
-  const pairsX = Math.max(1, Math.round(width / (2 * targetCell)));
-  const pairsY = Math.max(1, Math.round(height / (2 * targetCell)));
-  element.style.setProperty('--checker-period-x', `${100 / pairsX}%`);
-  element.style.setProperty('--checker-period-y', `${100 / pairsY}%`);
+  const period = `${Math.round(targetCell * 2)}px`;
+  element.style.setProperty('--checker-period-x', period);
+  element.style.setProperty('--checker-period-y', period);
 }
 function syncCheckerboards() {
   fitCheckerboard(ui.viewer, 21);

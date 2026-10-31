@@ -1112,10 +1112,10 @@ input[type="range"] { background: var(--tile-violet); }
 }
 html, body, .app, .workspace { background: var(--bg); color: var(--text); }
 .topbar, .footer { background: var(--bg); }
-.workspace > .main { background: var(--bg); }
+/* Continuous workspace: indigo is reserved for controls, not the whole sidebar. */
+.workspace > .main,
 .workspace > .sidebar {
-  background: var(--surface);
-  border-color: var(--line);
+  background: var(--bg);
 }
 .help-page, .help-page .topbar, .help-main { background: var(--bg); }
 .help-tile { background: #241B46; box-shadow: none; }
