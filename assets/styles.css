@@ -182,3 +182,23 @@ strong, b { font-weight: 600; }
   .footer-meta { font-size: var(--text-small); }
   .help-heading h1 { font-size: var(--text-display); }
 }
+
+/* Compact footer */
+.footer {
+  min-height: 54px;
+  padding: 16px 20px;
+  justify-content: center;
+}
+.footer-meta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  column-gap: 16px;
+  row-gap: 4px;
+  font-size: var(--text-small);
+  line-height: 1.5;
+  letter-spacing: 0;
+  transform: none;
+}
+.footer-credit { white-space: nowrap; }
