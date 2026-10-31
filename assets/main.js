@@ -2,11 +2,11 @@
 const $ = (id) => document.getElementById(id);
 const ui = {
   canvas: $('previewCanvas'), viewer: $('viewer'), input: $('fileInput'),
-  chooseBtn: $('chooseBtn'), uploadZone: $('uploadZone'), dropOverlay: $('dropOverlay'),
+  chooseBtn: $('viewerChooseBtn'), dropOverlay: $('dropOverlay'),
   fileName: $('fileName'), fileDetails: $('fileDetails'), sampleBtn: $('sampleBtn'),
   repeat: $('repeatRange'), repeatValue: $('repeatValue'),
   zoom: $('zoomRange'), zoomValue: $('zoomValue'),
-  repeatControl: $('repeatControl'), sourceCanvas: $('sourceCanvas'),
+  repeatControl: $('repeatControl'), sourceCanvas: $('sourceCanvas'), sourceFrame: $('sourceFrame'),
   guide: $('guideToggle'), previewTitle: $('previewTitle'),
   exportPreview: $('exportPreview'),
   toast: $('toast'),
@@ -18,7 +18,7 @@ const modes = {
 };
 const state = {
   mode: 'tile', repeat: 3, zoom: 1, guides: false,
-  source: null, name: 'Sample',
+  source: null, name: 'texture',
   analysis: { vertical: 0, horizontal: 0, vHeat: [], hHeat: [] },
 };
 let raf = 0;
@@ -38,35 +38,6 @@ function notify(message, error = false) {
 const byteSize = (bytes) => bytes >= 1024 * 1024 ? `${(bytes / 1048576).toFixed(1)} MB` : `${Math.max(1, Math.round(bytes / 1024))} KB`;
 const sanitized = (name) => name.replace(/\.[^.]+$/, '').replace(/[^\p{L}\p{N}._-]+/gu, '-').slice(0, 90) || 'texture';
 function schedule() { if (!raf) raf = requestAnimationFrame(() => { raf = 0; draw(); }); }
-
-function makeDemo() {
-  const cv = document.createElement('canvas'); cv.width = cv.height = 512;
-  const c = cv.getContext('2d');
-  const image = c.createImageData(512, 512);
-  let seed = 431;
-  const rand = () => { seed = (1664525 * seed + 1013904223) >>> 0; return seed / 4294967296; };
-  const speckles = Array.from({ length: 512 * 512 }, () => rand());
-  for (let y = 0; y < 512; y++) for (let x = 0; x < 512; x++) {
-    const v = Math.sin(x / 70) * 8 + Math.cos(y / 59) * 9 + (speckles[y * 512 + x] - .5) * 29;
-    const band = Math.sin((x * .9 + y * 1.1) / 30) * 7;
-    const i = 4 * (y * 512 + x);
-    image.data[i] = 112 + v + band;
-    image.data[i + 1] = 117 + v + band;
-    image.data[i + 2] = 112 + v + band;
-    image.data[i + 3] = 255;
-  }
-  c.putImageData(image, 0, 0);
-  c.strokeStyle = '#4a5667'; c.lineWidth = 10; c.lineCap = 'round';
-  c.beginPath(); c.moveTo(45, 370); c.bezierCurveTo(185, 307, 301, 460, 475, 389); c.stroke();
-  c.strokeStyle = '#dbe4f1'; c.lineWidth = 3;
-  c.beginPath(); c.moveTo(37, 360); c.bezierCurveTo(185, 296, 303, 449, 472, 382); c.stroke();
-  c.fillStyle = '#637c9d';
-  for (const [x, y, r] of [[111, 92, 23], [347, 174, 32], [198, 239, 10], [404, 465, 17]]) {
-    c.globalAlpha = .45; c.beginPath(); c.arc(x, y, r, 0, Math.PI * 2); c.fill();
-  }
-  c.globalAlpha = 1;
-  return cv;
-}
 
 function sampleCanvas(source, maxDim = 320) {
   const scale = Math.min(1, maxDim / Math.max(source.width, source.height));
@@ -99,7 +70,24 @@ function installSource(canvas, name, sizeText = '') {
   ui.fileName.textContent = name;
   ui.fileName.title = name;
   ui.fileDetails.textContent = `${canvas.width} × ${canvas.height}${sizeText ? `, ${sizeText}` : ''}`;
+  ui.viewer.classList.remove('is-empty');
+  ui.sourceFrame.classList.remove('is-empty');
+  ui.sampleBtn.disabled = false;
+  ui.exportPreview.disabled = false;
   schedule();
+}
+function clearSource() {
+  state.source = null;
+  state.name = 'texture';
+  state.analysis = { vertical: 0, horizontal: 0, vHeat: [], hHeat: [] };
+  ui.fileName.textContent = 'No image selected';
+  ui.fileName.title = '';
+  ui.fileDetails.textContent = '';
+  ui.input.value = '';
+  ui.viewer.classList.add('is-empty');
+  ui.sourceFrame.classList.add('is-empty');
+  ui.sampleBtn.disabled = true;
+  ui.exportPreview.disabled = true;
 }
 
 async function loadFile(file) {
@@ -247,7 +235,8 @@ async function savePng(canvas, filename) {
     notify(`Saved ${filename}`);
   }, 'image/png');
 }
-ui.chooseBtn.addEventListener('click', () => ui.input.click());
+ui.chooseBtn.addEventListener('click', (event) => { event.stopPropagation(); ui.input.click(); });
+ui.viewer.addEventListener('click', () => ui.input.click());
 ui.input.addEventListener('change', async () => { await loadFile(ui.input.files?.[0]); ui.input.value = ''; });
 document.addEventListener('paste', (event) => {
   if (event.defaultPrevented) return;
@@ -260,23 +249,23 @@ document.addEventListener('paste', (event) => {
   event.preventDefault();
   void loadFile(file);
 });
-ui.sampleBtn.addEventListener('click', () => { installSource(makeDemo(), 'Sample'); notify('Sample restored.'); });
+ui.sampleBtn.addEventListener('click', () => { clearSource(); notify('Image cleared.'); });
 ui.repeat.addEventListener('input', () => { state.repeat = Number(ui.repeat.value); ui.repeatValue.textContent = `${state.repeat} × ${state.repeat}`; setMode(state.mode); });
 ui.zoom.addEventListener('input', () => { state.zoom = Number(ui.zoom.value) / 100; ui.zoomValue.textContent = `${ui.zoom.value}%`; schedule(); });
 ui.guide.addEventListener('change', () => { state.guides = ui.guide.checked; schedule(); });
 for (const tab of document.querySelectorAll('[data-mode]')) tab.addEventListener('click', () => setMode(tab.dataset.mode));
 ui.exportPreview.addEventListener('click', () => savePng(createExportCanvas(), `${sanitized(state.name)}-${state.mode}-preview.png`));
 let dragDepth = 0;
-document.addEventListener('dragenter', (event) => { if (!event.dataTransfer?.types.includes('Files')) return; event.preventDefault(); dragDepth++; ui.dropOverlay.hidden = false; ui.uploadZone.classList.add('is-dragging'); });
+document.addEventListener('dragenter', (event) => { if (!event.dataTransfer?.types.includes('Files')) return; event.preventDefault(); dragDepth++; ui.dropOverlay.hidden = false; ui.viewer.classList.add('is-dragging'); });
 document.addEventListener('dragover', (event) => { if (event.dataTransfer?.types.includes('Files')) event.preventDefault(); });
-document.addEventListener('dragleave', () => { dragDepth = Math.max(0, dragDepth - 1); if (!dragDepth) { ui.dropOverlay.hidden = true; ui.uploadZone.classList.remove('is-dragging'); } });
+document.addEventListener('dragleave', () => { dragDepth = Math.max(0, dragDepth - 1); if (!dragDepth) { ui.dropOverlay.hidden = true; ui.viewer.classList.remove('is-dragging'); } });
 document.addEventListener('drop', async (event) => {
-  event.preventDefault(); dragDepth = 0; ui.dropOverlay.hidden = true; ui.uploadZone.classList.remove('is-dragging');
+  event.preventDefault(); dragDepth = 0; ui.dropOverlay.hidden = true; ui.viewer.classList.remove('is-dragging');
   await loadFile(event.dataTransfer?.files?.[0]);
 });
 window.addEventListener('resize', schedule);
 new ResizeObserver(schedule).observe(ui.viewer);
 new ResizeObserver(schedule).observe(ui.sourceCanvas);
 $('year').textContent = String(new Date().getFullYear());
-installSource(makeDemo(), 'Sample');
+clearSource();
 setMode('tile');
