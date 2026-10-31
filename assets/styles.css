@@ -619,3 +619,45 @@ input[type="range"]::-moz-range-thumb {
 @media (prefers-reduced-motion: reduce) {
   .preview-controls .export-buttons .button-primary::before { transition: none; }
 }
+
+/* Match the export hover: animate only an overlay, not the upload icon. */
+.upload-content .upload-trigger {
+  position: relative;
+  isolation: isolate;
+  color: #c6d8ff;
+  border: 1px solid #6961ba;
+  background: linear-gradient(135deg, #294494, #4d2a88);
+  box-shadow: 0 0 0 1px rgba(128, 98, 229, .2) inset;
+  transform: none;
+  transition: none;
+}
+.upload-content .upload-trigger::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: linear-gradient(135deg, #3b5fbd, #773eac);
+  box-shadow: 0 0 18px rgba(135, 85, 243, .35);
+  opacity: 0;
+  transition: opacity .18s ease;
+}
+.upload-content .upload-trigger svg {
+  position: relative;
+  z-index: 1;
+}
+.upload-content .upload-trigger:hover,
+.upload-content .upload-trigger:active {
+  color: #c6d8ff;
+  border-color: #6961ba;
+  background: linear-gradient(135deg, #294494, #4d2a88);
+  box-shadow: 0 0 0 1px rgba(128, 98, 229, .2) inset;
+  transform: none;
+}
+.upload-content .upload-trigger:hover::before,
+.upload-content .upload-trigger:focus-visible::before {
+  opacity: 1;
+}
+@media (prefers-reduced-motion: reduce) {
+  .upload-content .upload-trigger::before { transition: none; }
+}
