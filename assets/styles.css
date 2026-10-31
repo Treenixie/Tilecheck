@@ -261,8 +261,9 @@ strong, b { font-weight: 600; }
 }
 .upload-content > span {
   max-width: 100%;
-  font-size: var(--text-small);
+  font-size: var(--text-body);
   line-height: 1.45;
+  letter-spacing: -.25px;
   color: #93a4b7;
   text-align: center;
 }
