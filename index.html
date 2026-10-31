@@ -19,28 +19,25 @@
           
         </a>
 
-        <nav class="header-nav" aria-label="Site navigation"><a class="header-nav-link" href="./help.html">HELP ↗</a></nav>
+        <nav class="header-nav" aria-label="Site navigation"><a class="header-nav-link" href="https://github.com/Treenixie/Tilecheck" target="_blank" rel="noopener noreferrer">GitHub</a><a class="header-nav-link" href="./help.html">Support</a></nav>
       </header>
 
       <div class="workspace">
         <aside class="sidebar" aria-label="Texture settings">
-          <div class="section-head"><span class="eyebrow">01 / SOURCE</span><span class="line"></span></div>
           <h1>Texture inspector<span class="period">.</span></h1>
-          <p class="intro">Preview repetition, locate border mismatches and inspect tiling before it reaches your game.</p>
+          
           <div class="upload-card" id="uploadZone">
-            <div class="upload-icon" aria-hidden="true">↥</div>
+            <div class="upload-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4m0 0-4 4m4-4 4 4"/><path d="M4 16v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"/></svg></div>
             <strong>Drop a texture here</strong>
             <span>PNG, JPG, WEBP or AVIF · up to 25 MB</span>
-            <button type="button" id="chooseBtn" class="button button-outline">CHOOSE IMAGE <span aria-hidden="true">↗</span></button>
+            <button type="button" id="chooseBtn" class="button button-outline">CHOOSE IMAGE</button>
             <input type="file" accept="image/png,image/jpeg,image/webp,image/avif" id="fileInput" hidden />
           </div>
           <div class="file-summary">
-            <span class="file-graphic" aria-hidden="true">▦</span>
+            <span class="file-graphic" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8" cy="9" r="1"/><path d="m4 17 5-5 4 4 3-3 4 4"/></svg></span>
             <div class="file-copy"><strong id="fileName">Concrete / sample</strong><span id="fileDetails">512 × 512 · demo texture</span></div>
             <button id="sampleBtn" type="button" class="text-button" title="Restore demo texture">RESET</button>
           </div>
-
-          <div class="section-head top-spaced"><span class="eyebrow">02 / CONTROLS</span><span class="line"></span></div>
           <div class="control-group" id="repeatControl">
             <div class="control-title"><label for="repeatRange">Tile grid</label><output for="repeatRange" id="repeatValue">3 × 3</output></div>
             <input type="range" min="2" max="6" value="3" step="1" id="repeatRange" />
@@ -59,54 +56,32 @@
           </div>
           <label class="toggle-row" for="guideToggle"><span>Show tile boundaries</span><input id="guideToggle" type="checkbox" /><span class="toggle" aria-hidden="true"></span></label>
 
-          <div class="section-head top-spaced"><span class="eyebrow">03 / EDGE ANALYSIS</span><span class="line"></span></div>
-          <div class="analysis">
-            <div class="metric-label"><span>LEFT ↔ RIGHT</span><strong id="verticalScore">—</strong></div>
-            <div class="meter"><div id="verticalBar"></div></div>
-            <div class="metric-label"><span>TOP ↔ BOTTOM</span><strong id="horizontalScore">—</strong></div>
-            <div class="meter"><div id="horizontalBar"></div></div>
-            <p class="note">Mean RGB difference on a 0–255 scale. Lower often means smoother edges, but only visual inspection confirms a seamless texture.</p>
-          </div>
         </aside>
 
         <main class="main" aria-label="Texture preview">
           <div class="preview-header">
-            <div><div class="eyebrow">LIVE INSPECTION / <span id="modeCaption">TILED PREVIEW</span></div><h2 id="previewTitle">Repeat pattern</h2></div>
-            <div class="preview-tools"><button class="icon-button" id="fitBtn" type="button" title="Reset zoom" aria-label="Reset zoom">⌗</button></div>
+            <h2 id="previewTitle">Repeat pattern</h2>
+            <div class="preview-tools"><button class="icon-button" id="fitBtn" type="button" title="Reset zoom" aria-label="Reset zoom"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3m13-5h3a2 2 0 0 1 2 2v3M3 16v3a2 2 0 0 0 2 2h3m13-5v3a2 2 0 0 1-2 2h-3"/></svg></button></div>
           </div>
           <div class="mode-tabs" role="tablist" aria-label="Preview mode">
-            <button type="button" role="tab" class="mode-tab active" id="tab-tile" aria-selected="true" data-mode="tile"><span class="tab-icon">▦</span> TILE</button>
-            <button type="button" role="tab" class="mode-tab" id="tab-offset" aria-selected="false" data-mode="offset"><span class="tab-icon">⊞</span> OFFSET</button>
-            <button type="button" role="tab" class="mode-tab" id="tab-mirror" aria-selected="false" data-mode="mirror"><span class="tab-icon">◫</span> MIRROR</button>
-            <button type="button" role="tab" class="mode-tab" id="tab-seams" aria-selected="false" data-mode="seams"><span class="tab-icon">⌁</span> SEAM MAP</button>
-            <button type="button" role="tab" class="mode-tab" id="tab-original" aria-selected="false" data-mode="original"><span class="tab-icon">□</span> ORIGINAL</button>
+            <button type="button" role="tab" class="mode-tab active" id="tab-tile" aria-selected="true" data-mode="tile">TILE</button>
+            <button type="button" role="tab" class="mode-tab" id="tab-offset" aria-selected="false" data-mode="offset">OFFSET</button>
+            <button type="button" role="tab" class="mode-tab" id="tab-mirror" aria-selected="false" data-mode="mirror">MIRROR</button>
+            <button type="button" role="tab" class="mode-tab" id="tab-seams" aria-selected="false" data-mode="seams">SEAM MAP</button>
+            <button type="button" role="tab" class="mode-tab" id="tab-original" aria-selected="false" data-mode="original">ORIGINAL</button>
           </div>
           <div class="viewer" id="viewer" aria-label="Texture canvas, drag and drop an image to upload">
             <canvas id="previewCanvas" aria-label="Current texture preview" role="img"></canvas>
-            <div class="canvas-corner corner-tl"></div><div class="canvas-corner corner-tr"></div><div class="canvas-corner corner-bl"></div><div class="canvas-corner corner-br"></div>
-            <div class="viewer-label" id="viewerLabel">3 × 3 / NORMAL REPEAT</div>
+            <div class="viewer-label" id="viewerLabel">3 × 3 · NORMAL REPEAT</div>
             <div class="drop-overlay" id="dropOverlay" hidden><div>↥<br/><span>DROP TO INSPECT</span></div></div>
           </div>
-          <div class="viewer-footer"><span id="viewHint">Check for obvious repetition and visible tile boundaries.</span><span id="dimensionLabel">512 × 512 PX</span></div>
+          <div class="viewer-footer"><span id="dimensionLabel">512 × 512 PX</span></div>
           <div class="export-bar">
-            <div class="export-intro"><span class="export-symbol">↳</span><div><strong>Export your inspection</strong><span>PNG files generated in your browser. Nothing is uploaded.</span></div></div>
-            <div class="export-buttons"><button type="button" class="button button-outline" id="exportOffset">EXPORT OFFSET</button><button type="button" class="button button-primary" id="exportPreview">EXPORT PREVIEW <span aria-hidden="true">↗</span></button></div>
+            <div class="export-buttons"><button type="button" class="button button-outline" id="exportOffset">EXPORT OFFSET</button><button type="button" class="button button-primary" id="exportPreview">EXPORT PREVIEW</button></div>
           </div>
         </main>
       </div>
       <footer class="footer" aria-label="TILECHECK project links">
-        <nav class="footer-nav" aria-label="Project resources">
-          <a class="footer-row" href="https://github.com/Treenixie/Tilecheck" target="_blank" rel="noopener noreferrer">
-            <span class="footer-icon" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 .9C5.87.9.9 5.87.9 12c0 4.9 3.18 9.06 7.59 10.53.56.1.77-.24.77-.54 0-.27-.01-.97-.02-1.9-3.09.67-3.74-1.31-3.74-1.31-.5-1.28-1.23-1.62-1.23-1.62-1.01-.69.08-.68.08-.68 1.11.08 1.7 1.14 1.7 1.14.99 1.7 2.59 1.21 3.22.93.1-.72.39-1.21.71-1.49-2.47-.28-5.07-1.23-5.07-5.5 0-1.22.43-2.21 1.14-2.99-.12-.28-.5-1.41.11-2.94 0 0 .93-.3 3.04 1.14a10.6 10.6 0 0 1 5.53 0c2.12-1.44 3.04-1.14 3.04-1.14.61 1.53.23 2.66.11 2.94.71.78 1.13 1.77 1.13 2.99 0 4.28-2.61 5.21-5.09 5.49.4.35.76 1.03.76 2.08 0 1.5-.01 2.71-.01 3.08 0 .3.21.65.78.54A11.1 11.1 0 0 0 23.1 12C23.1 5.87 18.13.9 12 .9Z"/></svg></span>
-            <strong>GitHub</strong>
-            <span class="footer-description">Explore the source code and project files.</span>
-          </a>
-          <a class="footer-row" href="./help.html">
-            <span class="footer-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M9.8 9.3a2.4 2.4 0 0 1 4.6 1c0 1.6-2.4 2.1-2.4 3.8"></path><path d="M12 17.7h.01"></path></svg></span>
-            <strong>Support</strong>
-            <span class="footer-description">Read the FAQ, get help and report issues.</span>
-          </a>
-        </nav>
         <a class="footer-wordmark" href="./" aria-label="Back to TILECHECK">TILE<span>CHECK</span></a>
         <div class="footer-meta">© <span id="year"></span> TILECHECK <span class="footer-meta-divider" aria-hidden="true">/</span> MADE BY <a href="https://github.com/Treenixie" target="_blank" rel="noopener noreferrer" class="author-link">TREENIXIE</a></div>
       </footer>

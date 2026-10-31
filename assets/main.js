@@ -9,19 +9,17 @@ const ui = {
   offsetX: $('offsetX'), offsetY: $('offsetY'),
   offsetXValue: $('offsetXValue'), offsetYValue: $('offsetYValue'),
   offsetControls: $('offsetControls'), repeatControl: $('repeatControl'),
-  guide: $('guideToggle'), modeCaption: $('modeCaption'), previewTitle: $('previewTitle'),
-  viewerLabel: $('viewerLabel'), viewHint: $('viewHint'), dimensionLabel: $('dimensionLabel'),
-  verticalScore: $('verticalScore'), horizontalScore: $('horizontalScore'),
-  verticalBar: $('verticalBar'), horizontalBar: $('horizontalBar'),
+  guide: $('guideToggle'), previewTitle: $('previewTitle'),
+  viewerLabel: $('viewerLabel'), dimensionLabel: $('dimensionLabel'),
   exportPreview: $('exportPreview'), exportOffset: $('exportOffset'),
   fitBtn: $('fitBtn'), toast: $('toast'),
 };
 const modes = {
-  tile: { title: 'Repeat pattern', caption: 'TILED PREVIEW', hint: 'Check for obvious repetition and visible tile boundaries.' },
-  offset: { title: 'Expose the seams', caption: 'WRAPPED OFFSET', hint: 'Moving opposite edges toward the center makes discontinuities easier to spot.' },
-  mirror: { title: 'Mirrored repeat', caption: 'REFLECTED TILING', hint: 'Adjacent tiles are flipped. Compare the result with regular repetition.' },
-  seams: { title: 'Edge difference map', caption: 'SEAM HEATMAP', hint: 'Warm highlights indicate stronger pixel differences where opposing edges meet.' },
-  original: { title: 'Source image', caption: 'ORIGINAL TEXTURE', hint: 'View the unmodified source texture.' },
+  tile: { title: 'Repeat pattern' },
+  offset: { title: 'Expose the seams' },
+  mirror: { title: 'Mirrored repeat' },
+  seams: { title: 'Edge difference map' },
+  original: { title: 'Source image' },
 };
 const state = {
   mode: 'tile', repeat: 3, zoom: 1, offsetX: .5, offsetY: .5, guides: false,
@@ -99,19 +97,12 @@ function analyze(source) {
   const avg = (a) => a.reduce((sum, v) => sum + v, 0) / a.length;
   return { vertical: avg(vHeat), horizontal: avg(hHeat), vHeat, hHeat };
 }
-function updateMetrics() {
-  const { vertical, horizontal } = state.analysis;
-  ui.verticalScore.textContent = `${vertical.toFixed(1)} / 255`;
-  ui.horizontalScore.textContent = `${horizontal.toFixed(1)} / 255`;
-  ui.verticalBar.style.width = `${Math.min(100, vertical / 80 * 100)}%`;
-  ui.horizontalBar.style.width = `${Math.min(100, horizontal / 80 * 100)}%`;
-}
 function installSource(canvas, name, sizeText) {
   state.source = canvas; state.name = name; state.analysis = analyze(canvas);
   ui.fileName.textContent = name;
   ui.fileDetails.textContent = `${canvas.width} × ${canvas.height} · ${sizeText}`;
   ui.dimensionLabel.textContent = `${canvas.width} × ${canvas.height} PX`;
-  updateMetrics(); schedule();
+  schedule();
 }
 
 async function loadFile(file) {
@@ -210,14 +201,12 @@ function setMode(mode) {
     const active = tab.dataset.mode === mode;
     tab.classList.toggle('active', active); tab.setAttribute('aria-selected', String(active)); tab.tabIndex = active ? 0 : -1;
   }
-  ui.modeCaption.textContent = modes[mode].caption;
   ui.previewTitle.textContent = modes[mode].title;
-  ui.viewHint.textContent = modes[mode].hint;
   ui.offsetControls.hidden = mode !== 'offset';
   ui.repeatControl.hidden = mode === 'original' || mode === 'offset';
-  ui.viewerLabel.textContent = mode === 'original' ? 'SOURCE / UNMODIFIED' : mode === 'offset'
-    ? `${Math.round(state.offsetX * 100)}% X / ${Math.round(state.offsetY * 100)}% Y OFFSET`
-    : `${state.repeat} × ${state.repeat} / ${mode === 'mirror' ? 'MIRRORED' : mode === 'seams' ? 'SEAM MAP' : 'NORMAL REPEAT'}`;
+  ui.viewerLabel.textContent = mode === 'original' ? 'SOURCE · UNMODIFIED' : mode === 'offset'
+    ? `${Math.round(state.offsetX * 100)}% X · ${Math.round(state.offsetY * 100)}% Y OFFSET`
+    : `${state.repeat} × ${state.repeat} · ${mode === 'mirror' ? 'MIRRORED' : mode === 'seams' ? 'SEAM MAP' : 'NORMAL REPEAT'}`;
   schedule();
 }
 async function savePng(canvas, filename) {
