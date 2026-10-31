@@ -2,6 +2,7 @@
 const $ = (id) => document.getElementById(id);
 const ui = {
   canvas: $('previewCanvas'), viewer: $('viewer'), input: $('fileInput'),
+  sidebar: document.querySelector('.sidebar'),
   chooseBtn: $('viewerChooseBtn'), dropOverlay: $('dropOverlay'),
   fileName: $('fileName'), fileDetails: $('fileDetails'), sampleBtn: $('sampleBtn'),
   repeat: $('repeatRange'), repeatValue: $('repeatValue'),
@@ -65,6 +66,18 @@ function analyze(source) {
   const avg = (a) => a.reduce((sum, v) => sum + v, 0) / a.length;
   return { vertical: avg(vHeat), horizontal: avg(hHeat), vHeat, hHeat };
 }
+function setInspectorEnabled(enabled) {
+  const disabled = !enabled;
+  ui.sidebar.classList.toggle('is-empty', disabled);
+  for (const tab of document.querySelectorAll('[data-mode]')) {
+    tab.disabled = disabled;
+  }
+  ui.repeat.disabled = disabled;
+  ui.zoom.disabled = disabled;
+  ui.guide.disabled = disabled;
+  ui.sampleBtn.disabled = disabled;
+  ui.exportPreview.disabled = disabled;
+}
 function installSource(canvas, name, sizeText = '') {
   state.source = canvas; state.name = name; state.analysis = analyze(canvas);
   ui.fileName.textContent = name;
@@ -72,22 +85,29 @@ function installSource(canvas, name, sizeText = '') {
   ui.fileDetails.textContent = `${canvas.width} × ${canvas.height}${sizeText ? `, ${sizeText}` : ''}`;
   ui.viewer.classList.remove('is-empty');
   ui.sourceFrame.classList.remove('is-empty');
-  ui.sampleBtn.disabled = false;
-  ui.exportPreview.disabled = false;
+  setInspectorEnabled(true);
   schedule();
 }
 function clearSource() {
   state.source = null;
   state.name = 'texture';
   state.analysis = { vertical: 0, horizontal: 0, vHeat: [], hHeat: [] };
+  state.repeat = 3;
+  state.zoom = 1;
+  state.guides = false;
+  ui.repeat.value = '3';
+  ui.repeatValue.textContent = '3 × 3';
+  ui.zoom.value = '100';
+  ui.zoomValue.textContent = '100%';
+  ui.guide.checked = false;
   ui.fileName.textContent = 'No image selected';
   ui.fileName.title = '';
   ui.fileDetails.textContent = '';
   ui.input.value = '';
   ui.viewer.classList.add('is-empty');
   ui.sourceFrame.classList.add('is-empty');
-  ui.sampleBtn.disabled = true;
-  ui.exportPreview.disabled = true;
+  setMode('tile');
+  setInspectorEnabled(false);
 }
 
 async function loadFile(file) {
@@ -278,7 +298,11 @@ ui.sampleBtn.addEventListener('click', () => { clearSource(); notify('Image clea
 ui.repeat.addEventListener('input', () => { state.repeat = Number(ui.repeat.value); ui.repeatValue.textContent = `${state.repeat} × ${state.repeat}`; setMode(state.mode); });
 ui.zoom.addEventListener('input', () => { state.zoom = Number(ui.zoom.value) / 100; ui.zoomValue.textContent = `${ui.zoom.value}%`; schedule(); });
 ui.guide.addEventListener('change', () => { state.guides = ui.guide.checked; schedule(); });
-for (const tab of document.querySelectorAll('[data-mode]')) tab.addEventListener('click', () => setMode(tab.dataset.mode));
+for (const tab of document.querySelectorAll('[data-mode]')) {
+  tab.addEventListener('click', () => {
+    if (state.source) setMode(tab.dataset.mode);
+  });
+}
 ui.exportPreview.addEventListener('click', () => savePng(createExportCanvas(), `${sanitized(state.name)}-${state.mode}-preview.png`));
 let dragDepth = 0;
 document.addEventListener('dragenter', (event) => { if (!event.dataTransfer?.types.includes('Files')) return; event.preventDefault(); dragDepth++; ui.dropOverlay.hidden = false; ui.viewer.classList.add('is-dragging'); });
@@ -299,4 +323,3 @@ new ResizeObserver(schedule).observe(ui.sourceCanvas);
 $('year').textContent = String(new Date().getFullYear());
 syncCheckerboards();
 clearSource();
-setMode('tile');

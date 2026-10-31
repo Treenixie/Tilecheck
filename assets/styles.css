@@ -1129,3 +1129,16 @@ input[type="range"] { background: var(--tile-violet); }
 }
 /* Keep the button outline and gradient behavior, changing only its hover text color. */
 .help-actions .button-outline:hover { color: var(--ui-hover); }
+
+/* Image-dependent inspector controls: inactive until a texture is loaded.
+   Keep the upload trigger and filename readable and interactive. */
+.sidebar.is-empty .sidebar-mode-tabs,
+.sidebar.is-empty .control-group,
+.sidebar.is-empty .toggle-row {
+  opacity: .52;
+  pointer-events: none;
+}
+.sidebar.is-empty .mode-tab:disabled { opacity: 1; }
+.sidebar.is-empty :is(.mode-tab, input[type="range"], .toggle-row) {
+  cursor: default;
+}

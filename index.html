@@ -7,9 +7,9 @@
     <meta name="description" content="Inspect texture tiling, mirrored repetition, and potential seams directly in your browser." />
     <link rel="icon" type="image/png" href="./assets/favicon.png?v=4" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;600&display=swap" />
-<link rel="stylesheet" href="./assets/styles.css?v=62" />
+<link rel="stylesheet" href="./assets/styles.css?v=63" />
     <title>Tilecheck — Texture Inspection Studio</title>
-    <script defer src="./assets/main.js?v=15"></script>
+    <script defer src="./assets/main.js?v=16"></script>
   </head>
   <body>
     <div class="app">
@@ -24,14 +24,14 @@
       </header>
 
       <div class="workspace">
-        <aside class="sidebar" aria-label="Texture inspector settings">
+        <aside class="sidebar is-empty" aria-label="Texture inspector settings">
           <h1 class="visually-hidden">Texture inspector</h1>
           
           <div class="sidebar-mode-tabs">
             <div class="mode-tabs" role="tablist" aria-label="Preview mode">
-            <button type="button" role="tab" class="mode-tab active" id="tab-tile" aria-selected="true" data-mode="tile"><span class="tab-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></span><span>Tile</span></button>
-            <button type="button" role="tab" class="mode-tab" id="tab-mirror" aria-selected="false" data-mode="mirror"><span class="tab-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M9 5H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h4m6-14h4a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-4"/></svg></span><span>Mirror</span></button>
-            <button type="button" role="tab" class="mode-tab" id="tab-seams" aria-selected="false" data-mode="seams"><span class="tab-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3v18M16 3v18M3 8h18M3 16h18"/></svg></span><span>Seam map</span></button>
+            <button type="button" role="tab" class="mode-tab active" id="tab-tile" aria-selected="true" data-mode="tile" disabled><span class="tab-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></span><span>Tile</span></button>
+            <button type="button" role="tab" class="mode-tab" id="tab-mirror" aria-selected="false" data-mode="mirror" disabled><span class="tab-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M9 5H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h4m6-14h4a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-4"/></svg></span><span>Mirror</span></button>
+            <button type="button" role="tab" class="mode-tab" id="tab-seams" aria-selected="false" data-mode="seams" disabled><span class="tab-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3v18M16 3v18M3 8h18M3 16h18"/></svg></span><span>Seam map</span></button>
             </div>
           </div>
           <input type="file" accept="image/png,image/jpeg,image/webp,image/avif" id="fileInput" hidden />
@@ -45,15 +45,15 @@
           </div>
           <div class="control-group" id="repeatControl">
             <div class="control-title"><label for="repeatRange">Tile grid</label><output for="repeatRange" id="repeatValue">3 × 3</output></div>
-            <input type="range" min="2" max="6" value="3" step="1" id="repeatRange" />
+            <input type="range" min="2" max="6" value="3" step="1" id="repeatRange" disabled />
             <div class="range-ticks"><span>2 × 2</span><span>6 × 6</span></div>
           </div>
           <div class="control-group">
             <div class="control-title"><label for="zoomRange">Preview zoom</label><output for="zoomRange" id="zoomValue">100%</output></div>
-            <input type="range" min="50" max="200" value="100" step="10" id="zoomRange" />
+            <input type="range" min="50" max="200" value="100" step="10" id="zoomRange" disabled />
             <div class="range-ticks"><span>50%</span><span>200%</span></div>
           </div>
-          <label class="toggle-row" for="guideToggle"><span>Show tile boundaries</span><input id="guideToggle" type="checkbox" /><span class="toggle" aria-hidden="true"></span></label>
+          <label class="toggle-row" for="guideToggle"><span>Show tile boundaries</span><input id="guideToggle" type="checkbox" disabled /><span class="toggle" aria-hidden="true"></span></label>
           <div class="export-buttons sidebar-export">
             <button type="button" class="button button-primary" id="exportPreview" disabled><span class="export-label">Export preview</span></button>
           </div>
@@ -74,7 +74,7 @@
               <button type="button" id="viewerChooseBtn" class="viewer-empty-trigger" aria-label="Choose an image" title="Choose an image">
                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4m0 0-4 4m4-4 4 4"/><path d="M4 16v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"/></svg>
               </button>
-              <strong>Paste or drop an image here</strong>
+              <strong>Drop or upload an image to get started</strong>
               <span>PNG, JPG, WebP or AVIF, up to 25 MB</span>
             </div>
             <div class="drop-overlay" id="dropOverlay" hidden><div>↥<br/><span>Drop to inspect</span></div></div>
