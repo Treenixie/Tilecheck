@@ -441,7 +441,7 @@ body { background: #15132d; }
 .brand { color: #f8f5ff; }
 .brand-accent { color: #b8a5ff; }
 .header-nav-link { color: #d1cbee; transition: color .18s ease; }
-.header-nav-link:hover, .author-link:hover { color: #ff87d1; }
+.header-nav-link:hover, .author-link:hover { color: #C35E8F; }
 .sidebar {
   background: linear-gradient(165deg, #191633 0%, #14132a 74%);
   border-color: #383256;
@@ -479,7 +479,7 @@ body { background: #15132d; }
 .file-graphic { color: #c2b8ff; background: #2c2655; }
 #fileDetails, .file-copy span, .range-ticks { color: #bcb4d6; }
 .text-button { color: #fff; }
-.text-button:hover { color: #f78ad1; }
+.text-button:hover { color: #C35E8F; }
 .control-title output { color: #fff; }
 input[type="range"] { background: var(--tile-violet); }
 /* Solid slider knobs without inner borders or hairline outlines. */
@@ -689,7 +689,7 @@ input[type="range"]::-moz-range-thumb {
 .sidebar-mode-tabs .mode-tabs { width: 100%; display: flex; gap: 5px; overflow: visible; border: 0; }
 .sidebar-mode-tabs .mode-tab { flex: 1 1 auto; min-width: 0; padding: 10px 5px 9px; gap: 5px; font-size: 12px; letter-spacing: 0; }
 .sidebar-mode-tabs .tab-icon, .sidebar-mode-tabs .tab-icon svg { width: 15px; height: 15px; }
-.sidebar-mode-tabs .mode-tab:hover, .sidebar-mode-tabs .mode-tab.active:hover, .text-button:hover { color: #ff87d1; }
+.sidebar-mode-tabs .mode-tab:hover, .sidebar-mode-tabs .mode-tab.active:hover, .text-button:hover { color: #C35E8F; }
 .text-button:hover, .text-button:disabled { text-decoration: none; }
 .text-button:disabled { opacity: .4; }
 .file-summary { margin: 0 0 20px; padding: 0; }
@@ -726,7 +726,7 @@ input[type="range"]::-moz-range-thumb {
   border: 1px solid #6961ba; background: linear-gradient(135deg, #294494, #4d2a88);
   color: #c6d8ff;
 }
-.viewer-empty-trigger:hover { color: #ff87d1; border-color: #ff87d1; }
+.viewer-empty-trigger:hover { color: #C35E8F; border-color: #C35E8F; }
 .viewer-empty-trigger svg { display: block; }
 .viewer.is-dragging { outline: 2px dashed #aa91ff; outline-offset: -3px; }
 .source-preview-frame {
@@ -959,7 +959,7 @@ body, button, input, output, select, textarea {
 }
 #viewerChooseBtn:is(:hover, :focus-visible) {
   background: #393066;
-  color: #ff87d1;
+  color: #C35E8F;
 }
 #viewerChooseBtn::before { content: none; }
 #viewerChooseBtn svg { width: 22px; height: 22px; }
@@ -1029,8 +1029,8 @@ body, button, input, output, select, textarea {
 /* Restore the original single multicolor edge lines at both ends.
    Match only the vertical separator between footer labels to footer text. */
 :root {
-  --tile-violet: #ad78ff;
-  --ui-hover: #fb4d95;
+  --tile-violet: #478EA9;
+  --ui-hover: #C35E8F;
   --edge-gradient: linear-gradient(90deg, #1747e9 0%, #8153ef 60%, #f33cab 100%);
 }
 .topbar::after {
@@ -1103,14 +1103,14 @@ input[type="range"] { background: var(--tile-violet); }
   --surface: #15112F;
   --line: #352B50;
   --text: #F5F0FF;
-  --accent: #81DFF3;
-  --accent-dark: #65CDE8;
-  --tile-violet: #81DFF3;
-  --action-accent: #81DFF3;
-  --ui-hover: #F59BCC;
+  --accent: #478EA9;
+  --accent-dark: #397F96;
+  --tile-violet: #478EA9;
+  --action-accent: #478EA9;
+  --ui-hover: #C35E8F;
   --checker-dark: #120F20;
   --checker-light: #1D1733;
-  --edge-gradient: linear-gradient(90deg, #81DFF3 0%, #F4EB8A 50%, #F59BCC 100%);
+  --edge-gradient: linear-gradient(90deg, #478EA9 0%, #B8A84D 50%, #C35E8F 100%);
 }
 html, body, .app, .workspace { background: var(--bg); color: var(--text); }
 .topbar, .footer { background: var(--bg); }
@@ -1122,25 +1122,25 @@ html, body, .app, .workspace { background: var(--bg); color: var(--text); }
 .help-page, .help-page .topbar, .help-main { background: var(--bg); }
 .help-tile { background: #241B46; box-shadow: none; }
 .help-tile:nth-child(2), .help-tile:nth-child(3) { box-shadow: none; }
-.help-tile strong { color: #81DFF3; }
+.help-tile strong { color: #478EA9; }
 .help-actions .button-outline { background: #241B46; color: #F5F0FF; }
-.file-graphic { background: #241B46; color: #81DFF3; }
+.file-graphic { background: #241B46; color: #478EA9; }
 #fileDetails, .file-copy span, .range-ticks { color: #C5BCE0; }
-.control-title output { color: #F4EB8A; }
+.control-title output { color: #B8A84D; }
 .source-preview-title { color: #DCD3EF; }
-.sidebar-mode-tabs .mode-tab.active { color: #81DFF3; border-bottom-color: #81DFF3; }
-.sidebar-mode-tabs .mode-tab:not(:disabled):hover { color: #F59BCC; }
-input[type="range"] { background: #81DFF3; }
-input[type="range"]::-webkit-slider-thumb { background: #F59BCC; }
-input[type="range"]::-moz-range-thumb { background: #F59BCC; }
+.sidebar-mode-tabs .mode-tab.active { color: #478EA9; border-bottom-color: #478EA9; }
+.sidebar-mode-tabs .mode-tab:not(:disabled):hover { color: #C35E8F; }
+input[type="range"] { background: #478EA9; }
+input[type="range"]::-webkit-slider-thumb { background: #C35E8F; }
+input[type="range"]::-moz-range-thumb { background: #C35E8F; }
 .toggle { background: #302846; }
 .toggle::after { background: #DCD3EF; }
-.toggle-row input:checked + .toggle { background: #81DFF3; }
-.toggle-row input:checked + .toggle::after { background: #F4EB8A; }
+.toggle-row input:checked + .toggle { background: #478EA9; }
+.toggle-row input:checked + .toggle::after { background: #090711; }
 .sidebar-export .button-primary,
 .sidebar-export .button-primary:hover:not(:disabled),
 .sidebar-export .button-primary:focus-visible:not(:disabled) {
-  background: linear-gradient(105deg, #81DFF3 0%, #F4EB8A 52%, #F59BCC 100%);
+  background: linear-gradient(105deg, #478EA9 0%, #B8A84D 52%, #C35E8F 100%);
   color: #15112F;
   border: 0;
   box-shadow: none;
@@ -1151,19 +1151,19 @@ input[type="range"]::-moz-range-thumb { background: #F59BCC; }
 .sidebar-export .button-primary:focus-visible:not(:disabled) { filter: brightness(1.06); }
 .viewer-empty-trigger, #viewerChooseBtn {
   background: #241B46;
-  color: #81DFF3;
+  color: #478EA9;
 }
-#viewerChooseBtn:is(:hover, :focus-visible) { background: #30254D; color: #F59BCC; }
+#viewerChooseBtn:is(:hover, :focus-visible) { background: #30254D; color: #C35E8F; }
 .mode-tab:hover:not(:disabled), .text-button:hover:not(:disabled),
-.topbar .header-nav-link:hover, .footer .author-link:hover { color: #F59BCC; }
+.topbar .header-nav-link:hover, .footer .author-link:hover { color: #C35E8F; }
 #viewer > #toast { background: #241B46; color: #F5F0FF; }
 
 /* Pastel wordmark coordinates with the original four-quadrant Tilecheck symbol. */
 .topbar .brand-accent {
-  background: linear-gradient(95deg, #81DFF3 0%, #F4EB8A 52%, #F59BCC 100%);
+  background: linear-gradient(95deg, #478EA9 0%, #B8A84D 52%, #C35E8F 100%);
   -webkit-background-clip: text;
   background-clip: text;
-  color: #F59BCC;
+  color: #C35E8F;
   -webkit-text-fill-color: transparent;
 }
 .topbar .brand:hover .brand-accent { filter: brightness(1.08); }
