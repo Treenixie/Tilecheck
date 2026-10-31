@@ -1,18 +1,18 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="474" height="474" viewBox="0 0 474 474" role="img" aria-label="Tilecheck logo">
-  <rect x="0" y="0" width="110" height="110" fill="#C35E8F"/>
-  <rect x="110" y="0" width="110" height="110" fill="#B8A84D"/>
-  <rect x="0" y="110" width="110" height="110" fill="#478EA9"/>
-  <rect x="110" y="110" width="110" height="110" fill="#7662BA"/>
-  <rect x="254" y="0" width="110" height="110" fill="#C35E8F"/>
-  <rect x="364" y="0" width="110" height="110" fill="#B8A84D"/>
-  <rect x="254" y="110" width="110" height="110" fill="#478EA9"/>
-  <rect x="364" y="110" width="110" height="110" fill="#7662BA"/>
-  <rect x="0" y="254" width="110" height="110" fill="#C35E8F"/>
-  <rect x="110" y="254" width="110" height="110" fill="#B8A84D"/>
-  <rect x="0" y="364" width="110" height="110" fill="#478EA9"/>
-  <rect x="110" y="364" width="110" height="110" fill="#7662BA"/>
-  <rect x="254" y="254" width="110" height="110" fill="#C35E8F"/>
-  <rect x="364" y="254" width="110" height="110" fill="#B8A84D"/>
-  <rect x="254" y="364" width="110" height="110" fill="#478EA9"/>
-  <rect x="364" y="364" width="110" height="110" fill="#7662BA"/>
+  <rect x="0" y="0" width="110" height="110" fill="#EC62A2"/>
+  <rect x="110" y="0" width="110" height="110" fill="#DCC54D"/>
+  <rect x="0" y="110" width="110" height="110" fill="#46A1C6"/>
+  <rect x="110" y="110" width="110" height="110" fill="#8167DF"/>
+  <rect x="254" y="0" width="110" height="110" fill="#EC62A2"/>
+  <rect x="364" y="0" width="110" height="110" fill="#DCC54D"/>
+  <rect x="254" y="110" width="110" height="110" fill="#46A1C6"/>
+  <rect x="364" y="110" width="110" height="110" fill="#8167DF"/>
+  <rect x="0" y="254" width="110" height="110" fill="#EC62A2"/>
+  <rect x="110" y="254" width="110" height="110" fill="#DCC54D"/>
+  <rect x="0" y="364" width="110" height="110" fill="#46A1C6"/>
+  <rect x="110" y="364" width="110" height="110" fill="#8167DF"/>
+  <rect x="254" y="254" width="110" height="110" fill="#EC62A2"/>
+  <rect x="364" y="254" width="110" height="110" fill="#DCC54D"/>
+  <rect x="254" y="364" width="110" height="110" fill="#46A1C6"/>
+  <rect x="364" y="364" width="110" height="110" fill="#8167DF"/>
 </svg>
