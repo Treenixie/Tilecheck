@@ -163,16 +163,17 @@
 
   .source-preview {
     display: flex;
-    flex: 1;
+    flex: 0 0 auto;
     min-height: 0;
     flex-direction: column;
+    margin-top: auto;
   }
   .source-preview-frame {
-    flex: 1;
-    min-height: 200px;
+    flex: 0 0 auto;
+    min-height: 0;
     height: auto;
   }
-  .viewer { flex: 1 0 auto; }
+  .viewer { flex: 1 1 auto; }
 }
 
 /* Unified Roboto typography: four sizes, two weights */
@@ -361,46 +362,50 @@ strong, b { font-weight: 600; }
   text-align: center;
   white-space: nowrap;
 }
-/* File summary: full filename above metadata, without a narrow 80px name slot. */
+/* One compact, vertically centered row: icon | filename + metadata | Reset. */
 .file-summary {
   display: grid;
   grid-template-columns: 35px minmax(0, 1fr) max-content;
-  grid-template-rows: auto auto;
   align-items: center;
-  column-gap: 8px;
-  row-gap: 2px;
+  column-gap: 9px;
+  padding: 10px 0;
+  min-width: 0;
 }
 .file-summary .file-graphic {
-  grid-column: 1;
-  grid-row: 1 / 3;
-  align-self: center;
+  width: 35px;
+  height: 35px;
+}
+.file-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 0;
+  gap: 3px;
 }
 #fileName {
-  grid-column: 2 / -1;
-  grid-row: 1;
+  display: block;
   min-width: 0;
   max-width: 100%;
   overflow: visible;
   text-overflow: clip;
   white-space: normal;
   overflow-wrap: anywhere;
+  line-height: 1.3;
   font-size: var(--text-body);
   font-weight: 600;
-  line-height: 1.35;
 }
 #fileDetails {
-  grid-column: 2;
-  grid-row: 2;
+  display: block;
   min-width: 0;
-  justify-self: start;
   color: #94a2b5;
   font-size: var(--text-small);
-  white-space: nowrap;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  line-height: 1.25;
 }
 .file-summary .text-button {
-  grid-column: 3;
-  grid-row: 2;
   justify-self: end;
+  align-self: center;
 }
 
 /* Give the Help page the same lighter workspace background as the inspector. */
@@ -691,9 +696,3 @@ input[type="range"]::-moz-range-thumb {
   min-height: 0;
 }
 
-/* Keep the square Original thumbnail on the same bottom baseline as the main viewer. */
-@media (min-width: 751px) {
-  .sidebar .source-preview {
-    justify-content: flex-end;
-  }
-}
