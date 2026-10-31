@@ -7,7 +7,7 @@
     <meta name="description" content="Inspect texture tiling, mirrored repetition, and potential seams directly in your browser." />
     <link rel="icon" type="image/png" href="./assets/favicon.png?v=4" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;600&display=swap" />
-<link rel="stylesheet" href="./assets/styles.css?v=35" />
+<link rel="stylesheet" href="./assets/styles.css?v=36" />
     <title>Tilecheck — Texture Inspection Studio</title>
     <script defer src="./assets/main.js?v=10"></script>
   </head>
@@ -70,7 +70,7 @@
             <button type="button" role="tab" class="mode-tab" id="tab-mirror" aria-selected="false" data-mode="mirror"><span class="tab-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M9 5H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h4m6-14h4a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-4"/></svg></span><span>Mirror</span></button>
             <button type="button" role="tab" class="mode-tab" id="tab-seams" aria-selected="false" data-mode="seams"><span class="tab-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3v18M16 3v18M3 8h18M3 16h18"/></svg></span><span>Seam map</span></button>
             </div>
-            <div class="export-buttons"><button type="button" class="button button-primary" id="exportPreview">Export preview</button></div>
+            <div class="export-buttons"><button type="button" class="button button-primary" id="exportPreview"><span class="export-label">Export preview</span></button></div>
           </div>
           <div class="viewer" id="viewer" aria-label="Texture canvas, drag and drop an image to upload">
             <canvas id="previewCanvas" aria-label="Current texture preview" role="img"></canvas>
