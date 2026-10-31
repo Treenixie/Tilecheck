@@ -218,3 +218,18 @@ strong, b { font-weight: 600; }
   .sidebar { padding-right: 18px; }
   .main { padding-left: 18px; }
 }
+
+/* Keep texture name and dimensions on one baseline. */
+.file-copy {
+  flex-direction: row;
+  align-items: baseline;
+  gap: 8px;
+}
+.file-copy strong {
+  min-width: 0;
+  flex: 1 1 auto;
+}
+.file-copy span {
+  flex: 0 0 auto;
+  white-space: nowrap;
+}

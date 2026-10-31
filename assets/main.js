@@ -95,10 +95,10 @@ function analyze(source) {
   const avg = (a) => a.reduce((sum, v) => sum + v, 0) / a.length;
   return { vertical: avg(vHeat), horizontal: avg(hHeat), vHeat, hHeat };
 }
-function installSource(canvas, name, sizeText) {
+function installSource(canvas, name, sizeText = '') {
   state.source = canvas; state.name = name; state.analysis = analyze(canvas);
   ui.fileName.textContent = name;
-  ui.fileDetails.textContent = `${canvas.width} × ${canvas.height} · ${sizeText}`;
+  ui.fileDetails.textContent = `${canvas.width} × ${canvas.height}${sizeText ? ` · ${sizeText}` : ''}`;
   schedule();
 }
 
@@ -218,7 +218,7 @@ async function savePng(canvas, filename) {
 }
 ui.chooseBtn.addEventListener('click', () => ui.input.click());
 ui.input.addEventListener('change', async () => { await loadFile(ui.input.files?.[0]); ui.input.value = ''; });
-ui.sampleBtn.addEventListener('click', () => { installSource(makeDemo(), 'Sample', 'demo texture'); notify('Demo texture restored.'); });
+ui.sampleBtn.addEventListener('click', () => { installSource(makeDemo(), 'Sample'); notify('Sample restored.'); });
 ui.repeat.addEventListener('input', () => { state.repeat = Number(ui.repeat.value); ui.repeatValue.textContent = `${state.repeat} × ${state.repeat}`; setMode(state.mode); });
 ui.zoom.addEventListener('input', () => { state.zoom = Number(ui.zoom.value) / 100; ui.zoomValue.textContent = `${ui.zoom.value}%`; schedule(); });
 ui.guide.addEventListener('change', () => { state.guides = ui.guide.checked; schedule(); });
@@ -236,5 +236,5 @@ window.addEventListener('resize', schedule);
 new ResizeObserver(schedule).observe(ui.viewer);
 new ResizeObserver(schedule).observe(ui.sourceCanvas);
 $('year').textContent = String(new Date().getFullYear());
-installSource(makeDemo(), 'Sample', 'demo texture');
+installSource(makeDemo(), 'Sample');
 setMode('tile');
