@@ -7,7 +7,7 @@
     <meta name="description" content="Inspect texture tiling, mirrored repetition, and potential seams directly in your browser." />
     <link rel="icon" type="image/svg+xml" sizes="any" href="./assets/favicon.svg?v=4" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;600&display=swap" />
-<link rel="stylesheet" href="./assets/styles.css?v=23" />
+<link rel="stylesheet" href="./assets/styles.css?v=24" />
     <title>Tilecheck — Texture Inspection Studio</title>
     <script defer src="./assets/main.js?v=6"></script>
   </head>
@@ -29,10 +29,9 @@
           
           <div class="upload-card" id="uploadZone">
             <div class="upload-content">
-              <div class="upload-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4m0 0-4 4m4-4 4 4"/><path d="M4 16v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"/></svg></div>
+              <button type="button" id="chooseBtn" class="upload-icon upload-trigger" aria-label="Choose image" title="Choose image"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4m0 0-4 4m4-4 4 4"/><path d="M4 16v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"/></svg></button>
               <strong>Drop a texture here</strong>
               <span>PNG, JPG, WebP or AVIF, up to 25 MB</span>
-              <button type="button" id="chooseBtn" class="button button-outline">Choose image</button>
             </div>
             <input type="file" accept="image/png,image/jpeg,image/webp,image/avif" id="fileInput" hidden />
           </div>
