@@ -124,3 +124,51 @@
     align-items: flex-start;
   }
 }
+
+/* Readable Roboto typography */
+:root {
+  font-family: "Roboto", "Segoe UI", Arial, sans-serif;
+}
+body, button, input, select, textarea, output {
+  font-family: "Roboto", "Segoe UI", Arial, sans-serif;
+}
+body { font-size: 14px; }
+.brand { font-size: 22px; }
+.header-nav-link { font-size: 13px; }
+.sidebar h1, .preview-header h2 { font-size: 27px; }
+.upload-card strong { font-size: 14px; }
+.upload-card > span { font-size: 12px; line-height: 1.45; text-align: center; }
+.button { font-size: 12px; min-height: 40px; letter-spacing: .65px; }
+.file-summary { gap: 9px; }
+.file-copy strong { font-size: 13px; }
+.file-copy span { font-size: 11px; line-height: 1.45; }
+.text-button { font-size: 11px; }
+.control-title { font-size: 13px; }
+.control-title output { font-size: 12px; }
+.range-ticks { font-size: 11px; }
+.toggle-row { font-size: 13px; }
+.source-preview-title { font-size: 12px; }
+.mode-tab { font-size: 12px; letter-spacing: .7px; }
+.viewer-label { font-size: 12px; letter-spacing: .9px; }
+.viewer-footer, .viewer-footer span:last-child { font-size: 12px; }
+.footer-meta { font-size: 11px; letter-spacing: .5px; }
+.toast { font-size: 13px; line-height: 1.5; }
+.help-heading p { font-size: 16px; }
+.help-steps { font-size: 15px; }
+.help-tile strong { font-size: 13px; }
+.help-tile span { font-size: 14px; }
+.help-qa h3 { font-size: 15px; }
+.help-qa p, .help-support p { font-size: 14px; }
+@media (max-width: 750px) {
+  .sidebar h1, .preview-header h2 { font-size: 24px; }
+  .mode-tab { font-size: 11px; }
+}
+@media (max-width: 470px) {
+  .brand { font-size: 17px; }
+  .header-nav { gap: 9px; }
+  .header-nav-link { font-size: 11px; gap: 5px; }
+  .button { font-size: 11px; }
+  .mode-tab { padding: 12px 10px; }
+  .mode-tab .tab-icon, .mode-tab .tab-icon svg { width: 16px; height: 16px; }
+  .footer-meta { font-size: 10px; }
+}
