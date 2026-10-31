@@ -1085,35 +1085,30 @@ body, button, input, output, select, textarea {
   .topbar .nav-icon { width: 15px; height: 15px; flex-basis: 15px; }
 }
 
-/* Violet slider tracks and shared UI hover color. */
+/* Restore the original single multicolor edge lines at both ends.
+   Match only the vertical separator between footer labels to footer text. */
 :root {
   --tile-violet: #ad78ff;
   --ui-hover: #fb4d95;
+  --edge-gradient: linear-gradient(90deg, #1747e9 0%, #8153ef 60%, #f33cab 100%);
 }
 .topbar::after {
   bottom: 0;
-  background: #d1cbee;
-  opacity: 1;
+  background: var(--edge-gradient);
+  opacity: .7;
 }
-input[type="range"] {
-  background: var(--tile-violet);
-}
-.footer {
-  position: relative;
-}
+input[type="range"] { background: var(--tile-violet); }
+.footer { position: relative; }
 .footer::before {
   content: "";
   position: absolute;
   inset: 0 0 auto;
   height: 2px;
-  background: #b5aecd;
-  opacity: 1;
+  background: var(--edge-gradient);
+  opacity: .7;
   pointer-events: none;
 }
-
-/* Text-matched header/footer dividers and unified pink hover. */
-.topbar::after { background: #d1cbee; }
-.footer::before { background: #b5aecd; }
+.footer-separator { background: #b5aecd; }
 :is(.topbar .header-nav-link, .footer .author-link):hover,
 .topbar .brand:hover .brand-accent,
 .sidebar-mode-tabs .mode-tab:hover,
