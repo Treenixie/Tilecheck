@@ -484,7 +484,7 @@ body { background: #15132d; }
 .text-button { color: #a5b6ff; }
 .text-button:hover { color: #f78ad1; }
 .control-title output { color: #a6b9ff; }
-input[type="range"] { background: #51466f; }
+input[type="range"] { background: var(--tile-violet); }
 /* Solid slider knobs without inner borders or hairline outlines. */
 input[type="range"]::-webkit-slider-thumb {
   width: 14px;
@@ -521,7 +521,7 @@ input[type="range"]::-moz-range-thumb {
 .mode-tabs { border-color: #41375b; }
 .mode-tab { color: #b8afd8; transition: color .18s ease; }
 .mode-tab:hover { color: #f5d4ff; }
-.mode-tab.active { color: #c3c0ff; border-bottom-color: #ad78ff; }
+.mode-tab.active { color: #c3c0ff; border-bottom-color: var(--tile-violet); }
 .viewer { background: #151d29; }
 .source-preview-frame { background: #151d29; }
 .help-page {
@@ -1083,4 +1083,34 @@ body, button, input, output, select, textarea {
   .topbar .header-nav { gap: 12px; }
   .topbar .header-nav-link { font-size: var(--text-small); gap: 5px; }
   .topbar .nav-icon { width: 15px; height: 15px; flex-basis: 15px; }
+}
+
+/* Accent tracks and mirrored page-edge gradients.
+   The existing multicolored header stripe stays; the solid hairline and
+   the slider tracks share the selected Tile underline violet. */
+:root {
+  --tile-violet: #ad78ff;
+  --edge-gradient: linear-gradient(90deg, #1747e9 0%, #8153ef 60%, #f33cab 100%);
+}
+.topbar {
+  border-bottom: 1px solid var(--tile-violet);
+}
+.topbar::after {
+  bottom: 1px;
+  background: var(--edge-gradient);
+}
+input[type="range"] {
+  background: var(--tile-violet);
+}
+.footer {
+  position: relative;
+}
+.footer::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 2px;
+  background: var(--edge-gradient);
+  opacity: .7;
+  pointer-events: none;
 }
