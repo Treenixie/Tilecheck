@@ -696,3 +696,8 @@ input[type="range"]::-moz-range-thumb {
   min-height: 0;
 }
 
+
+
+/* Seamless upload area, with more breathing room before file details. */
+.upload-card { background: transparent; }
+.file-summary { margin-top: 18px; }
