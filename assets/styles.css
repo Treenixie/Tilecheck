@@ -957,3 +957,46 @@ body, button, input, output, select, textarea {
   .sidebar > .sidebar-export { margin: 0; }
   .sidebar > .source-preview { margin: 0; padding: 0; }
 }
+
+/* Shared upload and export button interaction.
+   The hover is an opacity fade on a gradient overlay: icons/text do not move. */
+:is(.viewer-empty-trigger, .sidebar-export .button-primary) {
+  position: relative;
+  isolation: isolate;
+  border: 0;
+  color: #0d0b1d;
+  background: linear-gradient(110deg, #668aff, #a273f4);
+  box-shadow: none;
+  transform: none;
+  transition: none;
+}
+:is(.viewer-empty-trigger, .sidebar-export .button-primary)::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: linear-gradient(110deg, #7e9eff, #b78cf9);
+  box-shadow: 0 0 18px rgba(135, 85, 243, .35);
+  opacity: 0;
+  transition: opacity .18s ease;
+}
+.viewer-empty-trigger > svg,
+.sidebar-export .button-primary > .export-label {
+  position: relative;
+  z-index: 1;
+}
+:is(.viewer-empty-trigger, .sidebar-export .button-primary):is(:hover, :active, :focus-visible) {
+  color: #0d0b1d;
+  border: 0;
+  background: linear-gradient(110deg, #668aff, #a273f4);
+  box-shadow: none;
+  transform: none;
+}
+:is(.viewer-empty-trigger, .sidebar-export .button-primary):is(:hover, :focus-visible):not(:disabled)::before {
+  opacity: 1;
+}
+.sidebar-export .button-primary:disabled::before { opacity: 0; }
+@media (prefers-reduced-motion: reduce) {
+  :is(.viewer-empty-trigger, .sidebar-export .button-primary)::before { transition: none; }
+}
