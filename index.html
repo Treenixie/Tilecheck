@@ -7,7 +7,7 @@
     <meta name="description" content="Inspect texture tiling, mirrored repetition, and potential seams directly in your browser." />
     <link rel="icon" type="image/svg+xml" sizes="any" href="./assets/favicon.svg?v=4" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&display=swap" />
-<link rel="stylesheet" href="./assets/styles.css?v=3" />
+<link rel="stylesheet" href="./assets/styles.css?v=4" />
     <title>TILECHECK — Texture Inspection Studio</title>
     <script defer src="./assets/main.js"></script>
   </head>
@@ -62,6 +62,7 @@
         <main class="main" aria-label="Texture preview">
           <div class="preview-header">
             <h2 id="previewTitle">Repeat pattern</h2>
+            <div class="export-buttons"><button type="button" class="button button-primary" id="exportPreview">EXPORT PREVIEW</button></div>
           </div>
           <div class="mode-tabs" role="tablist" aria-label="Preview mode">
             <button type="button" role="tab" class="mode-tab active" id="tab-tile" aria-selected="true" data-mode="tile"><span class="tab-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></span><span>TILE</span></button>
@@ -74,9 +75,7 @@
             <div class="drop-overlay" id="dropOverlay" hidden><div>↥<br/><span>DROP TO INSPECT</span></div></div>
           </div>
           <div class="viewer-footer"><span id="dimensionLabel">512 × 512 PX</span></div>
-          <div class="export-bar">
-            <div class="export-buttons"><button type="button" class="button button-primary" id="exportPreview">EXPORT PREVIEW</button></div>
-          </div>
+
         </main>
       </div>
       <footer class="footer" aria-label="TILECHECK project links">
