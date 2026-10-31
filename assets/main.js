@@ -8,7 +8,6 @@ const ui = {
   zoom: $('zoomRange'), zoomValue: $('zoomValue'),
   repeatControl: $('repeatControl'), sourceCanvas: $('sourceCanvas'),
   guide: $('guideToggle'), previewTitle: $('previewTitle'),
-  viewerLabel: $('viewerLabel'),
   exportPreview: $('exportPreview'),
   toast: $('toast'),
 };
@@ -203,7 +202,6 @@ function setMode(mode) {
     tab.tabIndex = active ? 0 : -1;
   }
   ui.previewTitle.textContent = modes[mode].title;
-  ui.viewerLabel.textContent = `${state.repeat} × ${state.repeat}`;
   schedule();
 }
 async function savePng(canvas, filename) {
