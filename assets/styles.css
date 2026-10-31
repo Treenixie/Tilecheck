@@ -279,3 +279,25 @@ strong, b { font-weight: 600; }
   text-align: center;
   white-space: nowrap;
 }
+/* Four-column metadata row: icon | name | centered dimensions | Reset. */
+.file-summary {
+  display: grid;
+  grid-template-columns: 35px fit-content(80px) minmax(0, 1fr) max-content;
+  align-items: center;
+  column-gap: 8px;
+}
+#fileName {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: var(--text-body);
+  font-weight: 600;
+}
+#fileDetails {
+  justify-self: center;
+  color: #94a2b5;
+  font-size: var(--text-small);
+  white-space: nowrap;
+}
+.file-summary .text-button { justify-self: end; }
