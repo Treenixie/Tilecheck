@@ -218,3 +218,9 @@ strong, b { font-weight: 600; }
   }
   .footer-meta { column-gap: 14px; }
 }
+
+/* Match the horizontal preview gap to the 73px bottom gap. */
+@media (min-width: 751px) {
+  .sidebar { padding-right: 36px; }
+  .main { padding-left: 37px; }
+}
