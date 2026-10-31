@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <title>Tilecheck</title>
+  <rect width="512" height="512" fill="#0D0B1D"/>
+  <defs>
+    <g id="tile">
+      <rect x="82" y="82" width="80" height="80" fill="#F442A1"/>
+      <rect x="162" y="82" width="80" height="80" fill="#89BAFF"/>
+      <rect x="82" y="162" width="80" height="80" fill="#315BF6"/>
+      <rect x="162" y="162" width="80" height="80" fill="#AB61E8"/>
+    </g>
+  </defs>
+  <use href="#tile"/>
+  <use href="#tile" transform="translate(188 0)"/>
+  <use href="#tile" transform="translate(0 188)"/>
+  <use href="#tile" transform="translate(188 188)"/>
+</svg>
