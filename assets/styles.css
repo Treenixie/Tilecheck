@@ -384,4 +384,6 @@ strong, b { font-weight: 600; }
 }
 .file-summary .text-button { justify-self: end; }
 
-
+/* Give the Help page the same lighter workspace background as the inspector. */
+.help-page { background: #131a24; }
+.help-page .topbar { background: #0e1219; }
