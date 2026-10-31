@@ -698,8 +698,8 @@ input[type="range"]::-moz-range-thumb {
 /* Neutral grayscale checkerboard, without color tint.
    The cell layer remains a full number of squares after every resize. */
 :root {
-  --checker-dark: #202020;
-  --checker-light: #303030;
+  --checker-dark: #252229;
+  --checker-light: #332E38;
   --action-accent: var(--tile-violet);
 }
 .preview-controls { min-height: 38px; }
