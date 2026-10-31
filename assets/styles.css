@@ -671,3 +671,10 @@ input[type="range"]::-moz-range-thumb {
   flex: 0 0 auto;
   min-height: 0;
 }
+
+/* Keep the square Original thumbnail on the same bottom baseline as the main viewer. */
+@media (min-width: 751px) {
+  .sidebar .source-preview {
+    justify-content: flex-end;
+  }
+}
