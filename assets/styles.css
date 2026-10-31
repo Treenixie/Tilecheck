@@ -233,3 +233,44 @@ strong, b { font-weight: 600; }
   flex: 0 0 auto;
   white-space: nowrap;
 }
+
+/* Center the entire upload content as one group. */
+.upload-card {
+  display: grid;
+  place-items: center;
+  text-align: center;
+}
+.upload-content {
+  display: flex;
+  width: 100%;
+  max-width: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.upload-content .upload-icon { margin: 0 auto 2px; }
+.upload-content > strong { font-size: var(--text-body); font-weight: 600; }
+.upload-content > span {
+  max-width: 100%;
+  font-size: var(--text-small);
+  line-height: 1.45;
+  color: #93a4b7;
+}
+.upload-content .button { margin: 9px auto 0; }
+
+/* Center dimensions in the space between the filename and Reset. */
+.file-copy {
+  display: grid;
+  grid-template-columns: minmax(0, max-content) minmax(0, 1fr);
+  align-items: center;
+  gap: 8px;
+}
+.file-copy strong {
+  flex: initial;
+  max-width: min(88px, 45%);
+}
+.file-copy span {
+  justify-self: center;
+  text-align: center;
+}
