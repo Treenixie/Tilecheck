@@ -113,12 +113,12 @@ function clearSource() {
 async function loadFile(file) {
   if (!file) return;
   const accepted = ['image/png', 'image/jpeg', 'image/webp', 'image/avif'];
-  if (!accepted.includes(file.type)) return notify('Use a PNG, JPG, WebP or AVIF image.', true);
-  if (file.size > 25 * 1024 * 1024) return notify('Image exceeds 25 MB. Choose a smaller file.', true);
+  if (!accepted.includes(file.type)) return notify('Use a PNG, JPG, WebP or AVIF image', true);
+  if (file.size > 25 * 1024 * 1024) return notify('Image exceeds 25 MB. Choose a smaller file', true);
   try {
     const bitmap = await createImageBitmap(file);
     if (bitmap.width * bitmap.height > 24_000_000 || !bitmap.width || !bitmap.height) {
-      bitmap.close(); return notify('Image is too large. Limit: 24 megapixels.', true);
+      bitmap.close(); return notify('Image is too large. Limit: 24 megapixels', true);
     }
     const cv = document.createElement('canvas'); cv.width = bitmap.width; cv.height = bitmap.height;
     cv.getContext('2d').drawImage(bitmap, 0, 0); bitmap.close();
@@ -126,7 +126,7 @@ async function loadFile(file) {
     installSource(cv, name, byteSize(file.size));
     notify(`Loaded ${name}`);
   } catch (error) {
-    console.error(error); notify('Unable to decode that image.', true);
+    console.error(error); notify('Unable to decode that image', true);
   }
 }
 
@@ -271,9 +271,9 @@ function setMode(mode) {
   schedule();
 }
 async function savePng(canvas, filename) {
-  if (!canvas) return notify('No texture loaded.', true);
+  if (!canvas) return notify('No texture loaded', true);
   canvas.toBlob((blob) => {
-    if (!blob) return notify('Could not generate PNG.', true);
+    if (!blob) return notify('Could not generate PNG', true);
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a'); a.href = url; a.download = filename; document.body.append(a); a.click(); a.remove();
     setTimeout(() => URL.revokeObjectURL(url), 1500);
@@ -294,7 +294,7 @@ document.addEventListener('paste', (event) => {
   event.preventDefault();
   void loadFile(file);
 });
-ui.sampleBtn.addEventListener('click', () => { clearSource(); notify('Image cleared.'); });
+ui.sampleBtn.addEventListener('click', () => { clearSource(); notify('Image cleared'); });
 ui.repeat.addEventListener('input', () => { state.repeat = Number(ui.repeat.value); ui.repeatValue.textContent = `${state.repeat} × ${state.repeat}`; setMode(state.mode); });
 ui.zoom.addEventListener('input', () => { state.zoom = Number(ui.zoom.value) / 100; ui.zoomValue.textContent = `${ui.zoom.value}%`; schedule(); });
 ui.guide.addEventListener('change', () => { state.guides = ui.guide.checked; schedule(); });
