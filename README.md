@@ -1,5 +1,5 @@
 <div align="center">
-<img src="assets/favicon.svg" alt="TILECHECK logo" width="72" height="72">
+<img src="assets/favicon.svg?v=4" alt="TILECHECK logo" width="72" height="72">
 <h1>TILECHECK</h1>
 <p><strong>Texture inspection studio for game developers and artists.</strong></p>
 <p>Preview repeating patterns, expose joins, inspect mirrored tiling and export PNGs.<br>No account · No build step · No image uploads</p>
