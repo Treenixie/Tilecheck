@@ -152,7 +152,7 @@ function addHeat(c, startX, startY, tileW, tileH, n) {
     const x = startX + col * tileW;
     for (let j = 0; j < vHeat.length; j++) {
       const v = vHeat[j]; if (v < 4) continue;
-      c.fillStyle = `rgba(255, ${Math.round(220 - Math.min(1, v / 120) * 145)}, 54, ${(.15 + Math.min(.78, v / 140)).toFixed(2)})`;
+      c.fillStyle = `rgba(255, ${Math.round(110 - Math.min(1, v / 120) * 55)}, 185, ${(.15 + Math.min(.78, v / 140)).toFixed(2)})`;
       c.fillRect(x - line / 2, startY + (row + j / vHeat.length) * tileH, line, Math.ceil(tileH / vHeat.length) + 1);
     }
   }
@@ -160,13 +160,13 @@ function addHeat(c, startX, startY, tileW, tileH, n) {
     const y = startY + row * tileH;
     for (let j = 0; j < hHeat.length; j++) {
       const v = hHeat[j]; if (v < 4) continue;
-      c.fillStyle = `rgba(255, ${Math.round(220 - Math.min(1, v / 120) * 145)}, 54, ${(.15 + Math.min(.78, v / 140)).toFixed(2)})`;
+      c.fillStyle = `rgba(255, ${Math.round(110 - Math.min(1, v / 120) * 55)}, 185, ${(.15 + Math.min(.78, v / 140)).toFixed(2)})`;
       c.fillRect(startX + (col + j / hHeat.length) * tileW, y - line / 2, Math.ceil(tileW / hHeat.length) + 1, line);
     }
   }
 }
 function drawGuides(c, x, y, w, h, n) {
-  c.save(); c.strokeStyle = '#94bdf5'; c.globalAlpha = .65; c.setLineDash([5, 5]); c.lineWidth = 1;
+  c.save(); c.strokeStyle = '#a596ff'; c.globalAlpha = .65; c.setLineDash([5, 5]); c.lineWidth = 1;
   c.beginPath();
   for (let i = 1; i < n; i++) { c.moveTo(x + i * w, y); c.lineTo(x + i * w, y + n * h); c.moveTo(x, y + i * h); c.lineTo(x + n * w, y + i * h); }
   c.stroke(); c.restore();
