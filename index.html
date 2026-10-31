@@ -6,17 +6,17 @@
     <meta name="theme-color" content="#0e1219" />
     <meta name="description" content="Inspect texture tiling, mirrored repetition, and potential seams directly in your browser." />
     <link rel="icon" type="image/svg+xml" sizes="any" href="./assets/favicon.svg?v=4" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700;800;900&display=swap" />
-<link rel="stylesheet" href="./assets/styles.css?v=6" />
-    <title>TILECHECK — Texture Inspection Studio</title>
-    <script defer src="./assets/main.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;600&display=swap" />
+<link rel="stylesheet" href="./assets/styles.css?v=7" />
+    <title>Tilecheck — Texture Inspection Studio</title>
+    <script defer src="./assets/main.js?v=2"></script>
   </head>
   <body>
     <div class="app">
       <header class="topbar">
-        <a class="brand" href="./" aria-label="TILECHECK home">
+        <a class="brand" href="./" aria-label="Tilecheck home">
           <img class="brand-mark" src="./assets/favicon.svg?v=4" width="36" height="36" alt="" aria-hidden="true" />
-          <span>TILE<span class="brand-accent">CHECK</span></span>
+          <span>Tile<span class="brand-accent">check</span></span>
           
         </a>
 
@@ -30,14 +30,14 @@
           <div class="upload-card" id="uploadZone">
             <div class="upload-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4m0 0-4 4m4-4 4 4"/><path d="M4 16v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"/></svg></div>
             <strong>Drop a texture here</strong>
-            <span>PNG, JPG, WEBP or AVIF · up to 25 MB</span>
-            <button type="button" id="chooseBtn" class="button button-outline">CHOOSE IMAGE</button>
+            <span>PNG, JPG, WebP or AVIF · up to 25 MB</span>
+            <button type="button" id="chooseBtn" class="button button-outline">Choose image</button>
             <input type="file" accept="image/png,image/jpeg,image/webp,image/avif" id="fileInput" hidden />
           </div>
           <div class="file-summary">
             <span class="file-graphic" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8" cy="9" r="1"/><path d="m4 17 5-5 4 4 3-3 4 4"/></svg></span>
             <div class="file-copy"><strong id="fileName">Concrete / sample</strong><span id="fileDetails">512 × 512 · demo texture</span></div>
-            <button id="sampleBtn" type="button" class="text-button" title="Restore demo texture">RESET</button>
+            <button id="sampleBtn" type="button" class="text-button" title="Restore demo texture">Reset</button>
           </div>
           <div class="control-group" id="repeatControl">
             <div class="control-title"><label for="repeatRange">Tile grid</label><output for="repeatRange" id="repeatValue">3 × 3</output></div>
@@ -52,7 +52,7 @@
           <label class="toggle-row" for="guideToggle"><span>Show tile boundaries</span><input id="guideToggle" type="checkbox" /><span class="toggle" aria-hidden="true"></span></label>
 
           <section class="source-preview" aria-label="Original texture">
-            <div class="source-preview-title">ORIGINAL</div>
+            <div class="source-preview-title">Original</div>
             <div class="source-preview-frame">
               <canvas id="sourceCanvas" role="img" aria-label="Unmodified source texture"></canvas>
             </div>
@@ -62,25 +62,25 @@
         <main class="main" aria-label="Texture preview">
           <div class="preview-header">
             <h2 id="previewTitle">Repeat pattern</h2>
-            <div class="export-buttons"><button type="button" class="button button-primary" id="exportPreview">EXPORT PREVIEW</button></div>
+            <div class="export-buttons"><button type="button" class="button button-primary" id="exportPreview">Export preview</button></div>
           </div>
           <div class="mode-tabs" role="tablist" aria-label="Preview mode">
-            <button type="button" role="tab" class="mode-tab active" id="tab-tile" aria-selected="true" data-mode="tile"><span class="tab-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></span><span>TILE</span></button>
-            <button type="button" role="tab" class="mode-tab" id="tab-mirror" aria-selected="false" data-mode="mirror"><span class="tab-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M9 5H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h4m6-14h4a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-4"/></svg></span><span>MIRROR</span></button>
-            <button type="button" role="tab" class="mode-tab" id="tab-seams" aria-selected="false" data-mode="seams"><span class="tab-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3v18M16 3v18M3 8h18M3 16h18"/></svg></span><span>SEAM MAP</span></button>
+            <button type="button" role="tab" class="mode-tab active" id="tab-tile" aria-selected="true" data-mode="tile"><span class="tab-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></span><span>Tile</span></button>
+            <button type="button" role="tab" class="mode-tab" id="tab-mirror" aria-selected="false" data-mode="mirror"><span class="tab-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M9 5H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h4m6-14h4a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-4"/></svg></span><span>Mirror</span></button>
+            <button type="button" role="tab" class="mode-tab" id="tab-seams" aria-selected="false" data-mode="seams"><span class="tab-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3v18M16 3v18M3 8h18M3 16h18"/></svg></span><span>Seam map</span></button>
           </div>
           <div class="viewer" id="viewer" aria-label="Texture canvas, drag and drop an image to upload">
             <canvas id="previewCanvas" aria-label="Current texture preview" role="img"></canvas>
-            <div class="viewer-label" id="viewerLabel">3 × 3 · NORMAL REPEAT</div>
-            <div class="drop-overlay" id="dropOverlay" hidden><div>↥<br/><span>DROP TO INSPECT</span></div></div>
+            <div class="viewer-label" id="viewerLabel">3 × 3 · Normal repeat</div>
+            <div class="drop-overlay" id="dropOverlay" hidden><div>↥<br/><span>Drop to inspect</span></div></div>
           </div>
-          <div class="viewer-footer"><span id="dimensionLabel">512 × 512 PX</span></div>
+          <div class="viewer-footer"><span id="dimensionLabel">512 × 512 px</span></div>
 
         </main>
       </div>
-      <footer class="footer" aria-label="TILECHECK project links">
-        <a class="footer-wordmark" href="./" aria-label="Back to TILECHECK">TILE<span>CHECK</span></a>
-        <div class="footer-meta">© <span id="year"></span> TILECHECK <span class="footer-meta-divider" aria-hidden="true">/</span> MADE BY <a href="https://github.com/Treenixie" target="_blank" rel="noopener noreferrer" class="author-link">TREENIXIE</a></div>
+      <footer class="footer" aria-label="Tilecheck project links">
+        <a class="footer-wordmark" href="./" aria-label="Back to Tilecheck">Tile<span>check</span></a>
+        <div class="footer-meta">© <span id="year"></span> Tilecheck <span class="footer-meta-divider" aria-hidden="true">/</span> Made by <a href="https://github.com/Treenixie" target="_blank" rel="noopener noreferrer" class="author-link">Treenixie</a></div>
       </footer>
       <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
     </div>

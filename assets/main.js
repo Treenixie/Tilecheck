@@ -99,14 +99,14 @@ function installSource(canvas, name, sizeText) {
   state.source = canvas; state.name = name; state.analysis = analyze(canvas);
   ui.fileName.textContent = name;
   ui.fileDetails.textContent = `${canvas.width} × ${canvas.height} · ${sizeText}`;
-  ui.dimensionLabel.textContent = `${canvas.width} × ${canvas.height} PX`;
+  ui.dimensionLabel.textContent = `${canvas.width} × ${canvas.height} px`;
   schedule();
 }
 
 async function loadFile(file) {
   if (!file) return;
   const accepted = ['image/png', 'image/jpeg', 'image/webp', 'image/avif'];
-  if (!accepted.includes(file.type)) return notify('Use a PNG, JPG, WEBP or AVIF image.', true);
+  if (!accepted.includes(file.type)) return notify('Use a PNG, JPG, WebP or AVIF image.', true);
   if (file.size > 25 * 1024 * 1024) return notify('Image exceeds 25 MB. Choose a smaller file.', true);
   try {
     const bitmap = await createImageBitmap(file);
@@ -204,7 +204,7 @@ function setMode(mode) {
     tab.tabIndex = active ? 0 : -1;
   }
   ui.previewTitle.textContent = modes[mode].title;
-  ui.viewerLabel.textContent = `${state.repeat} × ${state.repeat} · ${mode === 'mirror' ? 'MIRRORED' : mode === 'seams' ? 'SEAM MAP' : 'NORMAL REPEAT'}`;
+  ui.viewerLabel.textContent = `${state.repeat} × ${state.repeat} · ${mode === 'mirror' ? 'Mirrored' : mode === 'seams' ? 'Seam map' : 'Normal repeat'}`;
   schedule();
 }
 async function savePng(canvas, filename) {
