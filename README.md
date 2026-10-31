@@ -13,12 +13,10 @@
 | Mode | Purpose |
 | --- | --- |
 | **Tile** | Repeat in a configurable 2×2 to 6×6 grid. |
-| **Offset** | Wrap opposite image edges into view. |
 | **Mirror** | Compare normal and alternately reflected tiling. |
 | **Seam Map** | Highlight pixel differences across opposing borders. |
-| **Original** | Show the source without modifications. |
 
-Additional controls include preview zoom, tile boundaries, left/right and top/bottom edge metrics, and PNG exports.
+The sidebar keeps an unchanged source preview visible. Additional controls include preview zoom, tile boundaries, and PNG preview export.
 
 **Limitations:** The seam score is an average RGB difference indicator, not proof of seamlessness. TILECHECK does not repair textures or validate PBR maps.
 
@@ -63,7 +61,7 @@ The app is a static website served directly from the repository root using Cloud
 
 ## Privacy
 
-Imported textures are decoded, analyzed and exported locally in your browser. TILECHECK contains no analytics scripts and does not upload textures. Hosting and outgoing links to GitHub are governed by their providers' policies.
+Imported textures are decoded, analyzed and exported locally in your browser. TILECHECK contains no analytics scripts and does not upload textures. Roboto is loaded from Google Fonts when online, which makes a request to Google's font servers. Hosting and outgoing links to GitHub are governed by their providers' policies.
 
 ## Feedback & contributions
 

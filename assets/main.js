@@ -6,23 +6,19 @@ const ui = {
   fileName: $('fileName'), fileDetails: $('fileDetails'), sampleBtn: $('sampleBtn'),
   repeat: $('repeatRange'), repeatValue: $('repeatValue'),
   zoom: $('zoomRange'), zoomValue: $('zoomValue'),
-  offsetX: $('offsetX'), offsetY: $('offsetY'),
-  offsetXValue: $('offsetXValue'), offsetYValue: $('offsetYValue'),
-  offsetControls: $('offsetControls'), repeatControl: $('repeatControl'),
+  repeatControl: $('repeatControl'), sourceCanvas: $('sourceCanvas'),
   guide: $('guideToggle'), previewTitle: $('previewTitle'),
   viewerLabel: $('viewerLabel'), dimensionLabel: $('dimensionLabel'),
-  exportPreview: $('exportPreview'), exportOffset: $('exportOffset'),
+  exportPreview: $('exportPreview'),
   toast: $('toast'),
 };
 const modes = {
   tile: { title: 'Repeat pattern' },
-  offset: { title: 'Expose the seams' },
   mirror: { title: 'Mirrored repeat' },
   seams: { title: 'Edge difference map' },
-  original: { title: 'Source image' },
 };
 const state = {
-  mode: 'tile', repeat: 3, zoom: 1, offsetX: .5, offsetY: .5, guides: false,
+  mode: 'tile', repeat: 3, zoom: 1, guides: false,
   source: null, name: 'Concrete / sample',
   analysis: { vertical: 0, horizontal: 0, vHeat: [], hHeat: [] },
 };
@@ -30,6 +26,8 @@ let raf = 0;
 let toastTimer = 0;
 const ctx = ui.canvas.getContext('2d', { alpha: false });
 if (!ctx) throw new Error('Canvas 2D is unavailable');
+const sourceCtx = ui.sourceCanvas.getContext('2d', { alpha: false });
+if (!sourceCtx) throw new Error('Source Canvas 2D is unavailable');
 
 function notify(message, error = false) {
   clearTimeout(toastTimer);
@@ -124,19 +122,26 @@ async function loadFile(file) {
   }
 }
 
-function makeWrapped(source, xOffset, yOffset) {
-  const w = source.width, h = source.height;
-  const ox = Math.round(w * xOffset) % w, oy = Math.round(h * yOffset) % h;
-  const cv = document.createElement('canvas'); cv.width = w; cv.height = h;
-  const c = cv.getContext('2d');
-  for (const x of [-ox, w - ox]) for (const y of [-oy, h - oy]) c.drawImage(source, x, y);
-  return cv;
-}
 function checker(c, w, h) {
   c.fillStyle = '#161e2c'; c.fillRect(0, 0, w, h);
   const size = 21;
   c.fillStyle = '#202d40';
   for (let y = 0; y < h; y += size) for (let x = 0; x < w; x += size) if (((x / size + y / size) & 1) === 0) c.fillRect(x, y, size, size);
+}
+function drawSource() {
+  const source = state.source; if (!source) return;
+  const bounds = ui.sourceCanvas.getBoundingClientRect();
+  const w = bounds.width, h = bounds.height;
+  if (w <= 0 || h <= 0) return;
+  const dpr = Math.min(2, window.devicePixelRatio || 1);
+  ui.sourceCanvas.width = Math.max(1, Math.round(w * dpr));
+  ui.sourceCanvas.height = Math.max(1, Math.round(h * dpr));
+  sourceCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  sourceCtx.imageSmoothingEnabled = true;
+  checker(sourceCtx, w, h);
+  const scale = Math.min(w / source.width, h / source.height);
+  const width = source.width * scale, height = source.height * scale;
+  sourceCtx.drawImage(source, (w - width) / 2, (h - height) / 2, width, height);
 }
 function drawMirrored(c, source, x, y, w, h, flipX, flipY) {
   c.save(); c.translate(x + (flipX ? w : 0), y + (flipY ? h : 0));
@@ -170,43 +175,36 @@ function drawGuides(c, x, y, w, h, n) {
 }
 function draw() {
   const source = state.source; if (!source) return;
+  drawSource();
   const b = ui.viewer.getBoundingClientRect(); const w = Math.max(1, b.width), h = Math.max(1, b.height);
   const dpr = Math.min(2, window.devicePixelRatio || 1);
   ui.canvas.width = Math.round(w * dpr); ui.canvas.height = Math.round(h * dpr);
   ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ctx.imageSmoothingEnabled = true;
   checker(ctx, w, h);
-  const isSingle = state.mode === 'original' || state.mode === 'offset';
-  const n = isSingle ? 1 : state.repeat;
+  const n = state.repeat;
   const pad = Math.min(56, w * .09, h * .09);
   const factor = Math.min((w - pad * 2) / (n * source.width), (h - pad * 2) / (n * source.height));
   const tileW = source.width * factor * state.zoom, tileH = source.height * factor * state.zoom;
   const startX = (w - n * tileW) / 2, startY = (h - n * tileH) / 2;
-  const src = state.mode === 'offset' ? makeWrapped(source, state.offsetX, state.offsetY) : source;
   for (let row = 0; row < n; row++) for (let col = 0; col < n; col++) {
     const x = startX + col * tileW, y = startY + row * tileH;
-    drawMirrored(ctx, src, x, y, tileW + .35, tileH + .35,
+    drawMirrored(ctx, source, x, y, tileW + .35, tileH + .35,
       state.mode === 'mirror' && col % 2 === 1, state.mode === 'mirror' && row % 2 === 1);
   }
   if (state.mode === 'seams') addHeat(ctx, startX, startY, tileW, tileH, n);
-  if (state.guides && !isSingle) drawGuides(ctx, startX, startY, tileW, tileH, n);
-  if (state.mode === 'offset') {
-    ctx.save(); ctx.strokeStyle = '#94bdf5'; ctx.lineWidth = 1; ctx.globalAlpha = .65; ctx.setLineDash([6, 6]);
-    ctx.strokeRect(startX + .5, startY + .5, tileW - 1, tileH - 1); ctx.restore();
-  }
+  if (state.guides) drawGuides(ctx, startX, startY, tileW, tileH, n);
 }
 function setMode(mode) {
   if (!modes[mode]) return;
   state.mode = mode;
   for (const tab of document.querySelectorAll('[data-mode]')) {
     const active = tab.dataset.mode === mode;
-    tab.classList.toggle('active', active); tab.setAttribute('aria-selected', String(active)); tab.tabIndex = active ? 0 : -1;
+    tab.classList.toggle('active', active);
+    tab.setAttribute('aria-selected', String(active));
+    tab.tabIndex = active ? 0 : -1;
   }
   ui.previewTitle.textContent = modes[mode].title;
-  ui.offsetControls.hidden = mode !== 'offset';
-  ui.repeatControl.hidden = mode === 'original' || mode === 'offset';
-  ui.viewerLabel.textContent = mode === 'original' ? 'SOURCE · UNMODIFIED' : mode === 'offset'
-    ? `${Math.round(state.offsetX * 100)}% X · ${Math.round(state.offsetY * 100)}% Y OFFSET`
-    : `${state.repeat} × ${state.repeat} · ${mode === 'mirror' ? 'MIRRORED' : mode === 'seams' ? 'SEAM MAP' : 'NORMAL REPEAT'}`;
+  ui.viewerLabel.textContent = `${state.repeat} × ${state.repeat} · ${mode === 'mirror' ? 'MIRRORED' : mode === 'seams' ? 'SEAM MAP' : 'NORMAL REPEAT'}`;
   schedule();
 }
 async function savePng(canvas, filename) {
@@ -224,15 +222,9 @@ ui.input.addEventListener('change', async () => { await loadFile(ui.input.files?
 ui.sampleBtn.addEventListener('click', () => { installSource(makeDemo(), 'Concrete / sample', 'demo texture'); notify('Demo texture restored.'); });
 ui.repeat.addEventListener('input', () => { state.repeat = Number(ui.repeat.value); ui.repeatValue.textContent = `${state.repeat} × ${state.repeat}`; setMode(state.mode); });
 ui.zoom.addEventListener('input', () => { state.zoom = Number(ui.zoom.value) / 100; ui.zoomValue.textContent = `${ui.zoom.value}%`; schedule(); });
-for (const axis of ['X', 'Y']) ui[`offset${axis}`].addEventListener('input', () => {
-  state[`offset${axis}`] = Number(ui[`offset${axis}`].value) / 100;
-  ui[`offset${axis}Value`].textContent = `${ui[`offset${axis}`].value}%`;
-  setMode(state.mode);
-});
 ui.guide.addEventListener('change', () => { state.guides = ui.guide.checked; schedule(); });
 for (const tab of document.querySelectorAll('[data-mode]')) tab.addEventListener('click', () => setMode(tab.dataset.mode));
 ui.exportPreview.addEventListener('click', () => savePng(ui.canvas, `${sanitized(state.name)}-${state.mode}-preview.png`));
-ui.exportOffset.addEventListener('click', () => savePng(makeWrapped(state.source, state.offsetX, state.offsetY), `${sanitized(state.name)}-offset.png`));
 let dragDepth = 0;
 document.addEventListener('dragenter', (event) => { if (!event.dataTransfer?.types.includes('Files')) return; event.preventDefault(); dragDepth++; ui.dropOverlay.hidden = false; ui.uploadZone.classList.add('is-dragging'); });
 document.addEventListener('dragover', (event) => { if (event.dataTransfer?.types.includes('Files')) event.preventDefault(); });
@@ -243,6 +235,7 @@ document.addEventListener('drop', async (event) => {
 });
 window.addEventListener('resize', schedule);
 new ResizeObserver(schedule).observe(ui.viewer);
+new ResizeObserver(schedule).observe(ui.sourceCanvas);
 $('year').textContent = String(new Date().getFullYear());
 installSource(makeDemo(), 'Concrete / sample', 'demo texture');
 setMode('tile');

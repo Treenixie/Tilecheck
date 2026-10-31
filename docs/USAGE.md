@@ -8,21 +8,20 @@ Drop an image into the inspector or use Choose Image. PNG, JPEG, WebP and AVIF a
 ## Modes
 
 - **Tile:** Display a 2×2 to 6×6 repeat; adjust zoom and boundary guides.
-- **Offset:** Shift opposite image edges into view using horizontal and vertical wrapping.
 - **Mirror:** Compare alternately flipped tiles with normal repeating.
 - **Seam Map:** Highlight strong RGB differences between opposite border pixels.
-- **Original:** Show the unchanged source.
 
-## Understanding the seam score
+## Original preview
 
-The Left ↔ Right and Top ↔ Bottom values are mean absolute per-channel RGB differences on a 0–255 scale. Alpha is composited on a fixed dark background before comparison.
+The unchanged source texture remains visible in the sidebar, regardless of the selected inspection mode.
 
-A low value is not a guarantee of seamlessness. Filtering, repeated motifs, normal maps and UVs can affect the result. Always inspect visually.
+## Understanding the Seam Map
+
+The Seam Map highlights average per-channel RGB differences between opposing edges. Alpha is composited on a fixed dark background before comparison. A weak highlight does not guarantee seamlessness. Filtering, repeated motifs, normal maps and UVs can affect the result. Always inspect visually.
 
 ## Export
 
 - **Export Preview:** PNG of the current preview.
-- **Export Offset:** wrapped PNG at original source resolution. It does not repair seams.
 
 All inspection and PNG export happen in your browser without uploading images.
 

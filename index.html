@@ -4,9 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#0e1219" />
-    <meta name="description" content="Inspect texture tiling, offsets, mirrored repetition, and potential seams directly in your browser." />
+    <meta name="description" content="Inspect texture tiling, mirrored repetition, and potential seams directly in your browser." />
     <link rel="icon" type="image/svg+xml" sizes="any" href="./assets/favicon.svg?v=2" />
-    <link rel="stylesheet" href="./assets/styles.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&display=swap" />
+<link rel="stylesheet" href="./assets/styles.css" />
     <title>TILECHECK — Texture Inspection Studio</title>
     <script defer src="./assets/main.js"></script>
   </head>
@@ -24,7 +25,7 @@
 
       <div class="workspace">
         <aside class="sidebar" aria-label="Texture settings">
-          <h1>Texture inspector<span class="period">.</span></h1>
+          <h1>Texture inspector</h1>
           
           <div class="upload-card" id="uploadZone">
             <div class="upload-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4m0 0-4 4m4-4 4 4"/><path d="M4 16v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"/></svg></div>
@@ -48,14 +49,14 @@
             <input type="range" min="50" max="200" value="100" step="10" id="zoomRange" />
             <div class="range-ticks"><span>50%</span><span>200%</span></div>
           </div>
-          <div class="control-group offset-controls" id="offsetControls" hidden>
-            <div class="control-title"><label for="offsetX">Horizontal offset</label><output for="offsetX" id="offsetXValue">50%</output></div>
-            <input type="range" min="0" max="100" value="50" step="1" id="offsetX" />
-            <div class="control-title second-control"><label for="offsetY">Vertical offset</label><output for="offsetY" id="offsetYValue">50%</output></div>
-            <input type="range" min="0" max="100" value="50" step="1" id="offsetY" />
-          </div>
           <label class="toggle-row" for="guideToggle"><span>Show tile boundaries</span><input id="guideToggle" type="checkbox" /><span class="toggle" aria-hidden="true"></span></label>
 
+          <section class="source-preview" aria-label="Original texture">
+            <div class="source-preview-title">ORIGINAL</div>
+            <div class="source-preview-frame">
+              <canvas id="sourceCanvas" role="img" aria-label="Unmodified source texture"></canvas>
+            </div>
+          </section>
         </aside>
 
         <main class="main" aria-label="Texture preview">
@@ -64,10 +65,8 @@
           </div>
           <div class="mode-tabs" role="tablist" aria-label="Preview mode">
             <button type="button" role="tab" class="mode-tab active" id="tab-tile" aria-selected="true" data-mode="tile"><span class="tab-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></span><span>TILE</span></button>
-            <button type="button" role="tab" class="mode-tab" id="tab-offset" aria-selected="false" data-mode="offset"><span class="tab-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h16M4 16h16m-12-12L4 8l4 4m8 0 4 4-4 4"/></svg></span><span>OFFSET</span></button>
             <button type="button" role="tab" class="mode-tab" id="tab-mirror" aria-selected="false" data-mode="mirror"><span class="tab-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M9 5H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h4m6-14h4a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-4"/></svg></span><span>MIRROR</span></button>
-            <button type="button" role="tab" class="mode-tab" id="tab-seams" aria-selected="false" data-mode="seams"><span class="tab-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h3l3-6 5 12 3-6h4"/></svg></span><span>SEAM MAP</span></button>
-            <button type="button" role="tab" class="mode-tab" id="tab-original" aria-selected="false" data-mode="original"><span class="tab-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/></svg></span><span>ORIGINAL</span></button>
+            <button type="button" role="tab" class="mode-tab" id="tab-seams" aria-selected="false" data-mode="seams"><span class="tab-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3v18M16 3v18M3 8h18M3 16h18"/></svg></span><span>SEAM MAP</span></button>
           </div>
           <div class="viewer" id="viewer" aria-label="Texture canvas, drag and drop an image to upload">
             <canvas id="previewCanvas" aria-label="Current texture preview" role="img"></canvas>
@@ -76,7 +75,7 @@
           </div>
           <div class="viewer-footer"><span id="dimensionLabel">512 × 512 PX</span></div>
           <div class="export-bar">
-            <div class="export-buttons"><button type="button" class="button button-outline" id="exportOffset">EXPORT OFFSET</button><button type="button" class="button button-primary" id="exportPreview">EXPORT PREVIEW</button></div>
+            <div class="export-buttons"><button type="button" class="button button-primary" id="exportPreview">EXPORT PREVIEW</button></div>
           </div>
         </main>
       </div>
