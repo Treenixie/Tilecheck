@@ -1150,10 +1150,10 @@ input[type="range"]::-moz-range-thumb { background: #F59BCC; }
 .sidebar-export .button-primary:hover:not(:disabled),
 .sidebar-export .button-primary:focus-visible:not(:disabled) { filter: brightness(1.35); }
 .viewer-empty-trigger, #viewerChooseBtn {
-  background: #241B46;
+  background: #372B59;
   color: #78C9DF;
 }
-#viewerChooseBtn:is(:hover, :focus-visible) { background: #30254D; color: #F59BCC; }
+#viewerChooseBtn:is(:hover, :focus-visible) { background: #48366D; color: #F59BCC; }
 .mode-tab:hover:not(:disabled), .text-button:hover:not(:disabled),
 .topbar .header-nav-link:hover, .footer .author-link:hover { color: #F59BCC; }
 #viewer > #toast { background: #241B46; color: #F5F0FF; }
