@@ -709,12 +709,10 @@ input[type="range"]::-moz-range-thumb {
   box-shadow: none;
 }
 
-/* Separate inspector sections while keeping the original texture
-   aligned to the bottom edge of the neighboring workspace. */
+/* Spacing for inspector sections, with no decorative divider lines. */
 .sidebar {
   --section-gap: 20px;
   --major-section-gap: 24px;
-  --section-divider: #40375e;
 }
 .sidebar h1 { margin-bottom: var(--major-section-gap); }
 .upload-card {
@@ -727,20 +725,17 @@ input[type="range"]::-moz-range-thumb {
   min-height: 38px;
   margin: 0 0 var(--section-gap);
   padding: 16px 0 0;
-  border-top: 1px solid var(--section-divider);
 }
 .control-group { margin: 0 0 var(--section-gap); }
 .control-title { margin-bottom: 10px; }
 /* Preview zoom -> Show tile boundaries */
 .toggle-row {
   padding-top: 16px;
-  border-top: 1px solid var(--section-divider);
 }
 /* Show tile boundaries -> Original. Auto margin pushes Original down
    on desktop without stretching the previous controls. */
 .source-preview {
   margin-top: auto;
   padding-top: 16px;
-  border-top: 1px solid var(--section-divider);
 }
 .source-preview-title { margin-bottom: 12px; }
