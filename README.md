@@ -1,73 +1,81 @@
 <div align="center">
-<img src="assets/logo.svg?raw=1" alt="TILECHECK logo" width="72" height="72">
-<h1>TILECHECK</h1>
-<p><strong>Preview patterns, test repetitions, and spot visible seams.</strong></p>
-<p>Preview repeating patterns, expose joins, inspect mirrored tiling and export PNGs.<br>No account · No build step · No image uploads</p>
-<p><a href="https://tilecheck.pages.dev/"><strong>Launch app</strong></a> · <a href="https://tilecheck.pages.dev/help.html">Help & FAQ</a> · <a href="docs/USAGE.md">User guide</a> · <a href="https://github.com/Treenixie/Tilecheck/issues">Issues</a></p>
+  <img src="assets/logo.svg" alt="Tilecheck logo" width="64" height="64" />
+  <h1>Tilecheck</h1>
+  <p><strong>Pattern Preview Tool</strong></p>
+  <p>Preview patterns, test repetitions, and spot visible seams.</p>
+  <p>
+    <a href="https://tilecheck.pages.dev/"><strong>Open app</strong></a> ·
+    <a href="docs/USAGE.md">User guide</a> ·
+    <a href="https://tilecheck.pages.dev/help.html">Help & FAQ</a> ·
+    <a href="https://github.com/Treenixie/Tilecheck/issues">Issues</a>
+  </p>
 </div>
 
 ---
 
-## Features
+## About
 
-| Mode | Purpose |
+Tilecheck is a small, browser-based tool for checking how textures behave when repeated. It helps artists and game developers preview tiled patterns, compare mirrored repeats, and identify potential seams before using an image in a project.
+
+Everything runs in the browser. There is no account, server-side image processing, or build step.
+
+## How it works
+
+1. **Add an image.** Drop a texture onto the preview, choose a file, or paste an image from the clipboard.
+2. **Choose an inspection mode.** Switch between tiled repetition, mirrored repetition, and the seam map.
+3. **Adjust the preview.** Change the repeat grid or zoom, and optionally show tile boundaries.
+4. **Export the result.** Save the current preview as a PNG.
+
+The original image stays visible in the sidebar. Inspection controls remain disabled until an image is loaded.
+
+## Inspection modes
+
+| Mode | What it shows |
 | --- | --- |
-| **Tile** | Repeat in a configurable 2×2 to 6×6 grid. |
-| **Mirror** | Compare normal and alternately reflected tiling. |
-| **Seam Map** | Highlight pixel differences across opposing borders. |
+| **Tile** | Repeats the texture in an adjustable 2 × 2 to 6 × 6 grid. |
+| **Mirror** | Alternates reflected tiles to compare a mirrored repeat with a regular one. |
+| **Seam map** | Highlights differences between opposite image edges that may produce visible seams. |
 
-Import a texture by dropping it into the page, choosing a file, or pasting an image from the clipboard with Ctrl+V (Cmd+V on macOS). The sidebar keeps an unchanged source preview visible. Additional controls include preview zoom, tile boundaries, and PNG preview export.
-
-**Limitations:** The seam score is an average RGB difference indicator, not proof of seamlessness. TILECHECK does not repair textures or validate PBR maps.
+Supported inputs: **PNG, JPEG, WebP, and AVIF** (subject to browser support). Files are limited to **25 MB** and **24 megapixels**.
 
 ## Get started
 
-**Online:** [Open TILECHECK](https://tilecheck.pages.dev/).
+**Use it online:** [Launch Tilecheck](https://tilecheck.pages.dev/). No installation is needed.
 
-**Offline:** Clone or download the repository and open index.html in your browser. No dependencies required.
+**Run it locally:**
 
-For a local HTTP server:
-
-~~~sh
+```sh
+git clone https://github.com/Treenixie/Tilecheck.git
+cd Tilecheck
 python -m http.server 8080
-~~~
+```
 
-Visit http://localhost:8080.
-
-Supports PNG, JPEG, WebP and AVIF where the browser supports them. Import limits: 25 MB and 24 megapixels.
-
-See the [user guide](docs/USAGE.md) for detailed explanations.
+Open [http://localhost:8080](http://localhost:8080) in your browser. The application is a static HTML/CSS/JavaScript site, with no dependencies to install or build process. You can also open `index.html` directly in a compatible browser.
 
 ## Project structure
 
-~~~text
-Tilecheck/
-├── index.html                    # Inspector
-├── help.html                     # Help & FAQ
-├── assets/
-│   ├── logo.svg                 # Project logo
-│   ├── favicon.png              # Browser icon
-│   ├── main.js
-│   └── styles.css
-├── docs/
-│   └── USAGE.md
-├── .github/ISSUE_TEMPLATE/       # Issue forms
-├── CONTRIBUTING.md
-├── _headers                      # Cloudflare headers
-├── README.md
-└── LICENSE
-~~~
+| Path | Purpose |
+| --- | --- |
+| [`index.html`](index.html) | Main texture inspector |
+| [`help.html`](help.html) | In-app help and FAQ |
+| [`assets/main.js`](assets/main.js) | Image loading, inspection, and PNG export |
+| [`assets/styles.css`](assets/styles.css) | Layout and visual styles |
+| [`assets/`](assets/) | Logo, icons, and checkerboard artwork |
+| [`docs/USAGE.md`](docs/USAGE.md) | User guide |
+| [`CONTRIBUTING.md`](CONTRIBUTING.md) | Contribution and testing notes |
 
-The app is a static website served directly from the repository root using Cloudflare Pages. No separate backend or build process.
+## Limitations
+
+The seam map is a **visual aid**, not a guarantee that a texture is seamless. Its edge comparison is based on RGB differences; it does not validate UV layouts, normal maps, or other PBR textures. Tilecheck previews images but does not repair seams.
 
 ## Privacy
 
-Imported textures are decoded, analyzed and exported locally in your browser. TILECHECK contains no analytics scripts and does not upload textures. Roboto is loaded from Google Fonts when online, which makes a request to Google's font servers. Hosting and outgoing links to GitHub are governed by their providers' policies.
+Imported images are decoded, analyzed, and exported **locally in your browser**. Tilecheck does not upload textures and includes no analytics scripts. When online, the site may request Roboto from Google Fonts. Hosting and outbound links have their own privacy policies.
 
-## Feedback & contributions
+## Contributing
 
-[Report a bug](https://github.com/Treenixie/Tilecheck/issues/new/choose), request a feature or read [CONTRIBUTING.md](CONTRIBUTING.md).
+Bug reports, suggestions, and focused pull requests are welcome. See [Contributing](CONTRIBUTING.md) for the development workflow. For bugs, include your browser, image format and dimensions, inspection mode, and steps to reproduce. Do not attach confidential textures to public issues.
 
 ## License
 
-[MIT](LICENSE) · By [Treenixie](https://github.com/Treenixie).
+[MIT License](LICENSE) · Made by [Treenixie](https://github.com/Treenixie).
