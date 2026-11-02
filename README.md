@@ -71,11 +71,3 @@ The seam map is a **visual aid**, not a guarantee that a texture is seamless. It
 ## Privacy
 
 Imported images are decoded, analyzed, and exported **locally in your browser**. Tilecheck does not upload textures and includes no analytics scripts. When online, the site may request Roboto from Google Fonts. Hosting and outbound links have their own privacy policies.
-
-## Contributing
-
-Bug reports, suggestions, and focused pull requests are welcome. See [Contributing](CONTRIBUTING.md) for the development workflow. For bugs, include your browser, image format and dimensions, inspection mode, and steps to reproduce. Do not attach confidential textures to public issues.
-
-## License
-
-[MIT License](LICENSE) · Made by [Treenixie](https://github.com/Treenixie).
