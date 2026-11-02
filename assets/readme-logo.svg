@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="465" viewBox="0 0 640 465" role="img" aria-labelledby="brand-title">
+  <title id="brand-title">Tilecheck</title>
+  <!-- README lockup using the same 4-quadrant symbol as the application. -->
+  <g transform="translate(184 8) scale(0.58)">
+    <rect x="0" y="0" width="94" height="94" fill="#EC62A2"/>
+    <rect x="94" y="0" width="94" height="94" fill="#DCC54D"/>
+    <rect x="0" y="94" width="94" height="94" fill="#46A1C6"/>
+    <rect x="94" y="94" width="94" height="94" fill="#8167DF"/>
+    <rect x="282" y="0" width="94" height="94" fill="#EC62A2"/>
+    <rect x="376" y="0" width="94" height="94" fill="#DCC54D"/>
+    <rect x="282" y="94" width="94" height="94" fill="#46A1C6"/>
+    <rect x="376" y="94" width="94" height="94" fill="#8167DF"/>
+    <rect x="0" y="282" width="94" height="94" fill="#EC62A2"/>
+    <rect x="94" y="282" width="94" height="94" fill="#DCC54D"/>
+    <rect x="0" y="376" width="94" height="94" fill="#46A1C6"/>
+    <rect x="94" y="376" width="94" height="94" fill="#8167DF"/>
+    <rect x="282" y="282" width="94" height="94" fill="#EC62A2"/>
+    <rect x="376" y="282" width="94" height="94" fill="#DCC54D"/>
+    <rect x="282" y="376" width="94" height="94" fill="#46A1C6"/>
+    <rect x="376" y="376" width="94" height="94" fill="#8167DF"/>
+  </g>
+  <text x="320" y="413" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="92" font-weight="700" letter-spacing="-2.5" stroke="#231A39" stroke-width="3" stroke-linejoin="round" paint-order="stroke">
+    <tspan fill="#F5F0FF">Tile</tspan><tspan fill="#81DFF3">ch</tspan><tspan fill="#F4EB8A">e</tspan><tspan fill="#F59BCC">ck</tspan>
+  </text>
+</svg>

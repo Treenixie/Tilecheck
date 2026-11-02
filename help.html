@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Tilecheck user help, FAQ and support.">
+<meta name="theme-color" content="#0d0b1d">
+<link rel="icon" type="image/svg+xml" href="./assets/logo.svg" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;600&display=swap" />
+<link rel="stylesheet" href="./assets/styles.css?v=66">
+<title>Help & FAQ — Tilecheck</title>
+</head>
+<body class="help-page"><div class="app">
+<header class="topbar"><a class="brand" href="./index.html" aria-label="Tilecheck home"><img class="brand-mark" src="./assets/logo.svg" width="36" height="36" alt="" aria-hidden="true" /><span>Tile<span class="brand-accent">check</span></span></a><nav class="header-nav" aria-label="Site navigation"><a class="header-nav-link" href="https://github.com/Treenixie/Tilecheck" target="_blank" rel="noopener noreferrer"><svg class="nav-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .9C5.87.9.9 5.87.9 12c0 4.9 3.18 9.06 7.59 10.53.56.1.77-.24.77-.54 0-.27-.01-.97-.02-1.9-3.09.67-3.74-1.31-3.74-1.31-.5-1.28-1.23-1.62-1.23-1.62-1.01-.69.08-.68.08-.68 1.11.08 1.7 1.14 1.7 1.14.99 1.7 2.59 1.21 3.22.93.1-.72.39-1.21.71-1.49-2.47-.28-5.07-1.23-5.07-5.5 0-1.22.43-2.21 1.14-2.99-.12-.28-.5-1.41.11-2.94 0 0 .93-.3 3.04 1.14a10.6 10.6 0 0 1 5.53 0c2.12-1.44 3.04-1.14 3.04-1.14.61 1.53.23 2.66.11 2.94.71.78 1.13 1.77 1.13 2.99 0 4.28-2.61 5.21-5.09 5.49.4.35.76 1.03.76 2.08 0 1.5-.01 2.71-.01 3.08 0 .3.21.65.78.54A11.1 11.1 0 0 0 23.1 12C23.1 5.87 18.13.9 12 .9Z"/></svg><span>GitHub</span></a><a class="header-nav-link" href="./index.html" aria-label="Go to Tilecheck home"><svg class="nav-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><mask id="tc-home-cutout" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24"><rect width="24" height="24" fill="white"/><path d="M6.4 11.1 12 6.7l5.6 4.4v6.6h-4v-4.5h-3.2v4.5h-4z" fill="black"/></mask><circle cx="12" cy="12" r="11.1" mask="url(#tc-home-cutout)"/></svg><span>Home</span></a></nav></header>
+<main class="help-main">
+<section class="help-heading"><h1>Help & FAQ</h1></section>
+<section class="help-section"><h2>Inspect a texture in three steps</h2><ol class="help-steps"><li><strong>Import.</strong> Drag an image into the inspector, paste one with Ctrl+V (Cmd+V on macOS), or choose a file.</li><li><strong>Inspect.</strong> Use Tile, Mirror and Seam Map to compare the result with the original shown in the sidebar.</li><li><strong>Export.</strong> Download a PNG of the selected repeat mode, without zoom, boundaries or the checkerboard background.</li></ol></section>
+<section class="help-section"><h2>Inspection modes</h2><div class="help-mode-grid"><div class="help-tile"><strong>Tile</strong><span>Preview repetition using a 2×2 to 6×6 grid.</span></div><div class="help-tile"><strong>Mirror</strong><span>Compare alternately mirrored repetition with normal tiling.</span></div><div class="help-tile"><strong>Seam map</strong><span>Highlight RGB differences along opposite borders.</span></div></div></section>
+<section class="help-section"><h2>Source preview</h2><p>The unchanged original stays visible in the left sidebar while you switch between inspection modes.</p></section>
+<section class="help-section"><h2>Common questions</h2>
+<div class="help-qa"><h3>Are my images uploaded?</h3><p>No. Images are decoded and processed inside your browser. Tilecheck does not upload your textures.</p></div>
+<div class="help-qa"><h3>What gets exported?</h3><p>A PNG of the repeated pattern in the selected mode. Zoom, boundary guides and the checkerboard are only for inspection and are not exported. Output is limited to 8192 pixels per side and 24 megapixels.</p></div>
+<div class="help-qa"><h3>Does Seam Map guarantee seamlessness?</h3><p>No. Seam Map highlights differences along opposite edges, but visual inspection is still essential, especially with alpha, normal maps and repeating motifs.</p></div>
+<div class="help-qa"><h3>Can Tilecheck repair seams?</h3><p>No. Tilecheck helps you inspect visible seams, but does not change or repair your source texture.</p></div>
+<div class="help-qa"><h3>Which images are supported?</h3><p>PNG, JPEG, WebP and AVIF, depending on your browser. Maximum file size: 25 MB; maximum image size: 24 megapixels.</p></div>
+<div class="help-qa"><h3>Can it run offline?</h3><p>Yes. Download the repository and open index.html. No installation or build tooling is required.</p></div></section>
+<section class="help-section help-support"><h2>Need help or found a bug?</h2><p>Report issues through GitHub. Include your browser, texture format and reproduction steps. Please avoid sharing private textures in public issues.</p><div class="help-actions"><a class="button button-outline" href="https://github.com/Treenixie/Tilecheck/issues/new/choose" target="_blank" rel="noopener noreferrer">Report an issue</a><a class="button button-outline" href="https://github.com/Treenixie/Tilecheck/blob/dev/docs/USAGE.md" target="_blank" rel="noopener noreferrer">User guide</a><a class="button button-outline" href="https://github.com/Treenixie/Tilecheck" target="_blank" rel="noopener noreferrer">Source code</a></div></section>
+</main>
+<footer class="footer" aria-label="Tilecheck project links">
+        <div class="footer-meta">
+          <span>© <span id="year">2026</span> Tilecheck</span>
+          <span class="footer-credit">Made by <a href="https://github.com/Treenixie" target="_blank" rel="noopener noreferrer" class="author-link">Treenixie</a></span>
+        </div>
+      </footer>
+</div><script defer src="./assets/year.js"></script></body></html>

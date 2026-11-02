@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0d0b1d" />
+    <meta name="description" content="Preview patterns, test repetitions, and spot visible seams." />
+    <link rel="icon" type="image/svg+xml" href="./assets/logo.svg" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;600&display=swap" />
+<link rel="stylesheet" href="./assets/styles.css?v=66" />
+    <title>Tilecheck — Pattern Preview Tool</title>
+    <script defer src="./assets/main.js?v=26"></script>
+  </head>
+  <body>
+    <div class="app">
+      <header class="topbar">
+        <a class="brand" href="./" aria-label="Tilecheck home">
+          <img class="brand-mark" src="./assets/logo.svg" width="36" height="36" alt="" aria-hidden="true" />
+          <span>Tile<span class="brand-accent">check</span></span>
+          
+        </a>
+
+        <nav class="header-nav" aria-label="Site navigation"><a class="header-nav-link" href="https://github.com/Treenixie/Tilecheck" target="_blank" rel="noopener noreferrer"><svg class="nav-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .9C5.87.9.9 5.87.9 12c0 4.9 3.18 9.06 7.59 10.53.56.1.77-.24.77-.54 0-.27-.01-.97-.02-1.9-3.09.67-3.74-1.31-3.74-1.31-.5-1.28-1.23-1.62-1.23-1.62-1.01-.69.08-.68.08-.68 1.11.08 1.7 1.14 1.7 1.14.99 1.7 2.59 1.21 3.22.93.1-.72.39-1.21.71-1.49-2.47-.28-5.07-1.23-5.07-5.5 0-1.22.43-2.21 1.14-2.99-.12-.28-.5-1.41.11-2.94 0 0 .93-.3 3.04 1.14a10.6 10.6 0 0 1 5.53 0c2.12-1.44 3.04-1.14 3.04-1.14.61 1.53.23 2.66.11 2.94.71.78 1.13 1.77 1.13 2.99 0 4.28-2.61 5.21-5.09 5.49.4.35.76 1.03.76 2.08 0 1.5-.01 2.71-.01 3.08 0 .3.21.65.78.54A11.1 11.1 0 0 0 23.1 12C23.1 5.87 18.13.9 12 .9Z"/></svg><span>GitHub</span></a><a class="header-nav-link" href="./help.html"><svg class="nav-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><mask id="tc-support-cutout" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24"><rect width="24" height="24" fill="white"/><path d="M9 9.4a3.1 3.1 0 1 1 4.75 2.65C12.5 13 12 13.6 12 15" fill="none" stroke="black" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="18.1" r="1.45" fill="black"/></mask><circle cx="12" cy="12" r="11.1" mask="url(#tc-support-cutout)"/></svg><span>Support</span></a></nav>
+      </header>
+
+      <div class="workspace">
+        <aside class="sidebar is-empty" aria-label="Texture inspector settings">
+          <h1 class="visually-hidden">Texture inspector</h1>
+          
+          <div class="sidebar-mode-tabs">
+            <div class="mode-tabs" role="tablist" aria-label="Preview mode">
+            <button type="button" role="tab" class="mode-tab active" id="tab-tile" aria-selected="true" data-mode="tile" disabled><span class="tab-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></span><span>Tile</span></button>
+            <button type="button" role="tab" class="mode-tab" id="tab-mirror" aria-selected="false" data-mode="mirror" disabled><span class="tab-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M9 5H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h4m6-14h4a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-4"/></svg></span><span>Mirror</span></button>
+            <button type="button" role="tab" class="mode-tab" id="tab-seams" aria-selected="false" data-mode="seams" disabled><span class="tab-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3v18M16 3v18M3 8h18M3 16h18"/></svg></span><span>Seam map</span></button>
+            </div>
+          </div>
+          <input type="file" accept="image/png,image/jpeg,image/webp,image/avif" id="fileInput" hidden />
+          <div class="file-summary">
+            <span class="file-graphic" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8" cy="9" r="1"/><path d="m4 17 5-5 4 4 3-3 4 4"/></svg></span>
+            <div class="file-info">
+              <strong id="fileName">No image selected</strong>
+              <span id="fileDetails"></span>
+            </div>
+            <button id="sampleBtn" type="button" class="text-button" title="Clear image" disabled>Reset</button>
+          </div>
+          <div class="control-group" id="repeatControl">
+            <div class="control-title"><label for="repeatRange">Tile grid</label><output for="repeatRange" id="repeatValue">3 × 3</output></div>
+            <input type="range" min="2" max="6" value="3" step="1" id="repeatRange" disabled />
+            <div class="range-ticks"><span>2 × 2</span><span>6 × 6</span></div>
+          </div>
+          <div class="control-group">
+            <div class="control-title"><label for="zoomRange">Preview zoom</label><output for="zoomRange" id="zoomValue">100%</output></div>
+            <input type="range" min="50" max="200" value="100" step="10" id="zoomRange" disabled />
+            <div class="range-ticks"><span>50%</span><span>200%</span></div>
+          </div>
+          <label class="toggle-row" for="guideToggle"><span>Show tile boundaries</span><input id="guideToggle" type="checkbox" disabled /><span class="toggle" aria-hidden="true"></span></label>
+          <div class="export-buttons sidebar-export">
+            <button type="button" class="button button-primary" id="exportPreview" disabled><span class="export-label">Export preview</span></button>
+          </div>
+
+          <section class="source-preview" aria-label="Original texture">
+            <div class="source-preview-title">Original</div>
+            <div class="source-preview-frame is-empty" id="sourceFrame">
+              <canvas id="sourceCanvas" role="img" aria-label="Unmodified source texture"></canvas>
+            </div>
+          </section>
+        </aside>
+
+        <main class="main" aria-label="Texture preview">
+          <h2 id="previewTitle" class="visually-hidden" aria-live="polite">Repeat pattern</h2>
+          <div class="viewer is-empty" id="viewer" aria-label="Texture preview; click to choose an image or drop a file">
+            <canvas id="previewCanvas" aria-label="Current texture preview" role="img"></canvas>
+            <div class="viewer-empty-state" id="emptyState">
+              <button type="button" id="viewerChooseBtn" class="viewer-empty-trigger" aria-label="Choose an image" title="Choose an image">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4m0 0-4 4m4-4 4 4"/><path d="M4 16v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"/></svg>
+              </button>
+              <strong>Drop or upload an image to get started</strong>
+              <span>PNG, JPG, WebP or AVIF, up to 25 MB</span>
+            </div>
+            <div class="drop-overlay" id="dropOverlay" hidden><div>↥<br/><span>Drop to inspect</span></div></div>
+            <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+          </div>
+
+        </main>
+      </div>
+      <footer class="footer" aria-label="Tilecheck project links">
+        <div class="footer-meta">
+          <span>© <span id="year"></span> Tilecheck</span>
+          <span class="footer-credit">Made by <a href="https://github.com/Treenixie" target="_blank" rel="noopener noreferrer" class="author-link">Treenixie</a></span>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>
