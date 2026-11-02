@@ -1,4 +1,4 @@
-# Contributing to TILECHECK
+# Contributing to Tilecheck
 
 Thanks for supporting this free, dependency-free texture inspector.
 
