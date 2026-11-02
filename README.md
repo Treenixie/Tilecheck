@@ -1,7 +1,7 @@
 <div align="center">
 <img src="assets/logo.svg?raw=1" alt="TILECHECK logo" width="72" height="72">
 <h1>TILECHECK</h1>
-<p><strong>Texture inspection studio for game developers and artists.</strong></p>
+<p><strong>Check texture repeats, mirroring, and seams in your browser.</strong></p>
 <p>Preview repeating patterns, expose joins, inspect mirrored tiling and export PNGs.<br>No account · No build step · No image uploads</p>
 <p><a href="https://tilecheck.pages.dev/"><strong>Launch app</strong></a> · <a href="https://tilecheck.pages.dev/help.html">Help & FAQ</a> · <a href="docs/USAGE.md">User guide</a> · <a href="https://github.com/Treenixie/Tilecheck/issues">Issues</a></p>
 </div>
